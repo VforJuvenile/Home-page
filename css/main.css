@@ -1,9 +1,31 @@
 *{
 	padding: 0px;
 	margin: 0px;
+	list-style: none;
 }
 
 .page{
 	border-bottom:1px solid red;
 	width: 100%;
+}
+
+.fixedUl{
+	position: fixed;
+	left: 20px;
+	top:450px;
+}
+
+.fixedSpan{
+	display: block;
+	margin-top:20px;
+	width:15px;
+	height:15px;
+	text-align:center;
+	color:white;
+	vertical-align: center;
+	border-radius:10px;
+	background:green;
+}
+.fixedSpan:hover{
+	cursor: pointer;
 }
