@@ -1,0 +1,9 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+.page{
+	border-bottom:1px solid red;
+	width: 100%;
+}
