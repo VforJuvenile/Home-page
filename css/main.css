@@ -38,3 +38,17 @@
 .fixedSpan:hover{
 	cursor: pointer;
 }
+
+#timeAndName{
+	display:block;
+	position:absolute;
+	top:240px;
+	text-align: center;
+	width:270px;
+	/*border:1px solid red;*/
+	font-size: 20px;
+}
+#nowTime{
+	font-size: 100px;
+	font-family: '微软雅黑';
+}
