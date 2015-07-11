@@ -6,13 +6,20 @@
 
 .page{
 	border-bottom:1px solid red;
-	width: 100%;
 }
 
-.fixedUl{
+
+#page2{
+	background:green;
+}
+
+#page3{
+	background:yellow;
+}
+
+#fixedUl{
 	position: fixed;
 	left: 20px;
-	top:450px;
 }
 
 .fixedSpan{
@@ -21,11 +28,13 @@
 	width:15px;
 	height:15px;
 	text-align:center;
-	color:white;
+	color:black;
 	vertical-align: center;
 	border-radius:10px;
-	background:green;
+	border:1px solid green;
+	/*background:green;*/
 }
+
 .fixedSpan:hover{
 	cursor: pointer;
 }
