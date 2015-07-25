@@ -5,50 +5,146 @@
 }
 
 .page{
-	border-bottom:1px solid red;
+	position:absolute;
 }
 
 
-#page2{
-	background:green;
-}
 
 #page3{
-	background:yellow;
+	/*background:yellow;*/
 }
 
-#fixedUl{
-	position: fixed;
-	left: 20px;
-}
-
-.fixedSpan{
-	display: block;
-	margin-top:20px;
-	width:15px;
-	height:15px;
-	text-align:center;
-	color:black;
-	vertical-align: center;
-	border-radius:10px;
-	border:1px solid green;
-	/*background:green;*/
-}
-
-.fixedSpan:hover{
-	cursor: pointer;
-}
 
 #timeAndName{
-	display:block;
 	position:absolute;
-	top:240px;
+	top:290px;
 	text-align: center;
-	width:270px;
+	width:270px;height:157px;
 	/*border:1px solid red;*/
 	font-size: 20px;
+	/*height:300;*/
+	/*color:#F2F2F2;*/
 }
+/*加入boostrap变形*/
 #nowTime{
 	font-size: 100px;
 	font-family: '微软雅黑';
+	height:130px;
+	/*border:1px solid red;*/
+}
+
+/*page3*/
+#userHeader{
+	height:50px;
+	border-bottom:1px solid red;
+	position: relative;
+	/*position:absolute;*/
+	/*width:100%;*/
+}
+#contain{
+	/*width:100%;*/
+	/*height:;*/
+	position:relative;
+	/*border-top: 1px solid blue;*/
+	border-bottom: 1px solid blue;
+	/*overflow: auto;*/
+}
+#offsetHeight{
+	/*border:1px solid red;*/
+	/*position:absolute;*/
+	/*width:2px;*/
+}
+#sidebar{
+	/*position:absolute;*/
+	width:200px;
+	margin-left:10px;	
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+#mainContain{
+	/*position: absolute;*/
+	top: 0px;
+	position: absolute;
+	left:220px;
+	/*height:100%;*/
+	border:1px solid red;
+	overflow: auto;
+}
+.sider{
+	height: 50px;line-height: 50px;
+	border-bottom:1px solid black;
+}
+.newPage{
+	/*border:1px solid red;*/
+}
+#userInfo{
+	border:1px solid red;
+	height:150px;
+	text-align: center;
+}
+.sideOptions{
+	height:50px;
+	border:1px solid blue;
+	text-align:center;
+	line-height:50px;
+}
+#personPhoto{
+	border:1px solid blue;
+}
+
+
+/*page1*/
+#planNumber{
+	position:absolute;
+	top:20px;
+	border:1px solid red;
+	width:400px;
+	height:150px;
+	border-radius: 5px 5px 0 0;
+}
+
+#planNumber li{
+	display: inline-block;
+	margin-left:25px;
+	text-align: center;
+}
+#planNumber span{
+	display: block;
+	margin-bottom:10px;
+}
+#planNumber button{
+	width:100px;
+}
+
+#calendar{
+	position:absolute;
+	left:600px;
+	top:20px;
+	border:1px solid blue;
+	width:300px;
+	height:270px;
+	border-radius: 5px 5px 0 0;
+}
+
+#planTable{
+	position: absolute;
+	top:200px;
+	width:500px;
+	height:700px;
+	border:1px solid red;
+	border-radius: 5px 5px 0 0;
+}
+
+#weather{
+	position: absolute;
+	top:300px;
+	left:540px;
+	width:300px;
+	height:270px;
+	border:1px solid green;
+	border-radius: 5px 5px 0 0;
+}
+.separateP{
+	display:block;
+	border-bottom:1px solid blue;
 }
