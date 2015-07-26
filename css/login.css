@@ -37,15 +37,15 @@
 }
 #login_left{
 	width:350px;
-	height:400px;
+	height:350px;
 	float:left;
 	margin-left:40px;
-	border:1px solid red;
+	border:1px solid orange;
 	text-align:center;
 }
 #login_right{
 	width:400px;
-	height:400px;
+	height:300px;
 	float:right;
 	border:1px solid #ccc;
 }
@@ -55,8 +55,11 @@
 	border-bottom:1px solid #ccc;
 }
 #login_tab div{
-	display: inline-block;
-	width:193px;
+	float:left;
+	/*width:193px;*/
+	width:49.4%;
+	margin:0px;
+	padding:0px;
 	height:50px;
 	border:1px solid #ccc;
 	text-align: center;
@@ -80,4 +83,8 @@
 	height:30px;
 	margin-top:20px;
 	float:right;
+}
+.err{
+	color:red;
+	font-size: 12px;
 }

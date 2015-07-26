@@ -92,7 +92,17 @@
 			</div> 
 		</div>
 	</div> 
-
+<?php
+	
+	@$name = $_POST['name'];
+	if(!isset($_POST['name'])){
+?>
+	<!-- <div >表单name没有传过来</div> -->
+<?php		
+	}else{
+		echo "name success";
+	}
+?>
 
 	<script type="text/javascript" src="scripts/auxiliary.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
