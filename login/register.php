@@ -25,9 +25,9 @@
 				 	<form action="register.php" method="post" >
 						<input type="text" name="name" id="username" placeholder="请输入邮箱或用户名" class="login_input" required/>
 						<input type="password" name="password" id="password" placeholder="请输入密码" class="login_input" required/>	
-						<input type="password" placeholder="请再次输入密码" class="login_input" required/>	
+						<input type="password" placeholder="请再次输入密码" id="repassword" class="login_input" required/>	
 						<!-- <input type="hidden" name="flag1" /> -->
-						<input type="submit" value="注册" class="submit"/>
+						<input type="submit"  id="register_submit" value="注册" class="submit"/>
 					</from> 
 					<!-- 注册成功，5秒后转到主页 -->
 				<?php
@@ -48,9 +48,9 @@
 							<form action="register.php" method="post" >
 							<input type="text" name="name" placeholder="请输入邮箱或用户名" class="login_input" required/>
 							<input type="password" name="password" placeholder="请输入密码" class="login_input" required/>	
-							<input type="password" placeholder="请再次输入密码" class="login_input"/>	
+							<input type="password" placeholder="请再次输入密码" id="repassword" class="login_input" required/>	
 							<!-- <input type="hidden" name="flag1" /> -->
-							<input type="submit" value="注册" class="submit"/>
+							<input type="submit" id="register_submit" value="注册" class="submit"/>
 
 							</from> 
 				<?php
@@ -70,7 +70,7 @@
 					}
 						
 				?>
-				<span id="err3"><?php echo $err3;?></span>
+				<span id="err3" class="err"><?php echo $err3;?></span>
 				<span class="err"><?php echo $err2;?></span>
 			</div>
 		</div>

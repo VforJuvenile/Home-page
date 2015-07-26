@@ -10,8 +10,9 @@
 	$row = $result->fetch_row();
 	$count = $row[0];
 	if($count){
-		$response = "aa";
+		$response = "用户名已存在！";
 	}else{
-		$response = "wu";
-	}
+		$response = "";
+	};
+	echo $response;
 ?>

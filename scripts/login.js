@@ -1,8 +1,10 @@
 var login_btn = document.getElementById("login_btn"),
 	register_btn = document.getElementById("register_btn"),
 	password = document.getElementById("password"),
-	name2 = document.getElementById("username"),
-	err3 = document.getElementById("err3");
+	username = document.getElementById("username"),
+	submit = document.getElementById("register_submit"),
+	err3 = document.getElementById("err3"),
+	repassword = document.getElementById("repassword");
 
 EventUtil.addHandler(login_btn, handler, "click");
 EventUtil.addHandler(register_btn, handler, "click");
@@ -19,47 +21,39 @@ function handler(e){
 		// do nothing 
 	}
 }
+// keyup
+EventUtil.addHandler(username, nameBlurHandler, "blur");
 
-EventUtil.addHandler(password, focusHandler, "focus");
-
-function focusHandler (e) {
+function nameBlurHandler (e) {
 	var e = EventUtil.getEvent(e);
-	var aa = name2.value;
-	
-	var xhr = createXHR();alert(aa);
-	// xhr.open("get", "judge.php?name=aa", false);
-	// xhr.send(null);
-	// if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
-	// 	var span = xhr.responseText;
-	// 	err3.innerHTML = span;
-	// }else{
-	// 	// do nothing;
-	// 	alert("shibai");
-	// }
+	var aa = username.value;
+	var xhr = createXHR();
+	var url = "judge.php";
+	url = url + "?name="+aa;
+	url = url + "&id="+Math.random();
 
-}
-function createXHR(){
-	if(typeof XMLHttpRequest != "undefined"){
-		alert("xml");
-		return new XMLHttpRequest();
-	}else if(typeof ActiveXObject != "undefined"){
-		if(typeof arguments.callee.activeXString != 'string'){
-			var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp"], i, len;
-
-			for(i = 0, len = versions.length; i < len; i++){
-				try{
-					new ActiveXObject(versions[i]);
-					arguments.callee.activeXString = versions[i];
-					break;
-				}catch(ex){
-					// do nothing
-				}
-			}
+	xhr.open("get", url, false);
+	xhr.send(null);
+	if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+		var span = xhr.responseText;
+		err3.innerHTML = span;
+		if(span !=""){
+			submit.disabled = true;
+		}else{
+			submit.disabled = false;
 
 		}
-		return new ActiveXObject(arguments.callee.activeXString);
 	}else{
-		throw new Error("存在错误");
+		// do nothing; 
 	}
-	
+
+}
+
+EventUtil.addHandler(repassword, repasswordBlurHandler, "keyup");
+function repasswordBlurHandler (e) {
+	if(repassword.value != password.value){
+		err3.innerHTML = "两次密码不配！";
+	}else{
+		err3.innerHTML = "";
+	}
 }

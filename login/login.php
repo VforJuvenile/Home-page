@@ -25,7 +25,7 @@
 					<form method="post" action="login.php">
 						<input type="text" name="login_name" placeholder="请输入邮箱或用户名" class="login_input" required/>
 						<input type="password" name="login_password" placeholder="请输入密码" class="login_input" required/>	
-						<input type="submit" value="登录" class="submit"/>	
+						<input type="submit" id="register_submit" value="登录" class="submit"/>	
 					
 					</from>
 				<?php
@@ -44,7 +44,7 @@
 							echo "window.location.href = '../index.php'";
 							echo "</script>";
 						}else{
-							$err = "请输入正确的用户名和密码！";
+							$err = "用户名或密码错误！";
 				?>
 							<form method="post" action="login.php">
 								<input type="text" name="login_name" placeholder="请输入邮箱或用户名" class="login_input" value="<?php echo $login_name;?>" required/>

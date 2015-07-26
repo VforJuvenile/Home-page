@@ -56,15 +56,16 @@
 }
 #login_tab div{
 	float:left;
-	/*width:193px;*/
-	width:49.4%;
+	/*width:193p7;*/
+	width:50%;
 	margin:0px;
 	padding:0px;
 	height:50px;
-	border:1px solid #ccc;
+	/*border:1px solid #ccc;*/
 	text-align: center;
 	font-size: 20px;
 	line-height: 50px;
+	cursor:pointer;
 }
 #login_right form{
 	width:300px;
