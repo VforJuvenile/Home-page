@@ -2,7 +2,10 @@ var login_btn = document.getElementById("login_btn"),
 	register_btn = document.getElementById("register_btn"),
 	password = document.getElementById("password"),
 	username = document.getElementById("username"),
+	login_password = document.getElementById("login_password"),
+	login_name = document.getElementById("login_name"),
 	submit = document.getElementById("register_submit"),
+	login_submit = document.getElementById("login_submit"),
 	err3 = document.getElementById("err3"),
 	repassword = document.getElementById("repassword");
 
@@ -37,12 +40,16 @@ function nameBlurHandler (e) {
 	if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
 		var span = xhr.responseText;
 		err3.innerHTML = span;
+		span = span.trim();
+		// alert(span);
+		// alert(span == "");
 		if(span !=""){
 			submit.disabled = true;
 		}else{
+			// alert("not disabled");
 			submit.disabled = false;
 
-		}
+		};
 	}else{
 		// do nothing; 
 	}
@@ -52,8 +59,34 @@ function nameBlurHandler (e) {
 EventUtil.addHandler(repassword, repasswordBlurHandler, "keyup");
 function repasswordBlurHandler (e) {
 	if(repassword.value != password.value){
-		err3.innerHTML = "两次密码不配！";
+		err3.innerHTML = "两次密码不匹配！";
+		submit.disabled = true;
 	}else{
 		err3.innerHTML = "";
+		submit.disabled = false;
+	}
+}
+
+// EventUtil.addHandler(login_submit, logSubHandler, "click");
+
+function logSubHandler() {
+
+	// alert("dd");
+	var e = EventUtil.getEvent(e);
+	var pass = login_password.value;
+	var name = login_name.value;
+	var err1 = document.getElementById("err1");
+	var data = "login_name=" + name+ "&" + "login_password=" + pass;
+	var xhr = createXHR();
+	var url = "judge.php";
+	// url = url + "?id="+Math.random(); 
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send(data);
+	if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+		var span = xhr.responseText;
+		// alert(span1);
+		err1.innerHTML = span;
+		span = span.trim();
 	}
 }

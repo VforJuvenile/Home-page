@@ -16,48 +16,14 @@
 					<div id="register_btn">注册</div>
 				</div>
 
-				<?php
-					@$login_name= $_POST['login_name'];
-				 	@$login_password = $_POST['login_password'];
-				 	$err = "";
-				 	if(!isset($_POST['login_name']) && !isset($_POST['login_password'])){
-				 ?>
-					<form method="post" action="login.php">
-						<input type="text" name="login_name" placeholder="请输入邮箱或用户名" class="login_input" required/>
-						<input type="password" name="login_password" placeholder="请输入密码" class="login_input" required/>	
-						<input type="submit" id="register_submit" value="登录" class="submit"/>	
+				<form method="post" action="judge.php">
+					<input type="text" name="login_name" id="login_name" placeholder="请输入邮箱或用户名" class="login_input" required/>
+					<input type="password" name="login_password" id="login_password" placeholder="请输入密码" class="login_input" required/>	
+					<input type="button" id="login_submit" onclick="logSubHandler()" value="登录" class="submit"/>	
 					
-					</from>
-				<?php
-					}else{
-						@ $db = new mysqli("localhost", "root", "123456", "wufu");
-						if (mysqli_connect_errno()){
-							echo "Error: 无法连接到数据库！";
-							exit;
-						};
-						$query2 = "select count(*) from userinfo where userName = '$login_name' and password = sha1($login_password)";
-						$result2 = $db->query($query2);
-						$row = $result2->fetch_row();
-						$count = $row[0];
-						if($count){
-							echo "<script type='text/javascript'>";
-							echo "window.location.href = '../index.php'";
-							echo "</script>";
-						}else{
-							$err = "用户名或密码错误！";
-				?>
-							<form method="post" action="login.php">
-								<input type="text" name="login_name" placeholder="请输入邮箱或用户名" class="login_input" value="<?php echo $login_name;?>" required/>
-								<input type="password" name="login_password" placeholder="请输入密码" class="login_input" value="<?php echo $login_password;?>" required/>	
-								<input type="submit" value="登录" class="submit"/>	
-					
-							</from>
-				<?php
-							
-						}
-					}
-				?>
-				<span class="err"><?php echo $err;?></span>
+				</from>
+
+				<span id="err1" class="err"></span>
 			</div>
 		</div>
 		
