@@ -10,7 +10,7 @@
 	width:900px;
 	height:300px;
 	margin: 40px auto;
-	border:1px solid #ccc;
+	/*border:1px solid #ccc;*/
 	height:600px;
 }
 #login_bottom{
@@ -25,8 +25,8 @@
 	margin: 0px auto;
 }
 #login_log{
-	width:200px;
-	height:60px;
+	width:300px;
+	height:100px;
 	line-height: 60px;
 	text-align: center;
 	font-size: 50px;
@@ -48,6 +48,11 @@
 	height:300px;
 	float:right;
 	border:1px solid #ccc;
+}
+#login_right:hover{
+	-webkit-box-shadow:0px 0 10px orange;  
+    -moz-box-shadow:0px 0 10px orange;  
+    box-shadow:0px 0 10px orange; 
 }
 #login_tab{
 	width:100%;

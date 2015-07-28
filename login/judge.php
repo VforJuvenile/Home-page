@@ -6,7 +6,7 @@
 		exit;
 	};
 	if(isset($name)){
-			$query = "select count(*) from userinfo where userName = '".$name."'";
+		$query = "select count(*) from userinfo where userName = '".$name."'";
 		$result = $db->query($query);
 		$row = $result->fetch_row();
 		$count = $row[0];
@@ -63,12 +63,15 @@
 		$row = $result2->fetch_row();
 		$count = $row[0];
 		if($count){
-			// echo "A";
+
 			echo "<script type='text/javascript'>";
 			echo "window.location.href = '../index.php'";
 			echo "</script>";
+
 		}else{
-			echo "用户名或密码错误！";
+			$err = "用户名或密码错误！";
+			$id="e";
+			Header("Location: http://localhost:8087/Home-page/login/login.php?id=$id");
 		}
 	}
 ?>

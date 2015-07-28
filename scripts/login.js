@@ -11,7 +11,6 @@ var login_btn = document.getElementById("login_btn"),
 
 EventUtil.addHandler(login_btn, handler, "click");
 EventUtil.addHandler(register_btn, handler, "click");
-
 // 如何在js的事件中进行ajax通过php去后台数据库做判断？？？？？？？？？？？？？？？？？
 function handler(e){
 	var e = EventUtil.getEvent(e);
@@ -24,9 +23,9 @@ function handler(e){
 		// do nothing 
 	}
 }
+
 // keyup
 EventUtil.addHandler(username, nameBlurHandler, "blur");
-
 function nameBlurHandler (e) {
 	var e = EventUtil.getEvent(e);
 	var aa = username.value;
@@ -67,26 +66,18 @@ function repasswordBlurHandler (e) {
 	}
 }
 
-// EventUtil.addHandler(login_submit, logSubHandler, "click");
-
-function logSubHandler() {
-
-	// alert("dd");
-	var e = EventUtil.getEvent(e);
-	var pass = login_password.value;
-	var name = login_name.value;
-	var err1 = document.getElementById("err1");
-	var data = "login_name=" + name+ "&" + "login_password=" + pass;
-	var xhr = createXHR();
-	var url = "judge.php";
-	// url = url + "?id="+Math.random(); 
-	xhr.open("POST", url, false);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send(data);
-	if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
-		var span = xhr.responseText;
-		// alert(span1);
-		err1.innerHTML = span;
-		span = span.trim();
-	}
+EventUtil.addHandler(login_name, hiddenErr, 'click');
+function hiddenErr (e) {
+	alert("focus");
+	// var err1 = document.getElementById("err1");
+	// if(err1 != ""){
+	// 	err1.style.display = "none";
+	// }else{
+	// 	err1.style.display ="";
+	// }
 }
+
+var aa = document.getElementById("aa");
+EventUtil.addHandler(aa, hiddenErr, "click");
+
+

@@ -8,7 +8,7 @@
 <body>
 	<div id="login_body">
 		<div id="login_center">
-			<div id="login_log">logo</div>
+			<div id="login_log"><img src="../img/logo.jpg" alt="logo" style="width:300px;height:100px;"/></div>
 			<div id="login_left">滑动介绍图片</div>
 			<div id="login_right">
 				<div id="login_tab">
