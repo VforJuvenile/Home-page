@@ -27,6 +27,16 @@ app.config(['$routeProvider', function($routeProvider){
 	});
 }]);
 
+app.controller('bodyCtrl', function($scope){
+	$scope.homeShow = false;
+	$scope.timeShow = function(){
+		$scope.homeShow = true;
+	};
+	$scope.timeHide = function(){
+		$scope.homeShow = false;
+	};
+});
+
 app.controller('siderClick', function($scope){
 	$scope.siderbarList = [
 		{
@@ -43,15 +53,16 @@ app.controller('siderClick', function($scope){
 			id:"setting"
 		}
 	];
+
 });
 
 app.controller('MyPlanCtrl', function($scope,$http){
 	// 如何设置会话
 	// $http.get("plan.php?")	
 	var user = {"name": "wf"};
-	$http.post("plan.php", user).success(function(data){
-		$scope.user = data;
-	});
+	// $http.post("plan.php", user).success(function(data){
+	// 	$scope.user = data;
+	// });
 	// $http.post("/foo/bar", requestData, {
  //    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
  //    transformRequest: transform

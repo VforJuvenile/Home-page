@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css" >
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-controller="bodyCtrl">
 	<?php
 	
 		@$name = $_POST['name'];
@@ -25,40 +25,42 @@
 	<!-- 虽然可以添加计划，但无法保存到数据库 -->
 	<!-- 是否应该改成加载html文件，防止匿名F12 -->
 
-	<div id="page1" class="page" style="z-index:20;display:none">
-
+	<div id="page1" class="page" style="z-index:20;" ng-hide="homeShow">
+		<button type="button" class="btn btn-default" ng-click="timeShow()" title="主页">
+  			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+		</button>
 		<div id="timeAndName">
 			<div id="nowTime"></div>
 			<div id="nameWelcome"></div>
 		</div>
-
 	</div>
 
-	<div id="page3" class="page"  ng-controller="siderClick">
+	<div id="page3" class="page"  ng-controller="siderClick" ng-show="homeShow">
 	  
 		<div id="userHeader">
 			网站标签和小工具栏
-			<a href="login/login.html">登陆</a>
+			<a href="login/login.php">登陆</a>
+			<button type="button" class="btn btn-default" ng-click="timeHide()" title="显示时间">
+  				<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+			</button>
 		</div>
 		
 		<div id="contain">
-				<div id="sidebar">
-					<div id="userInfo">
-						<img src="img/person.png" id="personPhoto"></img>
-						<p>个人信息</p>
-					</div>
-					<!-- ng-click="showMessage(name.xuhao)"  -->
-					<div ng-repeat="name in siderbarList" class="sideOptions">
-						<a href="#/{{name.id}}">{{name.xuhao}}</a>
-					</div>
+			<div id="sidebar">
+				<div id="userInfo">
+					<img src="img/person.png" id="personPhoto"></img>
+					<p>个人信息</p>
 				</div>
-				<div id="mainContain" ng-View>
-					<!-- 各个页面嵌套点 -->
-				
+				<!-- ng-click="showMessage(name.xuhao)"  -->
+				<div ng-repeat="name in siderbarList" class="sideOptions">
+					<a href="#/{{name.id}}">{{name.xuhao}}</a>
 				</div>
-			</div> 
-		</div>
-	</div> 
+			</div>
+			<div id="mainContain" ng-View>
+				<!-- 各个页面嵌套点 -->
+			</div>
+		</div> 
+	</div>
 
 
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
