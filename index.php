@@ -54,8 +54,8 @@
 				<div id="userInfo">
 					<img src="img/person.png" id="personPhoto"></img>
 					<p><?php echo $_SESSION['user_id']?></p>
+					
 				</div>
-				<!-- ng-click="showMessage(name.xuhao)"  -->
 				<div ng-repeat="name in siderbarList" class="sideOptions">
 					<a href="#/{{name.id}}">{{name.xuhao}}</a>
 				</div>

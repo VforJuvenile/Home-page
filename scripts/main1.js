@@ -35,9 +35,11 @@ app.controller('bodyCtrl', function($scope){
 	$scope.timeHide = function(){
 		$scope.homeShow = false;
 	};
+
 });
 
-app.controller('siderClick', function($scope){
+app.controller('siderClick', function($scope, $rootScope){
+	
 	$scope.siderbarList = [
 		{
 			xuhao : "个人计划",
@@ -78,4 +80,15 @@ app.controller('HistoryCtrl', function($scope,$http){
 	$http.get("data/test.json").success(function(data){
 		$scope.user = data;
 	});
+});
+
+app.directive('userName', function(){
+	return {
+		restrict: 'AE',
+		replace: false,
+		// template:
+		link: function(scope, element, attrs){
+			// return "wf";
+		}
+	};
 });
