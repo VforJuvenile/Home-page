@@ -42,7 +42,6 @@
 		</div>
 		
 		<div id="contain">
-				<div id="offsetHeight"></div>
 				<div id="sidebar">
 					<div id="userInfo">
 						<img src="img/person.png" id="personPhoto"></img>
@@ -65,7 +64,6 @@
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-route.min.js"></script>
-	<script src="scripts/siderClick.js"></script>
 	<script type="text/javascript" src="scripts/auxiliary.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 	<script type="text/javascript" src="scripts/main1.js"></script>

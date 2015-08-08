@@ -9,65 +9,41 @@
 }
 
 
-
-#page3{
-	/*background:yellow;*/
-}
-
-
 #timeAndName{
 	position:absolute;
 	top:290px;
 	text-align: center;
 	width:270px;height:157px;
-	/*border:1px solid red;*/
 	font-size: 20px;
-	/*height:300;*/
-	/*color:#F2F2F2;*/
 }
 /*加入boostrap变形*/
 #nowTime{
 	font-size: 100px;
 	font-family: '微软雅黑';
 	height:130px;
-	/*border:1px solid red;*/
 }
 
 /*page3*/
 #userHeader{
 	height:50px;
-	border-bottom:1px solid red;
+	border-bottom:1px solid blue;
 	position: relative;
-	/*position:absolute;*/
-	/*width:100%;*/
 }
 #contain{
-	/*width:100%;*/
-	/*height:;*/
 	position:relative;
-	/*border-top: 1px solid blue;*/
 	border-bottom: 1px solid blue;
-	/*overflow: auto;*/
 }
-#offsetHeight{
-	/*border:1px solid red;*/
-	/*position:absolute;*/
-	/*width:2px;*/
-}
+
 #sidebar{
-	/*position:absolute;*/
-	width:200px;
-	margin-left:10px;	
+	width:210px;
+	/*margin-left:10px;	*/
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 }
 #mainContain{
-	/*position: absolute;*/
 	top: 0px;
 	position: absolute;
-	left:220px;
-	/*height:100%;*/
-	border:1px solid red;
+	left:210px;
 	overflow: auto;
 }
 .sider{
@@ -78,18 +54,19 @@
 	/*border:1px solid red;*/
 }
 #userInfo{
-	border:1px solid red;
+	border-bottom:1px solid blue;
 	height:150px;
 	text-align: center;
 }
 .sideOptions{
 	height:50px;
-	border:1px solid blue;
+	border-bottom:1px solid blue;
 	text-align:center;
 	line-height:50px;
 }
 #personPhoto{
 	border:1px solid blue;
+	margin-top:10px;
 }
 
 
@@ -97,7 +74,8 @@
 #planNumber{
 	position:absolute;
 	top:20px;
-	border:1px solid red;
+	left:20px;
+	border:1px solid blue;
 	width:400px;
 	height:150px;
 	border-radius: 5px 5px 0 0;
@@ -114,6 +92,7 @@
 }
 #planNumber button{
 	width:100px;
+
 }
 
 #calendar{
@@ -129,9 +108,10 @@
 #planTable{
 	position: absolute;
 	top:200px;
+	left:20px;
 	width:500px;
 	height:700px;
-	border:1px solid red;
+	border:1px solid blue;
 	border-radius: 5px 5px 0 0;
 }
 
@@ -139,10 +119,8 @@
 	position: absolute;
 	top:300px;
 	left:540px;
-	width:300px;
-	height:270px;
 	border:1px solid green;
-	border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 5px 5px;
 }
 .separateP{
 	display:block;
