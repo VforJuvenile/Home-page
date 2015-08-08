@@ -32,15 +32,15 @@
 			echo "Error: 无法连接到数据库！";
 			exit;
 		};
-
 		
 		$password = sha1($password);
 		$query = "insert into userinfo (userName, password) values('".$register_name."', '".$password."')";
 		$result = $db->query($query);
 		if($result){
-			echo "<script type='text/javascript'>";
-			echo "window.location.href = '../index.php'";
-			echo "</script>";
+			session_start();
+			$_SESSION['user_id'] = $register_name;
+			$h_url = "../index.php";
+			header('Location:'.$h_url);
 		}else{
 			echo "请重试，无法添加到数据库！";
 		};
@@ -64,9 +64,13 @@
 		$count = $row[0];
 		if($count){
 
-			echo "<script type='text/javascript'>";
-			echo "window.location.href = '../index.php'";
-			echo "</script>";
+			session_start();
+			$_SESSION['user_id'] = $login_name;
+			$h_url = "../index.php";
+			header('Location:'.$h_url);
+			// echo "<script type='text/javascript'>";
+			// echo "window.location.href = '../index.php'";
+			// echo "</script>";
 
 		}else{
 			$err = "用户名或密码错误！";

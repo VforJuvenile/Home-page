@@ -31,7 +31,6 @@ mainContain.style.height = page3ContainHeight - 3 +"px";
 
 // page1时间显示
 document.getElementById("nowTime").innerHTML = getNowTime();
-document.getElementById("nameWelcome").innerHTML = "Welcome to you! Wufu";
 var timeAndNameDiv = document.getElementById("timeAndName");
 var timeAndNameDivWidth = parseFloat(document.defaultView.getComputedStyle(timeAndNameDiv,null).width);
 timeAndNameDiv.style.left = (pageWidth/2 - timeAndNameDivWidth/2)+ "px";
@@ -46,9 +45,5 @@ function getNowTime(){
 	var nowTime = myTime.getHours() +":" + nowTimeMinute;
 	return nowTime;
 }
-
-
-
-
 
 })();

@@ -11,7 +11,7 @@ var login_btn = document.getElementById("login_btn"),
 
 EventUtil.addHandler(login_btn, handler, "click");
 EventUtil.addHandler(register_btn, handler, "click");
-// 如何在js的事件中进行ajax通过php去后台数据库做判断？？？？？？？？？？？？？？？？？
+// 如何在js的事件中进行ajax通过php去后台数据库做判断
 function handler(e){
 	var e = EventUtil.getEvent(e);
 	var target = EventUtil.getTarget(e);

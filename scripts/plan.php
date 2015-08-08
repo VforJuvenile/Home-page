@@ -1,8 +1,11 @@
 <?php
-header("Content-type: text/html; charset=utf-8");
+// header("Content-type: text/html; charset=utf-8");
 
-$response = file_get_contents(('php://input', 'r'));
+// $response = file_get_contents(('php://input', 'r'));
 
-echo $res;
+// echo $res;
+@$name = $_GET['a'];
+
+echo $name;
 
 ?>

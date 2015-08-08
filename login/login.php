@@ -20,10 +20,10 @@
 
 				<form method="post" action="judge.php">
 					<p class="usernameP">用户名</p>
-					<input type="text" name="login_name" id="login_name" placeholder="请输入邮箱或用户名" class="login_input" required/>
+					<input type="text" name="login_name" id="login_name" placeholder="请输入邮箱或用户名" class="login_input" autofocus required/>
 					<p class="usernameP">密码</p>
 					<input type="password" name="login_password" id="login_password" placeholder="请输入密码" class="login_input" required/>	
-					<input type="submit" id="login_submit" value="登录" class="submit btn btn-primary"/>	
+					<input type="submit" id="login_submit" value="登录" class="submit btn btn-primary"/>
 					 
 				</from>
 				

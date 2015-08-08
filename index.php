@@ -8,15 +8,19 @@
 </head>
 <body ng-app="app" ng-controller="bodyCtrl">
 	<?php
-	
-		@$name = $_POST['name'];
-		if(!isset($_POST['name'])){
+		session_start();
+		if(!isset($_SESSION['user_id'])){
+		// echo '用户名'.$_SESSION['user_id'].'<br/>';
 	?>
-		<!-- <div >404！<a href="login/login.php">重新登陆</a><span><?php echo $name; ?></span></div>  -->
+		<div id="err404">
+			<p>404！</p>
+			<span>找不到资源！请检查是否登录</span>
+			<br/><br/>
+			<a href="login/logOut.php">重新登录</a>
+		</div>
 	<?php		
 		}else{
 	?>		
-	<?php } ?>
 		
 	<!-- 使用单个页面来实现所有功能 -->
 	<!-- 日历和时间采用浮框模态来解决 -->
@@ -31,7 +35,7 @@
 		</button>
 		<div id="timeAndName">
 			<div id="nowTime"></div>
-			<div id="nameWelcome"></div>
+			<div id="nameWelcome"><?php echo "Welcome to you! ".$_SESSION['user_id']?></div>
 		</div>
 	</div>
 
@@ -39,7 +43,7 @@
 	  
 		<div id="userHeader">
 			网站标签和小工具栏
-			<a href="login/login.php">登陆</a>
+			<a href="login/login.php">退出登录</a>
 			<button type="button" class="btn btn-default" ng-click="timeHide()" title="显示时间">
   				<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 			</button>
@@ -49,7 +53,7 @@
 			<div id="sidebar">
 				<div id="userInfo">
 					<img src="img/person.png" id="personPhoto"></img>
-					<p>个人信息</p>
+					<p><?php echo $_SESSION['user_id']?></p>
 				</div>
 				<!-- ng-click="showMessage(name.xuhao)"  -->
 				<div ng-repeat="name in siderbarList" class="sideOptions">
@@ -62,7 +66,7 @@
 		</div> 
 	</div>
 
-
+	<?php } ?>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-route.min.js"></script>

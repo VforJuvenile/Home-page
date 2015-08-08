@@ -126,3 +126,15 @@
 	display:block;
 	border-bottom:1px solid blue;
 }
+
+#err404{
+	margin-top: 30px;
+	width:80%;
+	position: absolute;
+	left:50px;
+	/*text-align: center;*/
+}
+#err404 p{
+	font-size: 40px;
+	margin:10px auto;
+}

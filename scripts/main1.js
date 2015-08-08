@@ -59,10 +59,13 @@ app.controller('siderClick', function($scope){
 app.controller('MyPlanCtrl', function($scope,$http){
 	// 如何设置会话
 	// $http.get("plan.php?")	
-	var user = {"name": "wf"};
-	// $http.post("plan.php", user).success(function(data){
-	// 	$scope.user = data;
-	// });
+	// var user = {"name": "wf"};
+	 $http.get("scripts/plan.php?a=b").success(function(data){
+	 	$scope.user = data;
+	 });
+	 // $http.get("scripts/plan.php", user).success(function(data){
+	 // 	$scope.user = data;
+	 // });
 	// $http.post("/foo/bar", requestData, {
  //    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
  //    transformRequest: transform
