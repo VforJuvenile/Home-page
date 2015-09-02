@@ -39,7 +39,7 @@
 		</div>
 	</div>
 
-	<div id="page3" class="page"  ng-controller="siderClick" ng-show="homeShow">
+	<div id="page3" class="page" ng-controller="siderClick" ng-show="homeShow">
 	  
 		<div id="userHeader">
 			网站标签和小工具栏
@@ -63,6 +63,7 @@
 			<div id="mainContain" ng-View>
 				<!-- 各个页面嵌套点 -->
 			</div>
+			<div class="clearFloat"></div>
 		</div> 
 	</div>
 

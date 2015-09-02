@@ -11,7 +11,6 @@ var pageWidth = window.screen.width > 700 ? window.screen.width: 700;
 var pageHeight = document.documentElement.clientHeight > 610 ? document.documentElement.clientHeight : 616;
 for(var i =0, len = perPage.length; i < len; i++){
 	perPage[i].style.height = pageHeight + "px";
-	perPage[i].style.width = pageWidth + "px";
 }
 
 // page3
@@ -21,12 +20,8 @@ var userHeader = document.getElementById("userHeader"),
 	mainContain = document.getElementById("mainContain"),
 	offsetHeight = document.getElementById("offsetHeight");
 var headerHeight = document.defaultView.getComputedStyle(userHeader,null).height;
-var sidebarWidth = document.defaultView.getComputedStyle(mainContain, null).left;
 var page3ContainHeight = pageHeight - parseFloat(headerHeight);
-userHeader.style.width = pageWidth + "px";
 userbar.style.height = page3ContainHeight - 3 +"px";
-contain.style.width = pageWidth + "px";
-mainContain.style.width = (pageWidth - parseFloat(sidebarWidth)) + "px";
 mainContain.style.height = page3ContainHeight - 3 +"px";
 
 // page1时间显示

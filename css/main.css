@@ -6,8 +6,8 @@
 
 .page{
 	position:absolute;
+	width: 100%;
 }
-
 
 #timeAndName{
 	position:absolute;
@@ -23,28 +23,32 @@
 	height:130px;
 }
 
-/*page3*/
 #userHeader{
 	height:50px;
+	width:100%;
 	border-bottom:1px solid blue;
 	position: relative;
 }
 #contain{
 	position:relative;
+	width:100%;
 	border-bottom: 1px solid blue;
 }
 
 #sidebar{
+	float:left;
 	width:210px;
-	/*margin-left:10px;	*/
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 }
 #mainContain{
-	top: 0px;
-	position: absolute;
-	left:210px;
+	position: relative;
+	margin-left:212px;
 	overflow: auto;
+}
+.clearFloat{
+	clear: both;
+	zoom: 1;
 }
 .sider{
 	height: 50px;line-height: 50px;
