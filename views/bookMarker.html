@@ -1,1 +1,17 @@
+<!-- 应该对点击次数做一个记录，然后从高到低排列 -->
 <div> bookMarker </div>
+
+<p ng-repeat="name in userInfo">
+	<a target="_blank" ng-href="{{name.markerUrl}}">{{name.markerName}}</a>
+</p>
+
+<button ng-click="addBookMarkerShow()">+</button>
+
+<!-- todo 提交之前要有验证 -->
+<div ng-show="addDivShow" ng-controller="urlAddCtrl">
+	<p>链接名称：</p>
+	<p><input type="text" ng-model="urlName"></p>
+	<p><input type="text" ng-model="url"></p>
+	<p><button ng-click="addBookMarker()">sure</button></p>
+	<p ng-model="InsertInfo"></p>
+</div>

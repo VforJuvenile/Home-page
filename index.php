@@ -28,6 +28,12 @@
 	<!-- 匿名登录，个人信息为空，其他菜单不见 -->
 	<!-- 虽然可以添加计划，但无法保存到数据库 -->
 	<!-- 是否应该改成加载html文件，防止匿名F12 -->
+	<!-- 在线预览文件 -->
+
+	<!-- 下一步工作计划 -->
+	<!-- 1、找到浏览器的书签接口，导出或导入 -->
+	<!-- 2、若没有，则在本地数据库导入导出 -->
+
 
 	<div id="page1" class="page" style="z-index:20;" ng-hide="homeShow">
 		<button type="button" class="btn btn-default" ng-click="timeShow()" title="主页">
@@ -54,6 +60,7 @@
 				<div id="userInfo">
 					<img src="img/person.png" id="personPhoto"></img>
 					<p><?php echo $_SESSION['user_id']?></p>
+					<?php echo $_SESSION['user_IdNum']?>
 					
 				</div>
 				<div ng-repeat="name in siderbarList" class="sideOptions">

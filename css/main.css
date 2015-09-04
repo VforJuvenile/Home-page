@@ -44,6 +44,7 @@
 #mainContain{
 	position: relative;
 	margin-left:212px;
+	padding:10px;
 	overflow: auto;
 }
 .clearFloat{
@@ -141,4 +142,9 @@
 #err404 p{
 	font-size: 40px;
 	margin:10px auto;
+}
+
+/*去掉下划线无效*/
+a,a:link, a:visited{
+	text-decoration: none;
 }
