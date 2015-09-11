@@ -148,3 +148,10 @@
 a,a:link, a:visited{
 	text-decoration: none;
 }
+
+/*bookMarker*/
+.bookMarkerBlock{
+	position: absolute;
+	border: 1px solid black;
+	margin-left:10px;
+}

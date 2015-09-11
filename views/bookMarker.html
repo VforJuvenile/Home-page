@@ -1,9 +1,14 @@
 <!-- 应该对点击次数做一个记录，然后从高到低排列 -->
-<div> bookMarker </div>
+<!-- 可以选择类似window大图片显示和列表显示 -->
+<!-- 上传图片？ -->
+<!-- 默认一行显示7个链接，可以设置为自己选择个数 -->
+<!-- 要给这些元素绑定js函数，怎么做 -->
 
-<p ng-repeat="name in userInfo">
-	<a target="_blank" ng-href="{{name.markerUrl}}">{{name.markerName}}</a>
-</p>
+<div ng-repeat="name in userInfo" class="bookMarkerBlock">
+	<div adaptwidth>
+		<a target="_blank" ng-href="{{name.markerUrl}}">{{name.markerName}}</a>
+	</div>
+</div>
 
 <button ng-click="addBookMarkerShow()">+</button>
 
@@ -13,5 +18,6 @@
 	<p><input type="text" ng-model="urlName"></p>
 	<p><input type="text" ng-model="url"></p>
 	<p><button ng-click="addBookMarker()">sure</button></p>
+	<p><button ng-click="hiddenBookMarker()">cancle</button></p>
 	<p ng-model="InsertInfo"></p>
 </div>
