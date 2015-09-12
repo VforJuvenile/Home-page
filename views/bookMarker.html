@@ -4,13 +4,13 @@
 <!-- 默认一行显示7个链接，可以设置为自己选择个数 -->
 <!-- 要给这些元素绑定js函数，怎么做 -->
 
-<div ng-repeat="name in userInfo" class="bookMarkerBlock">
-	<div adaptwidth>
+<div style="border:1px solid red;position:relative;height:80px;">
+	<adaptwidth ng-repeat="name in userInfo" class="bookMarkerBlock">
 		<a target="_blank" ng-href="{{name.markerUrl}}">{{name.markerName}}</a>
-	</div>
+	</adaptwidth>
 </div>
 
-<button ng-click="addBookMarkerShow()">+</button>
+<button ng-click="addBookMarkerShow()" class="addBookMarkerBtn">+</button>
 
 <!-- todo 提交之前要有验证 -->
 <div ng-show="addDivShow" ng-controller="urlAddCtrl">

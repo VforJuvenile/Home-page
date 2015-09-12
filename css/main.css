@@ -33,6 +33,7 @@
 	position:relative;
 	width:100%;
 	border-bottom: 1px solid blue;
+	text-align: center;
 }
 
 #sidebar{
@@ -139,6 +140,7 @@
 	left:50px;
 	/*text-align: center;*/
 }
+
 #err404 p{
 	font-size: 40px;
 	margin:10px auto;
@@ -154,4 +156,12 @@ a,a:link, a:visited{
 	position: absolute;
 	border: 1px solid black;
 	margin-left:10px;
+	display: block;
+}
+.addBookMarkerBtn{
+
+}
+.clearFix{
+	clear: both;
+	zoom: 1;
 }

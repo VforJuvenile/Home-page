@@ -116,7 +116,7 @@ app.controller("BookMarkerCtrl",['$scope', 'getBookMarker',
 		
 		getBookMarker.get("scripts/bookMarker.php").success(function(data){
 			$scope.userInfo = data;
-			console.log(data);
+			// console.log(data);
 		});
 	
 		$scope.addDivShow = false;
@@ -155,14 +155,27 @@ app.controller("urlAddCtrl", function($scope, $http){
 app.directive('adaptwidth', function(){
 
 	return {
-		restrict: 'EAC',
-		replace: true,
-		complie: function(el, attrs, transclude){
-			console.log("a");
+		restrict: 'E',
+		template: "<span ng-transclude></span>",
+		transclude: true,
+		link: function(scope, element, attrs){
 
-			return function(scope, el, attrs, controller){
-				console.log("b");
-			};
+			var num = element.css("height");
+
+			console.log(num);
+			// 遍历每一个元素
+			var elementSiblings = element.parent().children();
+			for(var i = 0; i < elementSiblings.length; i++){
+
+				var left = i * 100 + "px";
+				elementSiblings.eq(i).css({
+					"left": left, 
+					"border": "1px solid blue",
+					"width": "100px"
+				});
+
+			}
+
 		}
 
 	};
