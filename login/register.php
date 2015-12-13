@@ -17,20 +17,7 @@
 					<div id="register_btn" style="background:#FA9303;color:white">注册</div>
 				</div>
 
-				<form action="judge.php" method="post" >
-				 	<p class="usernameP usernameP2">用户名</p>
-					<input type="text" name="register_name" id="username" placeholder="请输入邮箱或用户名" class="login_input" maxLength="20" autofocus required/>
-					<p class="usernameP usernameP2">密码</p>
-					<input type="password" name="password" id="password" placeholder="请输入密码" class="login_input" required/>	
-					<p class="usernameP usernameP2">再次输入密码</p>
-					<input type="password" placeholder="请再次输入密码" id="repassword" class="login_input" required/>	
-					<!-- <input type="hidden" name="flag1" /> -->
-					<input type="submit"  id="register_submit" value="注册" class="submit  btn btn-warning"/>
-				</from> 
-				<!-- 注册成功，5秒后转到主页 -->
 				
-				<span id="err3" class="err"></span>
-				<span class="err"></span>
 			</div>
 		</div>
 		

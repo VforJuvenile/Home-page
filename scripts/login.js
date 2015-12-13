@@ -9,10 +9,11 @@ var login_btn = document.getElementById("login_btn"),
 	err3 = document.getElementById("err3"),
 	repassword = document.getElementById("repassword");
 
-EventUtil.addHandler(login_btn, handler, "click");
-EventUtil.addHandler(register_btn, handler, "click");
+// EventUtil.addHandler(login_btn, handler, "click");
+// EventUtil.addHandler(register_btn, handler, "click");
 // 如何在js的事件中进行ajax通过php去后台数据库做判断
 function handler(e){
+	console.log("whar");
 	var e = EventUtil.getEvent(e);
 	var target = EventUtil.getTarget(e);
 	if(target == login_btn){
@@ -40,14 +41,10 @@ function nameBlurHandler (e) {
 		var span = xhr.responseText;
 		err3.innerHTML = span;
 		span = span.trim();
-		// alert(span);
-		// alert(span == "");
 		if(span !=""){
 			submit.disabled = true;
 		}else{
-			// alert("not disabled");
 			submit.disabled = false;
-
 		};
 	}else{
 		// do nothing; 
@@ -68,13 +65,7 @@ function repasswordBlurHandler (e) {
 
 EventUtil.addHandler(login_name, hiddenErr, 'click');
 function hiddenErr (e) {
-	alert("focus");
-	// var err1 = document.getElementById("err1");
-	// if(err1 != ""){
-	// 	err1.style.display = "none";
-	// }else{
-	// 	err1.style.display ="";
-	// }
+	// alert("focus");
 }
 
 var aa = document.getElementById("aa");

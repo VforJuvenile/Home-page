@@ -5,6 +5,7 @@
 	<title>个人首页</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css" >
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<style>[ng-cloak] { display: none; }</style>
 </head>
 <body ng-app="app" ng-controller="bodyCtrl">
 	<?php

@@ -86,9 +86,6 @@
 
 			$h_url = "../index.php";
 			header('Location:'.$h_url);
-			// echo "<script type='text/javascript'>";
-			// echo "window.location.href = '../index.php'";
-			// echo "</script>";
 
 		}else{
 			$err = "用户名或密码错误！";
