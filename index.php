@@ -81,6 +81,6 @@
 	<script src="lib/angular/angular-route.min.js"></script>
 	<script type="text/javascript" src="scripts/auxiliary.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
-	<script type="text/javascript" src="scripts/main1.js"></script>
+	<script type="text/javascript" src="scripts/mainCtrl.js"></script>
 </body>
 </html>

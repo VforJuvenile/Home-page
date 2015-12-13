@@ -2,9 +2,10 @@
 // 初始化页面
 // 设置绑定事件
 
-// div.page中间不能有空格
 var perPage = document.querySelectorAll("div.page");
 var fixedUl = document.getElementById("fixedUl");
+// 根据时间来调整页面的颜色
+// 也可设置为自我调整
 // perPage[0].style.background = "url(img/beautifulNight.jpg)";
 
 var pageWidth = window.screen.width > 700 ? window.screen.width: 700;
