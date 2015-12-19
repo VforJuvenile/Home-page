@@ -4,6 +4,7 @@
 <!-- 默认一行显示7个链接，可以设置为自己选择个数 -->
 <!-- 要给这些元素绑定js函数，怎么做 -->
 
+
 <div style="border:1px solid red;position:relative;height:80px;">
 	<adaptwidth ng-repeat="name in userInfo" class="bookMarkerBlock">
 		<a target="_blank" ng-href="{{name.markerUrl}}">{{name.markerName}}</a>
@@ -12,12 +13,19 @@
 
 <button ng-click="addBookMarkerShow()" class="addBookMarkerBtn">+</button>
 
-<!-- todo 提交之前要有验证 -->
-<div ng-show="addDivShow" ng-controller="urlAddCtrl">
+<!-- 添加书签dialog -->
+<div ng-show="showAddBMDiv" ng-controller="urlAddCtrl" id="addBookMarkerDialog">
 	<p>链接名称：</p>
-	<p><input type="text" ng-model="urlName"></p>
-	<p><input type="text" ng-model="url"></p>
-	<p><button ng-click="addBookMarker()">sure</button></p>
-	<p><button ng-click="hiddenBookMarker()">cancle</button></p>
+	<input type="text" ng-model="urlName" focus-change="error" focus-me="showAddBMDiv" placeholder="请输入链接名称">
+	<br/>
+	<span class="dataError">{{error.urlName}}&nbsp;</span>
+	<p>链接地址：</p>
+	<input type="text" ng-model="url" focus-change="error" placeholder="请输入链接地址" >
+	<br/>
+	<span class="dataError">{{error.url}}&nbsp;</span>
+	<div>
+		<button ng-click="addBookMarker()">sure</button>
+		<button ng-click="hiddenBookMarker()">cancle</button>
+	</div>
 	<p ng-model="InsertInfo"></p>
 </div>

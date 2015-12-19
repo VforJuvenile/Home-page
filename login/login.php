@@ -54,7 +54,6 @@
 							<div class="clearFloat"></div>	
 						</form>		
 					</div>
-					
 				</div>
 			</div>
 		</header>
@@ -66,6 +65,7 @@
 				<p>友情链接：</p>
 				<a href="http://www.baidu.com/">百度一下</a>
 				<a href="http://www.tongji.edu.cn/">同济大学</a>
+				<a href="https://github.com/wolful">fork me in github</a>
 			</div>
 		</footer>
 	</div>

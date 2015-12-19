@@ -116,17 +116,16 @@ app.controller("BookMarkerCtrl",['$scope', 'getBookMarker',
 		
 		getBookMarker.get("scripts/bookMarker.php").success(function(data){
 			$scope.userInfo = data;
-			// console.log(data);
 		});
-	
-		$scope.addDivShow = false;
+		$scope.hideAddBMDiv = true;
+		$scope.showAddBMDiv = false;
 		$scope.addBookMarkerShow = function(){
-			$scope.addDivShow = true;
+			$scope.showAddBMDiv = true;
 		};
 		
 		$scope.hiddenBookMarker = function(){
 		
-			$scope.addDivShow = false;
+			$scope.showAddBMDiv = false;
 		};	
 	}
 ]);
@@ -134,22 +133,70 @@ app.controller("BookMarkerCtrl",['$scope', 'getBookMarker',
 // 添加书签
 // 可以封装成服务
 app.controller("urlAddCtrl", function($scope, $http){
-	$scope.aa ="sagadgs";
 
+	$scope.urlName = ""; 
+	$scope.url = "";
+	$scope.error = {
+		urlName : "",
+		url : ""
+	}
 	// 应该返回userInfo最为合理
 	// 问题是如何复写bookMarker中取得所有数据的方法
 	$scope.addBookMarker = function(){
+		if($scope.urlName == "" || $scope.url == ""){
+			console.log("a");
+			$scope.error.urlName = ($scope.urlName == "") ? "请输入书签名称!" : "";
+			$scope.error.url = ($scope.url == "") ? "请输入书签地址!" : "";
+			return;
+		}
 		$http.get("scripts/addBookMarker.php?urlName="+ $scope.urlName+"&url="+$scope.url).success(function(data){
 			$scope.InsertInfo = data;
-			$scope.addDivShow = false;
-			// $scope.userInfo
+			$scope.showAddBMDiv = false;
 		}).error(function(data){
 			$scope.InsertInfo = data;
 		});
-		// $scope.aa = "wf";
 	};
 
+	$scope.adsFoucs = function(){
+		console.log("focus");
+		$scope.error = {
+			urlName : "",
+			url : ""
+		}
+	};
 
+});
+
+// angular自动聚焦
+app.directive('focusMe', function($timeout, $parse){
+
+	return {
+		link: function(scope, element, attrs){
+			var model = $parse(attrs.focusMe);
+			scope.$watch(attrs.focusMe, function(value){
+				if(value === true){
+					$timeout(function(){
+						element[0].focus();
+					});
+				}
+			});
+			// element.bind('blur', function(){
+			// 	console.log("blur");
+			// 	scope.$apply(model.assign(scope, false));
+			// })
+		}
+	}
+});
+
+app.directive("focusChange", function(){
+	return {
+		link: function(scope, element, attrs){
+			element.bind("focus", function(){
+				scope.error.urlName = "";
+				scope.error.url = "";
+			});
+		}
+	}
 });
 
 app.directive('adaptwidth', function(){
@@ -160,9 +207,9 @@ app.directive('adaptwidth', function(){
 		transclude: true,
 		link: function(scope, element, attrs){
 
-			var num = element.css("height");
-
-			console.log(num);
+			// var num = element.css("height");
+			console.log(element[0]);
+			// console.log(num);
 			// 遍历每一个元素
 			var elementSiblings = element.parent().children();
 			for(var i = 0; i < elementSiblings.length; i++){
