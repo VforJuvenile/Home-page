@@ -139,6 +139,11 @@
 	font-family: '微软雅黑';
 	font-size: 11px;
 }
+.bookMarkerContains{
+	border:1px solid red;
+	height:80px;
+}
+
 #err404{
 	margin-top: 30px;
 	width:80%;
@@ -153,7 +158,8 @@
 #addBookMarkerDialog{
 	position: absolute;
 	padding: 10px;
-	border: 1px solid gray;
+	background-color: #F7F7F7;
+	border: 3px solid #E1E1E1;
 	text-align: left;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;

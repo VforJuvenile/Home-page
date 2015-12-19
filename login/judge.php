@@ -1,3 +1,4 @@
+<!-- 所有错误跳转待完成 -->
 <?php
 	// 判断注册名是否存在
 	@$name = $_GET['name'];
@@ -33,13 +34,12 @@
 			echo "Error: 无法连接到数据库！";
 			exit;
 		};
-		
 		$password = sha1($password);
 		$query = "insert into userinfo (userName, password) values('".$register_name."', '".$password."')";
 		$result = $db->query($query);
 		if($result){
 
-			$query4 = "select userId from userinfo where userName = '$login_name' and password = sha1($login_password)";
+			$query4 = "select userId from userinfo where userName = '$register_name' and password = '$password'";
 			$result4 = $db->query($query4);
 			
 			$row4 = $result4->fetch_assoc();
@@ -51,7 +51,7 @@
 			$h_url = "../index.php";
 			header('Location:'.$h_url);
 		}else{
-			echo "请重试，无法添加到数据库！";
+			echo $password;
 		};
 	}
 ?>
@@ -68,13 +68,15 @@
 			echo "Error: 无法连接到数据库！";
 			exit;
 		};
-		$query2 = "select count(*) from userinfo where userName = '$login_name' and password = sha1($login_password)";
+		$password = sha1($login_password);
+		$query2 = "select count(*) from userinfo where userName = '$login_name' and password = '$password'";
 		$result2 = $db->query($query2);
+		// exception
 		$row = $result2->fetch_row();
 		$count = $row[0];
 		if($count){
 
-			$query3 = "select userId from userinfo where userName = '$login_name' and password = sha1($login_password)";
+			$query3 = "select userId from userinfo where userName = '$login_name' and password = '$password'";
 			$result3 = $db->query($query3);
 			
 			$row3 = $result3->fetch_assoc();

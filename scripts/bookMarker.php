@@ -26,8 +26,6 @@
 			$markArr[$i] = $markPerArr;
 
 		}
-
-		
 	}
 
 	echo json_encode($markArr);

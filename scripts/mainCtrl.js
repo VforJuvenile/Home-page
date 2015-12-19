@@ -95,6 +95,7 @@ app.directive('userName', function(){
 	};
 });
 
+console.log("what are you looking for");
 // 获取所有书签信息
 app.factory('getBookMarker', function($http){
 	return {
@@ -188,12 +189,24 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 });
 
+
 app.directive("focusChange", function(){
 	return {
 		link: function(scope, element, attrs){
 			element.bind("focus", function(){
 				scope.error.urlName = "";
 				scope.error.url = "";
+			});
+		}
+	}
+});
+
+app.directive("childrenAdaptWidth", function(){
+	return {
+		restrict: 'AE',
+		link: function(scope, element, attrs){
+			element.bind("DOMNodeInserted", function(){
+				console.log("c="+element.children().length);
 			});
 		}
 	}
@@ -206,9 +219,9 @@ app.directive('adaptwidth', function(){
 		template: "<span ng-transclude></span>",
 		transclude: true,
 		link: function(scope, element, attrs){
-
+			console.log("w");
 			// var num = element.css("height");
-			console.log(element[0]);
+			// console.log(element.style.height);
 			// console.log(num);
 			// 遍历每一个元素
 			var elementSiblings = element.parent().children();
@@ -222,7 +235,6 @@ app.directive('adaptwidth', function(){
 				});
 
 			}
-
 		}
 
 	};
