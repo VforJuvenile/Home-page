@@ -2,10 +2,6 @@ var app = angular.module('app', ['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
-	// .when('/home',{
-	// 	templateUrl: 'views/home.html',
-	// 	controller: 'HomeCtrl'
-	// })
 	.when('/plan', {
 		templateUrl: 'views/plan.html',
 		controller: 'MyPlanCtrl'
@@ -16,7 +12,8 @@ app.config(['$routeProvider', function($routeProvider){
 	})
 	.when('/bookMarker',{
 		templateUrl: 'views/bookMarker.html',
-		controller: 'BookMarkerCtrl'
+		controller: BookMarkerCtrl,
+	    resolve: BookMarkerCtrl.resolve
 	})
 	.when('/setting',{
 		templateUrl: 'views/setting.html',
@@ -84,18 +81,11 @@ app.controller('HistoryCtrl', function($scope,$http){
 
 });
 
-app.directive('userName', function(){
-	return {
-		restrict: 'AE',
-		replace: false,
-		// template:
-		link: function(scope, element, attrs){
-			// return "wf";
-		}
-	};
+// 设置
+app.controller("SettingCtrl", function($scope){
+
 });
 
-console.log("what are you looking for");
 // 获取所有书签信息
 app.factory('getBookMarker', function($http){
 	return {
@@ -112,9 +102,8 @@ app.factory('getBookMarker', function($http){
 // 从后台来的数据怎么给directive生成html模板（c跟directive的交互）
 // $http error也是要有处理的；
 // 传回的值，先是以html的方式加载到页面上，而不是刷新整个界面
-app.controller("BookMarkerCtrl",['$scope', 'getBookMarker',
-	function($scope, getBookMarker){
-		
+function BookMarkerCtrl($scope, getBookMarker){
+	console.log("enter controller and load back");
 		getBookMarker.get("scripts/bookMarker.php").success(function(data){
 			$scope.userInfo = data;
 		});
@@ -128,9 +117,21 @@ app.controller("BookMarkerCtrl",['$scope', 'getBookMarker',
 		
 			$scope.showAddBMDiv = false;
 		};	
-	}
-]);
+}
 
+BookMarkerCtrl.resolve = {
+	delay: function($q){
+		var delay = $q.defer();
+		var load = function(){
+			$.getScript("scripts/directives/userDirective.js", function(){
+				delay.resolve();
+			});
+		};
+		load();
+		console.log("resolve onload");
+		return delay.promise;
+	}
+};
 // 添加书签
 // 可以封装成服务
 app.controller("urlAddCtrl", function($scope, $http){
@@ -168,78 +169,3 @@ app.controller("urlAddCtrl", function($scope, $http){
 
 });
 
-// angular自动聚焦
-app.directive('focusMe', function($timeout, $parse){
-
-	return {
-		link: function(scope, element, attrs){
-			var model = $parse(attrs.focusMe);
-			scope.$watch(attrs.focusMe, function(value){
-				if(value === true){
-					$timeout(function(){
-						element[0].focus();
-					});
-				}
-			});
-			// element.bind('blur', function(){
-			// 	console.log("blur");
-			// 	scope.$apply(model.assign(scope, false));
-			// })
-		}
-	}
-});
-
-
-app.directive("focusChange", function(){
-	return {
-		link: function(scope, element, attrs){
-			element.bind("focus", function(){
-				scope.error.urlName = "";
-				scope.error.url = "";
-			});
-		}
-	}
-});
-
-app.directive("childrenAdaptWidth", function(){
-	return {
-		restrict: 'AE',
-		link: function(scope, element, attrs){
-			element.bind("DOMNodeInserted", function(){
-				console.log("c="+element.children().length);
-			});
-		}
-	}
-});
-
-app.directive('adaptwidth', function(){
-
-	return {
-		restrict: 'E',
-		template: "<span ng-transclude></span>",
-		transclude: true,
-		link: function(scope, element, attrs){
-			console.log("w");
-			// var num = element.css("height");
-			// console.log(element.style.height);
-			// console.log(num);
-			// 遍历每一个元素
-			var elementSiblings = element.parent().children();
-			for(var i = 0; i < elementSiblings.length; i++){
-
-				var left = i * 100 + "px";
-				elementSiblings.eq(i).css({
-					"left": left, 
-					"border": "1px solid blue",
-					"width": "100px"
-				});
-
-			}
-		}
-
-	};
-});
-// 设置
-app.controller("SettingCtrl", function($scope){
-
-});

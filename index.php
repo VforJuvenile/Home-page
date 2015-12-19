@@ -83,8 +83,11 @@
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-route.min.js"></script>
+	<script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="scripts/auxiliary.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 	<script type="text/javascript" src="scripts/mainCtrl.js"></script>
+	<script type="text/javascript" src="scripts/directives/userDirective.js"></script>
+	<script type="text/javascript" src="scripts/directives/BMdirective.js"></script>
 </body>
 </html>

@@ -73,6 +73,6 @@
 	<script type="text/javascript" src="../scripts/login.js"></script>
 	<script src="../lib/angular/angular.js"></script>
 	<script src="../lib/angular/angular-route.min.js"></script>
-	<script type="text/javascript" src="../scripts/loginCtrl.js"></script>
+	<script type="text/javascript" src="../scripts/controllers/loginCtrl.js"></script>
 </body>
 </html>
