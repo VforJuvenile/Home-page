@@ -21,19 +21,19 @@ app.config(['$routeProvider', function($routeProvider){
 	})
 	.otherwise({
 		redirectTo: '/plan'
-	});
-}]);
+	})
+}])
 
 app.controller('bodyCtrl', function($scope){
 	$scope.homeShow = false;
 	$scope.timeShow = function(){
 		$scope.homeShow = true;
-	};
+	}
 	$scope.timeHide = function(){
 		$scope.homeShow = false;
-	};
+	}
 
-});
+})
 
 app.controller('siderClick', function($scope, $rootScope){
 	
@@ -53,7 +53,7 @@ app.controller('siderClick', function($scope, $rootScope){
 		}
 	];
 
-});
+})
 
 app.controller('MyPlanCtrl', function($scope,$http){
 	// 如何设置会话
@@ -61,7 +61,7 @@ app.controller('MyPlanCtrl', function($scope,$http){
 	// var user = {"name": "wf"};
 	 $http.get("scripts/plan.php?a=b").success(function(data){
 	 	$scope.user = data;
-	 });
+	 })
 	 // $http.get("scripts/plan.php", user).success(function(data){
 	 // 	$scope.user = data;
 	 // });
@@ -71,32 +71,21 @@ app.controller('MyPlanCtrl', function($scope,$http){
 	// }).success(function(responseData) {
     //do stuff with response
 // });
-});
+})
 
 app.controller('HistoryCtrl', function($scope,$http){
 
 	$http.get("data/test.json").success(function(data){
 		$scope.user = data;
-	});
-
-});
+	})
+})
 
 // 设置
 app.controller("SettingCtrl", function($scope){
 
-});
+})
 
-// 获取所有书签信息
-app.factory('getBookMarker', function($http){
-	return {
-		get: function(url){
-			return $http.get(url);
-		},
-		post: function(url){
-			return $http.post(url);
-		}
-	};
-});
+
 
 // 用户信息如何传入
 // 从后台来的数据怎么给directive生成html模板（c跟directive的交互）
@@ -106,17 +95,33 @@ function BookMarkerCtrl($scope, getBookMarker){
 	console.log("enter controller and load back");
 		getBookMarker.get("scripts/bookMarker.php").success(function(data){
 			$scope.userInfo = data;
-		});
+			$scope.bmNum = data.length;
+		})
 		$scope.hideAddBMDiv = true;
 		$scope.showAddBMDiv = false;
 		$scope.addBookMarkerShow = function(){
 			$scope.showAddBMDiv = true;
-		};
+		}
 		
 		$scope.hiddenBookMarker = function(){
 		
 			$scope.showAddBMDiv = false;
-		};	
+		}
+
+		// 一行显示多少个书签
+		// x 每行个数
+		// y 总行数
+		// last 最后一行个数
+		$scope.perCowNum = 17;
+		$scope.separateBlockByNum = function(i){
+			return {
+				perCow : $scope.perCowNum,
+				toCow : Math.floor($scope.bmNum/$scope.perCowNum),
+				last : Math.floor($scope.bmNum%$scope.perCowNum),
+				x: i ? Math.floor($scope.bmNum%i) : 0,
+				y: i ? Math.floor($scope.bmNum/i) : 0
+			}
+		}
 }
 
 BookMarkerCtrl.resolve = {
@@ -131,7 +136,7 @@ BookMarkerCtrl.resolve = {
 		console.log("resolve onload");
 		return delay.promise;
 	}
-};
+}
 // 添加书签
 // 可以封装成服务
 app.controller("urlAddCtrl", function($scope, $http){
@@ -156,8 +161,8 @@ app.controller("urlAddCtrl", function($scope, $http){
 			$scope.showAddBMDiv = false;
 		}).error(function(data){
 			$scope.InsertInfo = data;
-		});
-	};
+		})
+	}
 
 	$scope.adsFoucs = function(){
 		console.log("focus");
@@ -165,7 +170,7 @@ app.controller("urlAddCtrl", function($scope, $http){
 			urlName : "",
 			url : ""
 		}
-	};
+	}
 
-});
+})
 

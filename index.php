@@ -75,7 +75,7 @@
 			<div id="mainContain" ng-View>
 				<!-- 各个页面嵌套点 -->
 			</div>
-			<div class="clearFloat"></div>
+			102313<div class="clearFloat"></div>
 		</div> 
 	</div>
 
@@ -87,6 +87,7 @@
 	<script type="text/javascript" src="scripts/auxiliary.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 	<script type="text/javascript" src="scripts/mainCtrl.js"></script>
+	<script type="text/javascript" src="scripts/service/factory.js"></script>
 	<script type="text/javascript" src="scripts/directives/userDirective.js"></script>
 	<script type="text/javascript" src="scripts/directives/BMdirective.js"></script>
 </body>

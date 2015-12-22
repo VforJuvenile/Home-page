@@ -30,17 +30,9 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 })
 
-.directive("childrenAdaptWidth", function(){
-	return {
-		restrict: 'AE',
-		link: function(scope, element, attrs){
-			element.bind("DOMNodeInserted", function(){
-				console.log("c="+element.children().length);
-			});
-		}
-	}
-})
-
+// 由于directive很早就加载了，
+// 因此动态加载上去的子元素个数在开始加载的directive中是获得不到的
+// 而且跟代码的位置无关
 .directive('adaptwidth', function(){
 
 	return {
@@ -48,22 +40,40 @@ app.directive('focusMe', function($timeout, $parse){
 		template: "<span ng-transclude></span>",
 		transclude: true,
 		link: function(scope, element, attrs){
-			console.log("w");
-			var num = element.css("left");
-			console.log(num);
+			// var num = element.css("left");
 			// 遍历每一个元素
+			// 如果能获取该元素是父元素的第几个子元素就可以简化代码
+			var index = element.parent().children().index(element);
+			console.log("in="+index);
+			var num = 0;
 			var elementSiblings = element.parent().children();
 			for(var i = 0; i < elementSiblings.length; i++){
 
-				var left = i * 100 + "px";
-				elementSiblings.eq(i).css({
-					"left": left, 
-					"border": "1px solid blue",
-					"width": "100px"
-				});
+				// var left = i * 100 + "px";
+				// elementSiblings.eq(i).css({
+				// 	"left": left, 
+				// 	"border": "1px solid blue",
+				// 	"width": "100px"
+				// });
+				// 
+				num = scope.separateBlockByNum(i).x;
+				// console.log("num="+num);
 
 			}
 		}
 
+	}
+})
+
+.directive("childrenAdaptWidth", function(){
+	return {
+		restrict: 'AE',
+		link: function(scope, element, attrs){
+			element.bind("DOMNodeInserted", function(){
+				// console.log("c="+element.children().length);
+				
+			});
+
+		}
 	}
 })

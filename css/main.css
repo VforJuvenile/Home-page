@@ -4,6 +4,10 @@
 	list-style: none;
 }
 
+body{
+	background-color: #F0F0F0;
+}
+
 .page{
 	position:absolute;
 	width: 100%;
@@ -140,8 +144,15 @@
 	font-size: 11px;
 }
 .bookMarkerContains{
-	border:1px solid red;
+	border:1px solid gray;
+	padding: 5px;
 	height:80px;
+	overflow: hidden;
+
+}
+#bmShowSetting{
+	text-align: right;
+	padding:5px;
 }
 
 #err404{
