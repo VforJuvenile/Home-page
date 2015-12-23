@@ -10,5 +10,30 @@ app.factory('getBookMarker', function($http){
 	}
 })
 
-app.factory('separateBlockByNum', function(){
+.factory("findChildIndex", function(){
+	return {
+		getIndex: function(ele){
+			var lens = ele.parent().children();
+			console.log(lens.length);
+			for (var i = 0, len = lens.length; i < len; i++){
+				if(lens[i] == ele){
+					return i;
+				}
+			}
+			return 0;
+		}
+	};
+})
+
+.factory("drawBlock", function(){
+	return {
+		draw: function(element, perObj, pubObj){
+			element.style.css({
+				"position": absolute,
+				"width": pubObj.width,
+				"height": pubObj.height,
+				"margin": pubObj.margin
+			})
+		}
+	}
 })

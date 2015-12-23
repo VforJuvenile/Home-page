@@ -92,7 +92,7 @@ app.controller("SettingCtrl", function($scope){
 // $http error也是要有处理的；
 // 传回的值，先是以html的方式加载到页面上，而不是刷新整个界面
 function BookMarkerCtrl($scope, getBookMarker){
-	console.log("enter controller and load back");
+	// console.log("enter controller and load back");
 		getBookMarker.get("scripts/bookMarker.php").success(function(data){
 			$scope.userInfo = data;
 			$scope.bmNum = data.length;
@@ -112,12 +112,19 @@ function BookMarkerCtrl($scope, getBookMarker){
 		// x 每行个数
 		// y 总行数
 		// last 最后一行个数
-		$scope.perCowNum = 17;
-		$scope.separateBlockByNum = function(i){
+		$scope.block = {
+			perCowNum : 17,
+			Cows : Math.floor($scope.bmNum/this.perCowNum),
+			lastNum : Math.floor($scope.bmNum%this.perCowNum),
+			width: 30,
+			height: 20,
+			margin: 0,
+			parentW: 0
+		}
+
+				
+		$scope.blockObj = function(i){
 			return {
-				perCow : $scope.perCowNum,
-				toCow : Math.floor($scope.bmNum/$scope.perCowNum),
-				last : Math.floor($scope.bmNum%$scope.perCowNum),
 				x: i ? Math.floor($scope.bmNum%i) : 0,
 				y: i ? Math.floor($scope.bmNum/i) : 0
 			}
