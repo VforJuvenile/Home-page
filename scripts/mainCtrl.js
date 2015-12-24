@@ -118,11 +118,11 @@ function BookMarkerCtrl($scope, getBookMarker){
 			lastNum : Math.floor($scope.bmNum%this.perCowNum),
 			width: 30,
 			height: 20,
-			margin: 0,
+			margin: 10,
 			parentW: 0
 		}
 
-				
+			
 		$scope.blockObj = function(i){
 			return {
 				x: i ? Math.floor($scope.bmNum%i) : 0,

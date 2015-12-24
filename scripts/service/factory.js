@@ -28,11 +28,13 @@ app.factory('getBookMarker', function($http){
 .factory("drawBlock", function(){
 	return {
 		draw: function(element, perObj, pubObj){
-			element.style.css({
+			element.css({
 				"position": absolute,
 				"width": pubObj.width,
 				"height": pubObj.height,
-				"margin": pubObj.margin
+				"margin": pubObj.margin,
+				"left": pubObj.left,
+				"top": pubObj.top
 			})
 		}
 	}

@@ -5,11 +5,7 @@
 <!-- 要给这些元素绑定js函数，怎么做 -->
 
 <div id="bmShowSetting"><div class="glyphicon glyphicon-wrench"></div></div>
-<div class="bookMarkerContains" children-adapt-width>
-	<adaptwidth ng-repeat="name in userInfo" class="bookMarkerBlock">
-		<a target="_blank" ng-href="{{name.markerUrl}}">{{name.markerName}}</a>
-	</adaptwidth>
-</div>
+<adapt-width class="bookMarkerContains"></adapt-width>
 
 <button ng-click="addBookMarkerShow()" class="addBookMarkerBtn">+</button>
 
