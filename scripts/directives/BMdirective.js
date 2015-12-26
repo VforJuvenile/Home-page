@@ -11,10 +11,6 @@ app.directive('focusMe', function($timeout, $parse){
 					});
 				}
 			});
-			// element.bind('blur', function(){
-			// 	console.log("blur");
-			// 	scope.$apply(model.assign(scope, false));
-			// })
 		}
 	}
 })
@@ -30,39 +26,42 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 })
 
-.directive('adaptWidth', ["findChildIndex","drawBlock", "$timeout", function(findChildIndex, drawBlock, $timeout){
+.directive('adaptWidth', ["$timeout","drawBlock", function($timeout, drawBlock){
 
 	return {
 		restrict: 'E',
 		transclude: true,
 		replace: true,
-		template: "<ul><li ng-transclude></li><li ng-repeat='name in userInfo' class='bookMarkerBlock'>"+
+		template: "<ul><li ng-repeat='name in userInfo' title='{{name.markerUrl}}' class='bookMarkerBlock'>"+
 				  "<a target='_blank' ng-href='{{name.markerUrl}}'>{{name.markerName}}</a>"+
-				  "</li></ul>",
+				  "</li><li id='extendHeight'></li></ul>",
 		link: function(scope, element, attrs){
-			
-			// var perObj = {};
-			// var elementSiblings = element.parent().children();
-			// if(elementSiblings.length == scope.bmNum){
 
-			// 	var blocks = scope.block;
-			// 	// console.log(element.parentNode);
-			// 	// console.log(element.parent().css());				
-			// 	// service中绘画div应该只是绘制，而不应该处理逻辑和计算
-			// 	// 获得父元素的一些样式只是为了方便子元素的绘制的计算
-			// 	// for(var i = 0; i < elementSiblings.length; i++){
-			// 	// 	perObj = scope.blockObj(i);
-			// 	// 	drawBlock.draw(element, perObj, blocks);
-			// 	// }
-			// }
-			// 
-			// can not get parent's style
-			$timeout(function(){
-				console.log(element[0]);
-				console.log($(element[0]).outerWidth());
-				console.log(document.defaultView.getComputedStyle(element[0], null));
-				console.log("e="+element[0].children.length);
-			}, 0);
+			// 计算得其父元素的宽度，普通获取为auto
+			var sideBarW = angular.element("#sidebar").outerWidth(true);
+				bodyW = angular.element("body")[0].clientWidth,
+				padding = parseFloat(angular.element("#mainContain").css("padding")),
+				bmsW = bodyW - sideBarW - 2*padding - 17;  // not IE scroll
+
+			// 监测$http数据是否从后台获取完毕,显示
+			scope.$watch(attrs.isLoad, function(value){
+				if(value == true){
+					$timeout(function(){
+						var eleArr = element.children(),
+							len = eleArr.length - 1,
+							extendHeight = new scope.blockObj(len);
+							
+						// 以最后一个手动添加的元素来撑开父元素	
+						angular.element("#extendHeight")[0].style.height = extendHeight.top + extendHeight.height + extendHeight.margin + "px";
+						for (var i = 0; i < len; i++){
+							var obj = new scope.blockObj(i, bmsW);
+							drawBlock.draw(eleArr[i], obj)
+						}
+						scope.isContainsShow = true;
+					}, 0);
+				}
+			})		
+
 		}
 	}
 }])

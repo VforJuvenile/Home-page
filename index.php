@@ -25,12 +25,9 @@
 		
 	<!-- 登陆界面由另外主页切入 -->
 	<!-- 另外主页用来介绍系统功能 -->
-	<!-- 使用单个页面来实现所有功能 -->
 	<!-- 日历和时间采用浮框模态来解决 -->
-	<!-- 登陆之前也可以使用模态，不进入主页 -->
 	<!-- 匿名登录，个人信息为空，其他菜单不见 -->
 	<!-- 虽然可以添加计划，但无法保存到数据库 -->
-	<!-- 是否应该改成加载html文件，防止匿名F12 -->
 	<!-- 在线预览文件 -->
 	<!-- 多尺寸屏幕适应 -->
 	<!-- 邮件提醒 -->
@@ -80,15 +77,14 @@
 	</div>
 
 	<?php } ?>
+	<script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-route.min.js"></script>
-	<script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="scripts/auxiliary.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 	<script type="text/javascript" src="scripts/mainCtrl.js"></script>
 	<script type="text/javascript" src="scripts/service/factory.js"></script>
-	<script type="text/javascript" src="scripts/directives/userDirective.js"></script>
 	<script type="text/javascript" src="scripts/directives/BMdirective.js"></script>
 </body>
 </html>

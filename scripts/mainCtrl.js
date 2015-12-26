@@ -37,21 +37,21 @@ app.controller('bodyCtrl', function($scope){
 
 app.controller('siderClick', function($scope, $rootScope){
 	
-	$scope.siderbarList = [
+    $scope.siderbarList = [
 		{
-			xuhao : "个人计划",
-			id: "list"
+		    xuhao : "个人计划",
+		    id: "list"
 		},{
-			xuhao : "历史记录",
-			id:"history"
+		    xuhao : "历史记录",
+		    id:"history"
 		},{
-			xuhao : "书签",
-			id: 'bookMarker'
+		    xuhao : "书签",
+		    id: 'bookMarker'
 		},{
-			xuhao : "设置",
-			id:"setting"
+		    xuhao : "设置",
+		    id:"setting"
 		}
-	];
+    ];
 
 })
 
@@ -86,98 +86,94 @@ app.controller("SettingCtrl", function($scope){
 })
 
 
-
 // 用户信息如何传入
-// 从后台来的数据怎么给directive生成html模板（c跟directive的交互）
 // $http error也是要有处理的；
-// 传回的值，先是以html的方式加载到页面上，而不是刷新整个界面
-function BookMarkerCtrl($scope, getBookMarker){
-	// console.log("enter controller and load back");
-		getBookMarker.get("scripts/bookMarker.php").success(function(data){
-			$scope.userInfo = data;
-			$scope.bmNum = data.length;
-		})
-		$scope.hideAddBMDiv = true;
-		$scope.showAddBMDiv = false;
-		$scope.addBookMarkerShow = function(){
-			$scope.showAddBMDiv = true;
-		}
-		
-		$scope.hiddenBookMarker = function(){
-		
-			$scope.showAddBMDiv = false;
-		}
+function BookMarkerCtrl($scope, getBookMarker) {
+    $scope.isContainsShow = false;
+    $scope.isBmLoad = false;
 
-		// 一行显示多少个书签
-		// x 每行个数
-		// y 总行数
-		// last 最后一行个数
-		$scope.block = {
-			perCowNum : 17,
-			Cows : Math.floor($scope.bmNum/this.perCowNum),
-			lastNum : Math.floor($scope.bmNum%this.perCowNum),
-			width: 30,
-			height: 20,
-			margin: 10,
-			parentW: 0
-		}
+    getBookMarker.get("scripts/bookMarker.php").success(function (data) {
+        $scope.userInfo = data;
+        $scope.bmNum = data.length;
+        $scope.isBmLoad = true;
+    })
 
-			
-		$scope.blockObj = function(i){
-			return {
-				x: i ? Math.floor($scope.bmNum%i) : 0,
-				y: i ? Math.floor($scope.bmNum/i) : 0
-			}
-		}
+    $scope.hideAddBMDiv = true;
+    $scope.showAddBMDiv = false;
+
+    $scope.addBookMarkerShow = function () {
+        $scope.showAddBMDiv = true;
+    }
+
+    $scope.hiddenBookMarker = function () {
+        $scope.showAddBMDiv = false;
+    }
+
+    // 一行显示多少个书签
+    // last 最后一行个数
+    $scope.blockObj = function (i, pw) {
+        this.perCowNum = 7;
+        this.Cows = Math.floor($scope.bmNum / this.perCowNum);
+        this.lastNum = Math.floor($scope.bmNum % this.perCowNum);
+        this.height = 20;
+        this.margin = 10;
+        this.parentW = 0;
+        this.border = "1px solid red";
+        this.left = 0;
+        this.left = 0;
+        this.x = i ? Math.floor(i / this.perCowNum) : 0;
+        this.y = i ? i % this.perCowNum : 0;
+        this.width = pw ? ((pw - (this.perCowNum + 1) * this.margin) / this.perCowNum) : 0;
+        this.top = this.height * this.x + this.margin * (this.x + 1);
+        this.left = this.width * this.y + this.margin * (this.y + 1);
+    }
 }
 
 BookMarkerCtrl.resolve = {
-	delay: function($q){
-		var delay = $q.defer();
-		var load = function(){
-			$.getScript("scripts/directives/userDirective.js", function(){
-				delay.resolve();
-			});
-		};
-		load();
-		console.log("resolve onload");
-		return delay.promise;
-	}
+    delay: function ($q) {
+        var delay = $q.defer();
+        var load = function () {
+            $.getScript("scripts/directives/userDirective.js", function () {
+                delay.resolve();
+            });
+        };
+        load();
+        // console.log("resolve onload");
+        return delay.promise;
+    }
 }
-// 添加书签
-// 可以封装成服务
+
 app.controller("urlAddCtrl", function($scope, $http){
 
-	$scope.urlName = ""; 
-	$scope.url = "";
-	$scope.error = {
-		urlName : "",
-		url : ""
-	}
-	// 应该返回userInfo最为合理
-	// 问题是如何复写bookMarker中取得所有数据的方法
-	$scope.addBookMarker = function(){
-		if($scope.urlName == "" || $scope.url == ""){
-			console.log("a");
-			$scope.error.urlName = ($scope.urlName == "") ? "请输入书签名称!" : "";
-			$scope.error.url = ($scope.url == "") ? "请输入书签地址!" : "";
-			return;
-		}
-		$http.get("scripts/addBookMarker.php?urlName="+ $scope.urlName+"&url="+$scope.url).success(function(data){
-			$scope.InsertInfo = data;
-			$scope.showAddBMDiv = false;
-		}).error(function(data){
-			$scope.InsertInfo = data;
-		})
-	}
+    $scope.urlName = ""; 
+    $scope.url = "";
+    $scope.error = {
+        urlName : "",
+        url : ""
+    }
+    // 应该返回userInfo最为合理
+    // 问题是如何复写bookMarker中取得所有数据的方法
+    $scope.addBookMarker = function(){
+        if($scope.urlName == "" || $scope.url == ""){
+            console.log("a");
+            $scope.error.urlName = ($scope.urlName == "") ? "请输入书签名称!" : "";
+            $scope.error.url = ($scope.url == "") ? "请输入书签地址!" : "";
+            return;
+        }
+        $http.get("scripts/addBookMarker.php?urlName="+ $scope.urlName+"&url="+$scope.url).success(function(data){
+            $scope.InsertInfo = data;
+            $scope.showAddBMDiv = false;
+        }).error(function(data){
+            $scope.InsertInfo = data;
+        })
+    }
 
-	$scope.adsFoucs = function(){
-		console.log("focus");
-		$scope.error = {
-			urlName : "",
-			url : ""
-		}
-	}
+    $scope.adsFoucs = function(){
+        $scope.error = {
+            urlName : "",
+            url : ""
+        }
+    }
 
 })
 

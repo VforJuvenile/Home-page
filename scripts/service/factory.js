@@ -9,33 +9,13 @@ app.factory('getBookMarker', function($http){
 		}
 	}
 })
-
-.factory("findChildIndex", function(){
-	return {
-		getIndex: function(ele){
-			var lens = ele.parent().children();
-			console.log(lens.length);
-			for (var i = 0, len = lens.length; i < len; i++){
-				if(lens[i] == ele){
-					return i;
-				}
-			}
-			return 0;
-		}
-	};
-})
-
 .factory("drawBlock", function(){
 	return {
-		draw: function(element, perObj, pubObj){
-			element.css({
-				"position": absolute,
-				"width": pubObj.width,
-				"height": pubObj.height,
-				"margin": pubObj.margin,
-				"left": pubObj.left,
-				"top": pubObj.top
-			})
+		draw: function(element, perObj){
+			var styleStr = "position: absolute;width:"+perObj.width+"px;height:"+
+							perObj.height+"px;left:"+perObj.left+"px;top:"+perObj.top+
+							"px;border:"+perObj.border;
+			element.style.cssText = styleStr; 
 		}
 	}
 })
