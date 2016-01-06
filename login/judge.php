@@ -50,6 +50,7 @@
 			$_SESSION['user_IdNum'] = $IdNum4;
 			$h_url = "../index.php";
 			header('Location:'.$h_url);
+			// echo json_encode()
 		}else{
 			echo $password;
 		};
@@ -59,7 +60,11 @@
 	// 登陆判断
 	@$login_name= $_POST['login_name'];
 	@$login_password = $_POST['login_password'];
-	// echo $login_name.$login_password;
+
+	$data = array();
+	$data["name"] = $login_name;
+	$data["password"] = $login_password;
+	
 	$err = "";
 	if(!isset($_POST['login_name']) && !isset($_POST['login_password'])){
 
@@ -86,9 +91,10 @@
 			$_SESSION['user_id'] = $login_name;
 			$_SESSION['user_IdNum'] = $IdNum;
 
-			$h_url = "../index.php";
-			header('Location:'.$h_url);
+			// $h_url = "../index.php";
+			// header('Location:'.$h_url);
 
+			echo json_encode($data);
 		}else{
 			$err = "用户名或密码错误！";
 			$id="e";

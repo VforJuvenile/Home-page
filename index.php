@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 	<title>个人首页</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css" >
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="lib/angular/angular.js"></script>
 	<style>[ng-cloak] { display: none; }</style>
 </head>
 <body ng-app="app" ng-controller="bodyCtrl">
-	<?php
-		session_start();
-		if(!isset($_SESSION['user_id'])){
-		// echo '用户名'.$_SESSION['user_id'].'<br/>';
-	?>
-		<div id="err404">
-			<p>404！</p>
-			<span>找不到资源！请检查是否登录</span>
-			<br/><br/>
-			<a href="login/logOut.php">重新登录</a>
-		</div>
-	<?php		
-		}else{
-	?>		
+	
 		
 	<!-- 登陆界面由另外主页切入 -->
 	<!-- 另外主页用来介绍系统功能 -->
@@ -61,26 +51,22 @@
 			<div id="sidebar">
 				<div id="userInfo">
 					<img src="img/person.png" id="personPhoto"></img>
-					<p><?php echo $_SESSION['user_id']?></p>
-					<?php echo $_SESSION['user_IdNum']?>
+					<!-- <p><?php echo $_SESSION['user_id']?></p>
+					<?php echo $_SESSION['user_IdNum']?> -->
 					
 				</div>
 				<div ng-repeat="name in siderbarList" class="sideOptions">
-					<a href="#/{{name.id}}">{{name.xuhao}}</a>
+					<a ui-sref=".{{name.id}}">{{name.xuhao}}</a>
 				</div>
 			</div>
 			<div id="mainContain" ng-View>
-				<!-- 各个页面嵌套点 -->
 			</div>
-			102313<div class="clearFloat"></div>
+			<div class="clearFloat"></div>
 		</div> 
-	</div>
+	</div> 
 
-	<?php } ?>
-	<script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="lib/angular/angular.js"></script>
-	<script src="lib/angular/angular-route.min.js"></script>
+	<!--<script src="lib/angular/angular-route.min.js"></script>-->
+	<script src="lib/angular/angular-ui-router.js"></script>
 	<script type="text/javascript" src="scripts/auxiliary.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 	<script type="text/javascript" src="scripts/mainCtrl.js"></script>

@@ -1,28 +1,73 @@
-var app = angular.module('app', ['ngRoute']); 
+// var app = angular.module('app', ['ngRoute']); 
 
-app.config(['$routeProvider', function($routeProvider){
-	$routeProvider
-	.when('/plan', {
-		templateUrl: 'views/plan.html',
-		controller: 'MyPlanCtrl'
-	})
-	.when('/history',{
-		templateUrl: 'views/history.html',
-		controller: 'HistoryCtrl'
-	})
-	.when('/bookMarker',{
-		templateUrl: 'views/bookMarker.html',
-		controller: BookMarkerCtrl,
-	    resolve: BookMarkerCtrl.resolve
-	})
-	.when('/setting',{
-		templateUrl: 'views/setting.html',
-		controller: 'SettingCtrl'
-	})
-	.otherwise({
-		redirectTo: '/plan'
-	})
-}])
+// app.config(['$routeProvider', function($routeProvider){
+// 	$routeProvider
+// 	.when('/plan', {
+// 		templateUrl: 'views/plan.html',
+// 		controller: 'MyPlanCtrl'
+// 	})
+// 	.when('/history',{
+// 		templateUrl: 'views/history.html',
+// 		controller: 'HistoryCtrl'
+// 	})
+// 	.when('/bookMarker',{
+// 		templateUrl: 'views/bookMarker.html',
+// 		controller: BookMarkerCtrl,
+// 	    resolve: BookMarkerCtrl.resolve
+// 	})
+// 	.when('/setting',{
+// 		templateUrl: 'views/setting.html',
+// 		controller: 'SettingCtrl'
+// 	})
+// 	.otherwise({
+// 		redirectTo: '/plan'
+// 	})
+// }])
+var app = angular.module("app", ["ui.router"]);
+
+app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
+    $urlRouterProvider.when("","/login");
+
+    $stateProvider
+        .state("index",{
+            url: "/index",
+            templateUrl:"index.html"
+        })
+        .state("index.plan",{
+            url: "/plan",
+            templateUrl: 'views/plan.html',
+            controller: 'MyPlanCtrl'
+        })
+        .state("index.history",{
+            url: "/history",
+            templateUrl: 'views/history.html',
+            controller: 'HistoryCtrl'
+        })
+        .state("index.bookMarker",{
+            url: "/bookMarker",
+            templateUrl: 'views/bookMarker.html',
+            controller: BookMarkerCtrl,
+            resolve: BookMarkerCtrl.resolve
+        })
+        .state("index.setting",{
+            url: "/setting",
+            templateUrl: 'views/setting.html',
+            controller: 'SettingCtrl'
+        })
+        // login中默认某一视图打开？
+        .state("login",{
+            url: "/login",
+            templateUrl: "login/login.html"
+        })
+        .state("login.login",{
+            url: "/login",
+            templateUrl: "login/login1.html"
+        }) 
+        .state("login.register",{
+            url:"/register",
+            templateUrl: "login/register.html"
+        })
+}]);
 
 app.controller('bodyCtrl', function($scope){
 	$scope.homeShow = false;
@@ -32,7 +77,6 @@ app.controller('bodyCtrl', function($scope){
 	$scope.timeHide = function(){
 		$scope.homeShow = false;
 	}
-
 })
 
 app.controller('siderClick', function($scope, $rootScope){
@@ -143,7 +187,7 @@ BookMarkerCtrl.resolve = {
     }
 }
 
-app.controller("urlAddCtrl", function($scope, $http){
+app.controller("urlAddCtrl",['$scope', '$http', '$state', function($scope, $http, $state){
 
     $scope.urlName = ""; 
     $scope.url = "";
@@ -155,7 +199,6 @@ app.controller("urlAddCtrl", function($scope, $http){
     // 问题是如何复写bookMarker中取得所有数据的方法
     $scope.addBookMarker = function(){
         if($scope.urlName == "" || $scope.url == ""){
-            console.log("a");
             $scope.error.urlName = ($scope.urlName == "") ? "请输入书签名称!" : "";
             $scope.error.url = ($scope.url == "") ? "请输入书签地址!" : "";
             return;
@@ -163,6 +206,7 @@ app.controller("urlAddCtrl", function($scope, $http){
         $http.get("scripts/addBookMarker.php?urlName="+ $scope.urlName+"&url="+$scope.url).success(function(data){
             $scope.InsertInfo = data;
             $scope.showAddBMDiv = false;
+            $state.go($state.current, null, {reload: true});
         }).error(function(data){
             $scope.InsertInfo = data;
         })
@@ -175,5 +219,44 @@ app.controller("urlAddCtrl", function($scope, $http){
         }
     }
 
-})
+}])
+
+app.controller('loginCtrl', function($scope, $http, $state){
+    
+    $scope.Login = {};
+    $scope.Login.isLogin = true;
+
+    $scope.toggleTab = function(isLogin){
+        if($scope.Login.isLogin){
+            if(!isLogin){
+                $scope.Login.isLogin = false;
+            }
+        }else{
+            if(isLogin){
+                $scope.Login.isLogin = true;
+            }
+        }
+    };
+
+    $scope.Login.Lerror = "";
+    $scope.Login.Rerror = "";
+
+    $scope.formData = {};
+
+    $scope.processForm = function(){
+        console.log($.param($scope.formData));
+        console.log("start");
+        $http({
+            method: "post",
+            url: "login/judge.php",
+            data: $.param($scope.formData),
+            headers: {'Content-Type':'application/x-www-form-urlencoded'}
+        })
+        .success(function(data){
+            console.log(data);
+            $state.go("index",{},{reload:true});
+        })
+    }
+
+});
 
