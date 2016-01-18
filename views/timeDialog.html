@@ -1,0 +1,9 @@
+<div id="page1" class="page" style="z-index:20;" ng-hide="homeShow">
+	<button type="button" class="btn btn-default" ng-click="timeShow()" title="主页">
+  			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+	</button>
+	<div id="timeAndName">
+		<div id="nowTime"></div>
+		<div id="nameWelcome"><?php echo "Welcome to you! ".$_SESSION['user_id']?></div>
+	</div>
+</div>

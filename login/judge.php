@@ -1,4 +1,3 @@
-<!-- 所有错误跳转待完成 -->
 <?php
 	// 判断注册名是否存在
 	@$name = $_GET['name'];
@@ -48,9 +47,12 @@
 			session_start();
 			$_SESSION['user_id'] = $register_name;
 			$_SESSION['user_IdNum'] = $IdNum4;
-			$h_url = "../index.php";
-			header('Location:'.$h_url);
+
+			// $h_url = "../index.php";
+			// header('Location:'.$h_url);
 			// echo json_encode()
+			
+			echo "success";
 		}else{
 			echo $password;
 		};
@@ -91,14 +93,11 @@
 			$_SESSION['user_id'] = $login_name;
 			$_SESSION['user_IdNum'] = $IdNum;
 
-			// $h_url = "../index.php";
-			// header('Location:'.$h_url);
-
-			echo json_encode($data);
+			// echo json_encode($data);
+			echo "success";
 		}else{
 			$err = "用户名或密码错误！";
-			$id="e";
-			Header("Location: http://localhost:8087/Home-page/login/login.php?id=$id");
+			echo $err;
 		}
 	}
 ?>

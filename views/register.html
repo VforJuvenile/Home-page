@@ -1,0 +1,17 @@
+<div ng-hide="Login.isLogin">
+	<form ng-submit="registerForm()">
+		<p class="login_lp login_rp">用户名</p>
+		<input type="text" name="register_name" id="username" placeholder="请输入邮箱或用户名" class="login_input" maxLength="20" ng-model="registerData.register_name" autofocus required/>
+		
+		<p class="login_lp login_rp">密码</p>
+		<input type="password" name="password" id="password" placeholder="请输入密码" class="login_input"  ng-model="registerData.password" required/>	
+		
+		<p class="login_lp login_rp">再次输入密码</p>
+		<input type="password" placeholder="请再次输入密码" id="repassword" class="login_input" required/>	
+		
+		<input type="submit"  id="register_submit" value="注册" class="submit  btn btn-warning"/>
+		<span class="err">{{Login.Rerror}}</span>
+		<span id="err3" class="err"></span>
+		<div class="clearFloat"></div>
+	</form>
+</div> 

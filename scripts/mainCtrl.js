@@ -1,47 +1,46 @@
-// var app = angular.module('app', ['ngRoute']); 
-
-// app.config(['$routeProvider', function($routeProvider){
-// 	$routeProvider
-// 	.when('/plan', {
-// 		templateUrl: 'views/plan.html',
-// 		controller: 'MyPlanCtrl'
-// 	})
-// 	.when('/history',{
-// 		templateUrl: 'views/history.html',
-// 		controller: 'HistoryCtrl'
-// 	})
-// 	.when('/bookMarker',{
-// 		templateUrl: 'views/bookMarker.html',
-// 		controller: BookMarkerCtrl,
-// 	    resolve: BookMarkerCtrl.resolve
-// 	})
-// 	.when('/setting',{
-// 		templateUrl: 'views/setting.html',
-// 		controller: 'SettingCtrl'
-// 	})
-// 	.otherwise({
-// 		redirectTo: '/plan'
-// 	})
-// }])
 var app = angular.module("app", ["ui.router"]);
 
 app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
+    
+    // $rootScope.$on('$stateChangeStart',
+    // function(event, toState, toParams, fromState, fromParams){   
+    //     console.log(fromState + "->" + toState, toParams, fromParams);     
+    // });
+
     $urlRouterProvider.when("","/login");
 
     $stateProvider
         .state("index",{
             url: "/index",
-            templateUrl:"index.html"
+            templateUrl:"index.html",
+            controller: "indexCtrl"
+        })
+        
+        .state("index.history",{
+            url: "/history",
+            views: {
+                '' : {
+                    templateUrl : "views/history.html",
+                    controller: "HistoryCtrl"
+                },
+                'index':{
+                    templateUrl: "views/history.html",
+                    controller: "HistoryCtrl"
+                }
+            }
         })
         .state("index.plan",{
             url: "/plan",
-            templateUrl: 'views/plan.html',
-            controller: 'MyPlanCtrl'
-        })
-        .state("index.history",{
-            url: "/history",
-            templateUrl: 'views/history.html',
-            controller: 'HistoryCtrl'
+            views: {
+                '' : {
+                    templateUrl : "views/plan.html",
+                    controller: "MyPlanCtrl"
+                },
+                'index':{
+                    templateUrl: "views/plan.html",
+                    controller: "MyPlanCtrl"
+                }
+            }
         })
         .state("index.bookMarker",{
             url: "/bookMarker",
@@ -61,11 +60,20 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
         })
         .state("login.login",{
             url: "/login",
-            templateUrl: "login/login1.html"
+            views: {
+                "login": {
+                    templateUrl: "views/login.html"
+                }
+            }
+            
         }) 
         .state("login.register",{
             url:"/register",
-            templateUrl: "login/register.html"
+            views: {
+                "login": {
+                    templateUrl: "views/register.html"
+                }
+            }
         })
 }]);
 
@@ -84,12 +92,13 @@ app.controller('siderClick', function($scope, $rootScope){
     $scope.siderbarList = [
 		{
 		    xuhao : "个人计划",
-		    id: "list"
+		    id: "plan"
 		},{
 		    xuhao : "历史记录",
 		    id:"history"
 		},{
 		    xuhao : "书签",
+
 		    id: 'bookMarker'
 		},{
 		    xuhao : "设置",
@@ -100,25 +109,14 @@ app.controller('siderClick', function($scope, $rootScope){
 })
 
 app.controller('MyPlanCtrl', function($scope,$http){
-	// 如何设置会话
-	// $http.get("plan.php?")	
-	// var user = {"name": "wf"};
+    console.log("enter pplan"); 
 	 $http.get("scripts/plan.php?a=b").success(function(data){
 	 	$scope.user = data;
 	 })
-	 // $http.get("scripts/plan.php", user).success(function(data){
-	 // 	$scope.user = data;
-	 // });
-	// $http.post("/foo/bar", requestData, {
- //    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
- //    transformRequest: transform
-	// }).success(function(responseData) {
-    //do stuff with response
-// });
 })
 
 app.controller('HistoryCtrl', function($scope,$http){
-
+    console.log("HH");
 	$http.get("data/test.json").success(function(data){
 		$scope.user = data;
 	})
@@ -128,7 +126,6 @@ app.controller('HistoryCtrl', function($scope,$http){
 app.controller("SettingCtrl", function($scope){
 
 })
-
 
 // 用户信息如何传入
 // $http error也是要有处理的；
@@ -238,10 +235,13 @@ app.controller('loginCtrl', function($scope, $http, $state){
         }
     };
 
+    $state.go("login.login", {}, {reload: false});
+
     $scope.Login.Lerror = "";
     $scope.Login.Rerror = "";
 
     $scope.formData = {};
+    $scope.registerData = {};
 
     $scope.processForm = function(){
         console.log($.param($scope.formData));
@@ -253,10 +253,37 @@ app.controller('loginCtrl', function($scope, $http, $state){
             headers: {'Content-Type':'application/x-www-form-urlencoded'}
         })
         .success(function(data){
-            console.log(data);
-            $state.go("index",{},{reload:true});
+            if(data == "success"){
+                $state.go("index", {}, {reload: true});
+            }else{
+                $scope.Login.Lerror = data;
+            }
+        })
+        .error(function(data){
+            $scope.Login.Lerror = "网络连接错误！";
         })
     }
 
+    $scope.registerForm = function(){
+        $http({
+            method: "post",
+            url : "login/judge.php",
+            data: $.param($scope.registerData),
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
+        })
+        .success(function(data){
+            if(data == "success"){
+                $state.go("index", {}, {reload: true});
+            }else{
+                $scope.Login.Rerror = data;
+            }
+        })
+        .error(function(data){
+            $scope.Login.Rerror = "网络连接错误！";
+        })
+    }
 });
 
+app.controller("indexCtrl", function($scope, $state){
+    $state.go("index.history", {}, {reload: false});
+})

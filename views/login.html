@@ -1,0 +1,14 @@
+<div ng-hide="!Login.isLogin">
+	<form ng-submit="processForm()">
+	
+		<p class="login_lp">用户名</p>
+		<input type="text" name="login_name" id="login_name" placeholder="请输入邮箱或用户名" class="login_input" ng-model="formData.login_name" autofocus required/>
+	
+		<p class="login_lp">密码</p>
+		<input type="password" name="login_password" id="login_password" placeholder="请输入密码" class="login_input" ng-model="formData.login_password" required/>	
+	
+		<input type="submit" id="login_submit" value="登录" class="submit btn btn-primary"/>
+		<span class="err">{{Login.Lerror}}</span>	
+		<div class="clearFloat"></div>	
+	</form>		
+</div>
