@@ -2,17 +2,13 @@ var app = angular.module("app", ["ui.router"]);
 
 app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
     
-    // $rootScope.$on('$stateChangeStart',
-    // function(event, toState, toParams, fromState, fromParams){   
-    //     console.log(fromState + "->" + toState, toParams, fromParams);     
-    // });
-
+    
     $urlRouterProvider.when("","/login");
 
     $stateProvider
         .state("index",{
             url: "/index",
-            templateUrl:"index.html",
+            templateUrl:"views/index.html",
             controller: "indexCtrl"
         })
         
@@ -65,20 +61,39 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
                     templateUrl: "views/login.html"
                 }
             }
-            
         }) 
         .state("login.register",{
             url:"/register",
             views: {
                 "login": {
-                    templateUrl: "views/register.html"
+                    templateUrl: "views/register.html",
+                    controller: "registerCtrl"
                 }
             }
-        })
+        });
+
+    // 注意格式
+    $urlRouterProvider.otherwise('/login/login');
 }]);
 
+app.run(function($rootScope,$state){
+    $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams){   
+        console.log("change");
+        console.log(fromState);
+        console.log(toParams);
+        // console.log(sessionStorage.getItem("userName"));
+        // if(sessionStorage.getItem("userName") == null){
+        //     // event.preventDefault();
+        //     console.log("go login");
+        //     $state.go("login",{},{reload : false});
+        // }
+    });
+});
+
 app.controller('bodyCtrl', function($scope){
-	$scope.homeShow = false;
+	$scope.homeShow = true;
+    $scope.userName = sessionStorage.getItem("userName");
 	$scope.timeShow = function(){
 		$scope.homeShow = true;
 	}
@@ -116,7 +131,6 @@ app.controller('MyPlanCtrl', function($scope,$http){
 })
 
 app.controller('HistoryCtrl', function($scope,$http){
-    console.log("HH");
 	$http.get("data/test.json").success(function(data){
 		$scope.user = data;
 	})
@@ -174,9 +188,10 @@ BookMarkerCtrl.resolve = {
     delay: function ($q) {
         var delay = $q.defer();
         var load = function () {
-            $.getScript("scripts/directives/userDirective.js", function () {
-                delay.resolve();
-            });
+            // $.getScript("scripts/directives/userDirective.js", function () {
+            //     delay.resolve();
+            // });
+            delay.resolve();
         };
         load();
         // console.log("resolve onload");
@@ -192,7 +207,7 @@ app.controller("urlAddCtrl",['$scope', '$http', '$state', function($scope, $http
         urlName : "",
         url : ""
     }
-    // 应该返回userInfo最为合理
+
     // 问题是如何复写bookMarker中取得所有数据的方法
     $scope.addBookMarker = function(){
         if($scope.urlName == "" || $scope.url == ""){
@@ -238,14 +253,10 @@ app.controller('loginCtrl', function($scope, $http, $state){
     $state.go("login.login", {}, {reload: false});
 
     $scope.Login.Lerror = "";
-    $scope.Login.Rerror = "";
-
     $scope.formData = {};
-    $scope.registerData = {};
 
     $scope.processForm = function(){
-        console.log($.param($scope.formData));
-        console.log("start");
+        // 校验
         $http({
             method: "post",
             url: "login/judge.php",
@@ -254,6 +265,7 @@ app.controller('loginCtrl', function($scope, $http, $state){
         })
         .success(function(data){
             if(data == "success"){
+                sessionStorage.setItem("userName", $scope.formData.login_name);
                 $state.go("index", {}, {reload: true});
             }else{
                 $scope.Login.Lerror = data;
@@ -264,7 +276,17 @@ app.controller('loginCtrl', function($scope, $http, $state){
         })
     }
 
+});
+
+app.controller("registerCtrl", function($scope, $http, $state){
+
+    $scope.registerData = {};
+    $scope.registerData.register_name = "";
+    $scope.Login.Rerror = "";
+    $scope.rePassword = "";
+
     $scope.registerForm = function(){
+        // 合法性校验
         $http({
             method: "post",
             url : "login/judge.php",
@@ -281,8 +303,35 @@ app.controller('loginCtrl', function($scope, $http, $state){
         .error(function(data){
             $scope.Login.Rerror = "网络连接错误！";
         })
-    }
-});
+    };
+
+    $scope.$watch("registerData.register_name", function(value){
+        $http({
+            method: "get",
+            url : "login/judge.php?name="+value
+        })
+        .success(function(data){
+            if(data !== "success"){
+                $scope.Login.Rerror = data;
+            }else{
+                $scope.Login.Rerror = "";
+            }
+        })
+        .error(function(){
+            scope.Login.Rerror = "网络连接错误！";
+        })
+    });
+
+    $scope.$watch("rePassword", function(value){
+        if(value != ""){
+            if($scope.registerData.password != value){
+                $scope.Login.Rerror = "两次密码不匹配！";
+            }else{
+                $scope.Login.Rerror = "";
+            }
+        }
+    });
+})
 
 app.controller("indexCtrl", function($scope, $state){
     $state.go("index.history", {}, {reload: false});

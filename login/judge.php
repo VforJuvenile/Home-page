@@ -15,7 +15,7 @@
 			$response = "用户名已存在！";
 			// echo "用户名已存在！";
 		}else{
-			$response = "";
+			$response = "success";
 			// echo "";
 		};
 		echo $response;

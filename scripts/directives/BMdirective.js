@@ -38,7 +38,7 @@ app.directive('focusMe', function($timeout, $parse){
 		link: function(scope, element, attrs){
 
 			// 计算得其父元素的宽度，普通获取为auto
-			var sideBarW = angular.element("#sidebar").outerWidth(true);
+			var sideBarW = angular.element("#sidebar").outerWidth(true),
 				bodyW = angular.element("body")[0].clientWidth,
 				padding = parseFloat(angular.element("#mainContain").css("padding")),
 				bmsW = bodyW - sideBarW - 2*padding - 17;  // not IE scroll

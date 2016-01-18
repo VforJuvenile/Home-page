@@ -1,13 +1,14 @@
 <div>
 	<div id="page1" class="page" style="z-index:20;" ng-hide="homeShow">
-	<button type="button" class="btn btn-default" ng-click="timeShow()" title="主页">
+		<button type="button" class="btn btn-default" ng-click="timeShow()" title="主页">
   			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-	</button>
-	<div id="timeAndName">
-		<div id="nowTime"></div>
-		<div id="nameWelcome"><?php echo "Welcome to you! ".$_SESSION['user_id']?></div>
+		</button>
+		<div id="timeAndName">
+			<div id="nowTime"></div>
+			<div id="nameWelcome">Welcome to you! {{userName}}</div>
+		</div>
 	</div>
-</div>
+
 	<div id="page3" class="page" ng-controller="siderClick" ng-show="homeShow">
 	  
 		<div id="userHeader">
@@ -22,9 +23,6 @@
 			<div id="sidebar">
 				<div id="userInfo">
 					<img src="img/person.png" id="personPhoto"></img>
-					<!-- <p><?php echo $_SESSION['user_id']?></p>
-					<?php echo $_SESSION['user_IdNum']?> -->
-					<!-- index/ -->
 				</div>
 				<div ng-repeat="name in siderbarList" class="sideOptions">
 					<a ui-sref=".{{name.id}}">{{name.xuhao}}</a>
@@ -33,9 +31,9 @@
 					<a ui-sref=".plan">test</a>
 				</div>
 			</div>
-			<div id="mainContain" ui-view=""> 
-			</div>
+			<div id="mainContain" ui-view=""></div>
 			<div class="clearFloat"></div>
 		</div> 
+		
 	</div> 
 </div>

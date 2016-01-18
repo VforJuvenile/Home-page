@@ -15,9 +15,7 @@
 				<div id="login_tab">
 					<div id="login_btn" style="color:orange">用户登录</div>
 					<div id="register_btn" style="background:#FA9303;color:white">注册</div>
-				</div>
-
-				
+				</div>	
 			</div>
 		</div>
 		

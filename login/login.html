@@ -1,4 +1,3 @@
-
 <div ng-controller="loginCtrl">
 	<div id="login_body">
 		<header id="login_center">
@@ -7,11 +6,12 @@
 			
 			<div id="login_right" ng-class="{login_L: Login.isLogin, login_R: !Login.isLogin}">
 				<div id="login_tab">
-					<div id="login_btn" ng-click="toggleTab(true)" ng-class="{login_LAtab: !Login.isLogin, login_Lcommontab: Login.isLogin}"
-					ui-sref=".login">用户登录</div>
-					<div id="register_btn" ng-click="toggleTab(false)" ng-class="{login_RAtab: Login.isLogin, login_Rcommontab: !Login.isLogin}" ui-sref=".register">注册</div>
-				</div>
+					 
+					<div id="login_btn" ng-click="toggleTab(true)" ng-class="{login_LAtab: !Login.isLogin, login_Lcommontab: Login.isLogin}" ui-sref=".login">用户登录</div>
+		
+					<div id="register_btn" ng-click="toggleTab(false)" ng-class="{login_RAtab: Login.isLogin,login_Rcommontab:!Login.isLogin}" ui-sref=".register">注册</div>
 
+				</div>
 				<div id="login_main" ui-view="login"></div>
 				
 			</div>
