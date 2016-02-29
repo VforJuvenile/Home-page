@@ -49,6 +49,11 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
             templateUrl: 'views/setting.html',
             controller: 'SettingCtrl'
         })
+        .state("index.notes",{
+            url: "/notes",
+            templateUrl: 'views/notes.html',
+            controller: 'notesCtrl'
+        })
         // login中默认某一视图打开？
         .state("login",{
             url: "/login",
@@ -100,26 +105,12 @@ app.controller('bodyCtrl', function($scope){
 	$scope.timeHide = function(){
 		$scope.homeShow = false;
 	}
+
 })
 
-app.controller('siderClick', function($scope, $rootScope){
+app.controller('siderClick', function($scope, $rootScope, siderbar){
 	
-    $scope.siderbarList = [
-		{
-		    xuhao : "个人计划",
-		    id: "plan"
-		},{
-		    xuhao : "历史记录",
-		    id:"history"
-		},{
-		    xuhao : "书签",
-
-		    id: 'bookMarker'
-		},{
-		    xuhao : "设置",
-		    id:"setting"
-		}
-    ];
+    $scope.siderbarList = siderbar.get();
 
 })
 
@@ -358,4 +349,8 @@ app.controller("registerCtrl", function($scope, $http, $state){
 
 app.controller("indexCtrl", function($scope, $state){
     $state.go("index.history", {}, {reload: false});
+})
+
+app.controller("notesCtrl", function($scope){
+   
 })

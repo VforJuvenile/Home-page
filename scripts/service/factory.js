@@ -19,3 +19,34 @@ app.factory('getBookMarker', function($http){
 		}
 	}
 })
+.factory("siderbar", function(){
+
+	var siderbarList = [
+		{
+		    xuhao : "个人计划",
+		    id: "plan"
+		},{
+		    xuhao : "历史记录",
+		    id:"history"
+		},{
+		    xuhao : "书签",
+
+		    id: 'bookMarker'
+		},{
+		    xuhao : "设置",
+		    id:"setting"
+		},{
+			xuhao : "笔记",
+			id: "notes"
+		}
+    ];
+    return {
+    	get: function(){
+    		return siderbarList;
+    	},
+    	remove: function(n){
+    		var aa = siderbarList.splice(n,1);
+    		return siderbarList;
+    	}
+    }
+});

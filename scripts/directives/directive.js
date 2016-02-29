@@ -66,3 +66,34 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 }])
 
+.directive("adpatHeight", function($timeout){
+	return {
+		link: function(scope, element, attrs){
+			var doc = document, 
+				header = doc.querySelectorAll("#userHeader")[0],
+				pageHeight = Math.max(doc.documentElement.clientHeight, doc.body.clientHeight),
+				siderHeight = pageHeight - header.offsetHeight;
+
+			element[0].style.height = siderHeight + "px";
+
+			// 浏览器窗口改变监听事件--高度不需要
+			// window.addEventListener("resize", function(){
+			// 	$timeout(function(){
+			// 		pageHeight = Math.max(doc.documentElement.scrollHeight, doc.body.clientHeight);
+			// 		console.log(pageHeight);
+			// 	},0);
+			// })
+
+		}
+	}
+})
+
+.directive("setNotetitelh", function($timeout){
+	return {
+		link: function(scope, element, attrs){
+
+			element[0].style.height = document.querySelectorAll("#sidebar")[0].style.height;
+
+		}
+	}
+})

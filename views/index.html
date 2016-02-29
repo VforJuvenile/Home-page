@@ -20,17 +20,15 @@
 		</div>
 		
 		<div id="contain">
-			<div id="sidebar">
+			<div id="sidebar" adpat-height>
 				<div id="userInfo">
 					<img src="img/person.png" id="personPhoto"></img>
 				</div>
 				<div ng-repeat="name in siderbarList" class="sideOptions">
 					<a ui-sref=".{{name.id}}">{{name.xuhao}}</a>
 				</div>
-				<div class="sideOptions">
-					<a ui-sref=".plan">test</a>
-				</div>
 			</div>
+			
 			<div id="mainContain" ui-view=""></div>
 			<div class="clearFloat"></div>
 		</div> 
