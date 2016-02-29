@@ -1,4 +1,4 @@
-var app = angular.module("app", ["ui.router"]);
+var app = angular.module("app", ['ui.router','ngAnimate','ui.bootstrap']);
 
 app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
     
@@ -79,9 +79,9 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 app.run(function($rootScope,$state){
     $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams){   
-        console.log("change");
-        console.log(fromState);
-        console.log(toParams);
+        // console.log("change");
+        // console.log(fromState);
+        // console.log(toParams);
         // console.log(sessionStorage.getItem("userName"));
         // if(sessionStorage.getItem("userName") == null){
         //     // event.preventDefault();
@@ -137,9 +137,32 @@ app.controller('HistoryCtrl', function($scope,$http){
 })
 
 // 设置
-app.controller("SettingCtrl", function($scope){
+// app.controller("SettingCtrl", function($scope){
+//    $scope.oneAtATime = true;
 
-})
+//   $scope.groups = [
+//     {
+//       title: 'Dynamic Group Header - 1',
+//       content: 'Dynamic Group Body - 1'
+//     },
+//     {
+//       title: 'Dynamic Group Header - 2',
+//       content: 'Dynamic Group Body - 2'
+//     }
+//   ];
+
+//   $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+//   $scope.addItem = function() {
+//     var newItemNo = $scope.items.length + 1;
+//     $scope.items.push('Item ' + newItemNo);
+//   };
+
+//   $scope.status = {
+//     isFirstOpen: true,
+//     isFirstDisabled: false
+//   };
+// })
 
 // 用户信息如何传入
 // $http error也是要有处理的；

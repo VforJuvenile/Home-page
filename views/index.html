@@ -1,5 +1,5 @@
-<div>
-	<div id="page1" class="page" style="z-index:20;" ng-hide="homeShow">
+
+	<!-- <div id="page1" class="page" style="z-index:20;" ng-hide="homeShow">
 		<button type="button" class="btn btn-default" ng-click="timeShow()" title="主页">
   			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 		</button>
@@ -7,13 +7,13 @@
 			<div id="nowTime"></div>
 			<div id="nameWelcome">Welcome to you! {{userName}}</div>
 		</div>
-	</div>
+	</div> -->
 
-	<div id="page3" class="page" ng-controller="siderClick" ng-show="homeShow">
+	<div id="page3" class="inheritHW" ng-controller="siderClick" ng-show="homeShow">
 	  
 		<div id="userHeader">
 			网站标签和小工具栏
-			<a href="login/login.php">退出登录</a>
+			<a href="#/login/login">退出登录</a>
 			<button type="button" class="btn btn-default" ng-click="timeHide()" title="显示时间">
   				<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 			</button>
@@ -36,4 +36,3 @@
 		</div> 
 		
 	</div> 
-</div>
