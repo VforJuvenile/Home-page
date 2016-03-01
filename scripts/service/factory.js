@@ -49,4 +49,29 @@ app.factory('getBookMarker', function($http){
     		return siderbarList;
     	}
     }
-});
+})
+.factory("arrayOperation", function(){
+	var data = [];
+	return {
+		executeFilterFunc: function(array, key, func){
+			if(Object.prototype.toString.call(array) == "[object Array]"){
+				return array.filter(function(item){
+					return func.call(null, item[key]); 
+				})
+			}else{
+				return [];
+			}
+				
+		}
+	}
+})
+.factory("strOperation", function(){
+	return {
+		isChinese : function(temp){
+			var re = /[^\u4e00-\u9fa5]/;
+			if(re.test(temp))
+				return false;
+			return true;
+		}
+	}
+})

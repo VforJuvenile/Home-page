@@ -26,15 +26,13 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 })
 
-.directive('adaptWidth', ["$timeout","drawBlock", function($timeout, drawBlock){
+.directive('bmAdaptwidth', ["$timeout","drawBlock", function($timeout, drawBlock){
 
 	return {
 		restrict: 'E',
 		transclude: true,
 		replace: true,
-		template: "<ul><li ng-repeat='name in userInfo' title='{{name.markerUrl}}' class='bookMarkerBlock'>"+
-				  "<a target='_blank' ng-href='{{name.markerUrl}}'>{{name.markerName}}</a>"+
-				  "</li><li id='extendHeight'></li></ul>",
+		templateUrl: 'views/bookMarkerBlocks.html',
 		link: function(scope, element, attrs){
 
 			// 计算得其父元素的宽度，普通获取为auto
@@ -44,6 +42,7 @@ app.directive('focusMe', function($timeout, $parse){
 				bmsW = bodyW - sideBarW - 2*padding - 17;  // not IE scroll
 
 			// 监测$http数据是否从后台获取完毕,显示
+			// 之所以在directive检测isLoad，是因为不能在尚未加载完成的时候绘制
 			scope.$watch(attrs.isLoad, function(value){
 				if(value == true){
 					$timeout(function(){

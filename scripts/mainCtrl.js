@@ -157,15 +157,23 @@ app.controller('HistoryCtrl', function($scope,$http){
 
 // 用户信息如何传入
 // $http error也是要有处理的；
-function BookMarkerCtrl($scope, getBookMarker) {
+function BookMarkerCtrl($scope, getBookMarker, arrayOperation, strOperation) {
     $scope.isContainsShow = false;
     $scope.isBmLoad = false;
-
+    console.log("W");
     getBookMarker.get("scripts/bookMarker.php").success(function (data) {
-        $scope.userInfo = data;
-        $scope.bmNum = data.length;
+
+        // 对汉字长度超过6、英文长度超过10的书签进行过滤
+        $scope.bmBlocks = arrayOperation.executeFilterFunc(data, "markerName", function(value){
+            return strOperation.isChinese(value[0]) ? value.length < 6 : value.length < 10;
+        });
+        $scope.bmItems = arrayOperation.executeFilterFunc(data, "markerName", function(value){
+            return strOperation.isChinese(value[0]) ? value.length > 5 : value.length > 9;
+        });
+        $scope.bmNum = $scope.bmBlocks.length;
         $scope.isBmLoad = true;
     })
+
 
     $scope.hideAddBMDiv = true;
     $scope.showAddBMDiv = false;

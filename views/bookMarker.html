@@ -6,25 +6,26 @@
 <!-- 不同的是更改设置总个数是不变的，添加删除不一样，还需要去后台拿一次数据 -->
 
 <div ng-show="isContainsShow">
-<div id="bmShowSetting"><div class="glyphicon glyphicon-wrench"></div></div>
-<adapt-width class="bookMarkerContains" is-load="isBmLoad"></adapt-width>
-
-<button ng-click="addBookMarkerShow()" class="addBookMarkerBtn">+</button>
-
-<!-- 添加书签dialog -->
-<div ng-show="showAddBMDiv" ng-controller="urlAddCtrl" id="addBookMarkerDialog">
-	<p>链接名称：</p>
-	<input type="text" ng-model="urlName" focus-change="error" focus-me="showAddBMDiv" placeholder="请输入链接名称">
-	<br/>
-	<span class="dataError">{{error.urlName}}&nbsp;</span>
-	<p>链接地址：</p>
-	<input type="text" ng-model="url" focus-change="error" placeholder="请输入链接地址" >
-	<br/>
-	<span class="dataError">{{error.url}}&nbsp;</span>
-	<div>
-		<button ng-click="addBookMarker()">sure</button>
-		<button ng-click="hiddenBookMarker()">cancle</button>
+	<div id="bmShowSetting">
+		<button ng-click="addBookMarkerShow()" class="addBookMarkerBtn">+</button>
+		<div class="glyphicon glyphicon-wrench"></div>
 	</div>
-	<p ng-model="InsertInfo"></p>
-</div>
+	<bm-adaptwidth class="bookMarkerContains" is-load="isBmLoad"></bm-adaptwidth>
+	
+	<!-- 添加书签dialog -->
+	<div ng-show="showAddBMDiv" ng-controller="urlAddCtrl" id="addBookMarkerDialog">
+		<p>链接名称：</p>
+		<input type="text" ng-model="urlName" focus-change="error" focus-me="showAddBMDiv" placeholder="请输入链接名称">
+		<br/>
+		<span class="dataError">{{error.urlName}}&nbsp;</span>
+		<p>链接地址：</p>
+		<input type="text" ng-model="url" focus-change="error" placeholder="请输入链接地址" >
+		<br/>
+		<span class="dataError">{{error.url}}&nbsp;</span>
+		<div>
+			<button ng-click="addBookMarker()">sure</button>
+			<button ng-click="hiddenBookMarker()">cancle</button>
+		</div>
+		<p ng-model="InsertInfo"></p>
+	</div>
 </div>
