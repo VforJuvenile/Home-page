@@ -157,7 +157,7 @@ app.controller('HistoryCtrl', function($scope,$http){
 
 // 用户信息如何传入
 // $http error也是要有处理的；
-function BookMarkerCtrl($scope, getBookMarker, arrayOperation, strOperation) {
+function BookMarkerCtrl($scope, $uibModal, $log, getBookMarker, arrayOperation, strOperation) {
     $scope.isContainsShow = false;
     $scope.isBmLoad = false;
     getBookMarker.get("scripts/bookMarker.php").success(function (data) {
@@ -204,6 +204,37 @@ function BookMarkerCtrl($scope, getBookMarker, arrayOperation, strOperation) {
         this.top = this.height * this.x + this.margin * (this.x + 1);
         this.left = this.width * this.y + this.margin * (this.y + 1);
     }
+
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.animationsEnabled = true;
+    $scope.insertResult  = "";
+    $scope.open = function (size) {
+
+        // 向模态框传递数据，resolve
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'addBMModalContent.html',
+            controller: 'addBMModalInstanceCtrl',
+            size: size,
+            resolve: {
+                items: function () {
+                    return $scope.items;
+                }
+            }
+        });
+
+        // 从模态框拿回数据，result.then
+        modalInstance.result.then(function (InsertInfo) {
+          $scope.insertResult = InsertInfo;
+
+        }, function () {
+          $log.info('Modal dismissed at: ' + new Date());
+        });
+
+    };
+
 }
 
 BookMarkerCtrl.resolve = {
@@ -220,40 +251,6 @@ BookMarkerCtrl.resolve = {
         return delay.promise;
     }
 }
-
-app.controller("urlAddCtrl",['$scope', '$http', '$state', function($scope, $http, $state){
-
-    $scope.urlName = ""; 
-    $scope.url = "";
-    $scope.error = {
-        urlName : "",
-        url : ""
-    }
-
-    // 问题是如何复写bookMarker中取得所有数据的方法
-    $scope.addBookMarker = function(){
-        if($scope.urlName == "" || $scope.url == ""){
-            $scope.error.urlName = ($scope.urlName == "") ? "请输入书签名称!" : "";
-            $scope.error.url = ($scope.url == "") ? "请输入书签地址!" : "";
-            return;
-        }
-        $http.get("scripts/addBookMarker.php?urlName="+ $scope.urlName+"&url="+$scope.url).success(function(data){
-            $scope.InsertInfo = data;
-            $scope.showAddBMDiv = false;
-            $state.go($state.current, null, {reload: true});
-        }).error(function(data){
-            $scope.InsertInfo = data;
-        })
-    }
-
-    $scope.adsFoucs = function(){
-        $scope.error = {
-            urlName : "",
-            url : ""
-        }
-    }
-
-}])
 
 app.controller('loginCtrl', function($scope, $http, $state){
     
@@ -362,3 +359,48 @@ app.controller("indexCtrl", function($scope, $state){
 app.controller("notesCtrl", function($scope){
    
 })
+
+app.controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $http, $state, items) {
+
+    $scope.urlName = ""; 
+    $scope.url = "";
+    $scope.error = {
+        urlName : "",
+        url : ""
+    }
+    $scope.InsertInfo = "";
+    // 问题是如何复写bookMarker中取得所有数据的方法
+    $scope.addBookMarker = function(){
+        if($scope.urlName == "" || $scope.url == ""){
+            $scope.error.urlName = ($scope.urlName == "") ? "请输入书签名称!" : "";
+            $scope.error.url = ($scope.url == "") ? "请输入书签地址!" : "";
+            return;
+        }
+        $http.get("scripts/addBookMarker.php?urlName="+ $scope.urlName+"&url="+$scope.url).success(function(data){
+            $scope.InsertInfo = data;
+            $scope.showAddBMDiv = false;
+            $state.go($state.current, null, {reload: true});
+        }).error(function(data){
+            $scope.InsertInfo = data;
+        });
+
+        // $uibModalInstance.close($scope.selected.item);
+        $uibModalInstance.close($scope.InsertInfo);
+    }
+
+    $scope.adsFoucs = function(){
+        $scope.error = {
+            urlName : "",
+            url : ""
+        }
+    }
+
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});

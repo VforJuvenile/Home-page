@@ -14,20 +14,37 @@
 	
 	<bm-items is-load="isBmLoad"></bm-items>
 
-	<!-- 添加书签dialog -->
-	<div ng-show="showAddBMDiv" ng-controller="urlAddCtrl" id="addBookMarkerDialog">
-		<p>链接名称：</p>
-		<input type="text" ng-model="urlName" focus-change="error" focus-me="showAddBMDiv" placeholder="请输入链接名称">
-		<br/>
-		<span class="dataError">{{error.urlName}}&nbsp;</span>
-		<p>链接地址：</p>
-		<input type="text" ng-model="url" focus-change="error" placeholder="请输入链接地址" >
-		<br/>
-		<span class="dataError">{{error.url}}&nbsp;</span>
-		<div>
-			<button ng-click="addBookMarker()">sure</button>
-			<button ng-click="hiddenBookMarker()">cancle</button>
-		</div>
+	<script type="text/ng-template" id="addBMModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">添加书签</h3>
+        </div>
+        <div class="modal-body">
+	        <input type="text" ng-model="urlName" focus-change="error" focus-me="showAddBMDiv" placeholder="请输入链接名称">
+			<br/>
+			<span class="dataError">{{error.urlName}}&nbsp;</span>
+			<p>链接地址：</p>
+			<input type="text" ng-model="url" focus-change="error" placeholder="请输入链接地址" >
+			<br/>
+			<span class="dataError">{{error.url}}&nbsp;</span>
+            
+            <ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="addBookMarker();ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+
 		<p ng-model="InsertInfo"></p>
-	</div>
+        </div>
+    </script>
+
+    <button type="button" class="btn btn-default" ng-click="open('sm')" title="添加书签">+</button>
+
+    <p>上传结果：{{insertResult}}</p>
+
+
 </div>
