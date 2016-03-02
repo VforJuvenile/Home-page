@@ -10,8 +10,10 @@
 		<button ng-click="addBookMarkerShow()" class="addBookMarkerBtn">+</button>
 		<div class="glyphicon glyphicon-wrench"></div>
 	</div>
-	<bm-adaptwidth class="bookMarkerContains" is-load="isBmLoad"></bm-adaptwidth>
+	<bm-blocks class="bookMarkerContains" is-load="isBmLoad"></bm-blocks>
 	
+	<bm-items is-load="isBmLoad"></bm-items>
+
 	<!-- 添加书签dialog -->
 	<div ng-show="showAddBMDiv" ng-controller="urlAddCtrl" id="addBookMarkerDialog">
 		<p>链接名称：</p>

@@ -1,0 +1,8 @@
+<ul ng-show="isBmLoad" class="bookMarkerContains" >
+	<!-- <li ng-repeat='block in bmBlocks' title='block.markerUrl' class='bookMarkerBlock'>
+		<a target='_blank' ng-href='block.markerUrl'>{{block.markerName}}</a>
+	</li> -->
+	<li ng-repeat="item in bmItems" title="item.makerUrl">
+		<a target='_blank' ng-href='item.markerUrl'>{{$index+1}}{{item.markerName}}</a>
+	</li>
+</ul>

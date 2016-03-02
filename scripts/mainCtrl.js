@@ -160,7 +160,6 @@ app.controller('HistoryCtrl', function($scope,$http){
 function BookMarkerCtrl($scope, getBookMarker, arrayOperation, strOperation) {
     $scope.isContainsShow = false;
     $scope.isBmLoad = false;
-    console.log("W");
     getBookMarker.get("scripts/bookMarker.php").success(function (data) {
 
         // 对汉字长度超过6、英文长度超过10的书签进行过滤
@@ -172,6 +171,7 @@ function BookMarkerCtrl($scope, getBookMarker, arrayOperation, strOperation) {
         });
         $scope.bmNum = $scope.bmBlocks.length;
         $scope.isBmLoad = true;
+        console.log(data);
     })
 
 

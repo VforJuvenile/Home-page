@@ -53,8 +53,11 @@ app.factory('getBookMarker', function($http){
 .factory("arrayOperation", function(){
 	var data = [];
 	return {
+		isArray: function(array){
+			return Object.prototype.toString.call(array) == "[object Array]";
+		},
 		executeFilterFunc: function(array, key, func){
-			if(Object.prototype.toString.call(array) == "[object Array]"){
+			if(this.isArray(array)){
 				return array.filter(function(item){
 					return func.call(null, item[key]); 
 				})

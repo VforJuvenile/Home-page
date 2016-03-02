@@ -26,7 +26,7 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 })
 
-.directive('bmAdaptwidth', ["$timeout","drawBlock", function($timeout, drawBlock){
+.directive('bmBlocks', ["$timeout","drawBlock", function($timeout, drawBlock){
 
 	return {
 		restrict: 'E',
@@ -65,6 +65,28 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 }])
 
+.directive("bmItems", function($timeout){
+	return {
+		restrict: "E",
+		replace: true,
+		templateUrl: "views/bookMarkerItems.html",
+		link: function(scope, element, attrs){
+
+			scope.count = 1;
+			scope.$watch(attrs.isLoad, function(value){
+				if(value == true){
+					$timeout(function(){
+							
+						
+					}, 0);
+				}
+			})
+
+		}
+	}
+})
+
+// 左侧siderbar高度适应
 .directive("adpatHeight", function($timeout){
 	return {
 		link: function(scope, element, attrs){
@@ -87,12 +109,3 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 })
 
-.directive("setNotetitelh", function($timeout){
-	return {
-		link: function(scope, element, attrs){
-
-			element[0].style.height = document.querySelectorAll("#sidebar")[0].style.height;
-
-		}
-	}
-})

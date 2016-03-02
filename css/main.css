@@ -224,10 +224,12 @@ a:hover{
 	width: 200px;
 	border: 1px solid red;
 	height:100%;
+	overflow: auto;
 }
 #noteContent{
 	position: relative;
 	margin-left: 201px;
 	height: 100%;
 	border-left:1px solid green;
+	overflow: auto;
 }
