@@ -127,34 +127,6 @@ app.controller('HistoryCtrl', function($scope,$http){
 	})
 })
 
-// 设置
-// app.controller("SettingCtrl", function($scope){
-//    $scope.oneAtATime = true;
-
-//   $scope.groups = [
-//     {
-//       title: 'Dynamic Group Header - 1',
-//       content: 'Dynamic Group Body - 1'
-//     },
-//     {
-//       title: 'Dynamic Group Header - 2',
-//       content: 'Dynamic Group Body - 2'
-//     }
-//   ];
-
-//   $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-//   $scope.addItem = function() {
-//     var newItemNo = $scope.items.length + 1;
-//     $scope.items.push('Item ' + newItemNo);
-//   };
-
-//   $scope.status = {
-//     isFirstOpen: true,
-//     isFirstDisabled: false
-//   };
-// })
-
 // 用户信息如何传入
 // $http error也是要有处理的；
 function BookMarkerCtrl($scope, $uibModal, $log, getBookMarker, arrayOperation, strOperation) {
@@ -173,18 +145,6 @@ function BookMarkerCtrl($scope, $uibModal, $log, getBookMarker, arrayOperation, 
         $scope.isBmLoad = true;
         console.log(data);
     })
-
-
-    $scope.hideAddBMDiv = true;
-    $scope.showAddBMDiv = false;
-
-    $scope.addBookMarkerShow = function () {
-        $scope.showAddBMDiv = true;
-    }
-
-    $scope.hiddenBookMarker = function () {
-        $scope.showAddBMDiv = false;
-    }
 
     // 一行显示多少个书签
     // last 最后一行个数
@@ -225,14 +185,23 @@ function BookMarkerCtrl($scope, $uibModal, $log, getBookMarker, arrayOperation, 
             }
         });
 
-        // 从模态框拿回数据，result.then
+        // open方法返回一个modal实例，
+        // 具有close,dismiss,result,opened,closed,rendered等属性
+        // 从模态框拿回数据
         modalInstance.result.then(function (InsertInfo) {
+
           $scope.insertResult = InsertInfo;
 
         }, function () {
           $log.info('Modal dismissed at: ' + new Date());
         });
 
+    };
+
+    $scope.dynamicPopover = {
+        content: '修改书签',
+        templateUrl: 'bmSettingTemplate.html',
+        title: '设置'
     };
 
 }

@@ -214,3 +214,6 @@ a:hover{
 	border-left:1px solid green;
 	overflow: auto;
 }
+.bmModal0body input{
+	width: 100%;
+}

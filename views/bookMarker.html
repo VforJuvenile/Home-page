@@ -6,45 +6,53 @@
 <!-- 不同的是更改设置总个数是不变的，添加删除不一样，还需要去后台拿一次数据 -->
 
 <div ng-show="isContainsShow">
+
 	<div id="bmShowSetting">
-		<button ng-click="addBookMarkerShow()" class="addBookMarkerBtn">+</button>
+		<button type="button" class="btn btn-default" ng-click="open('sm')" title="添加书签">+</button>
 		<div class="glyphicon glyphicon-wrench"></div>
+        <button popover-placement="bottom" uib-popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">设置112123</button>
+        <button popover-placement="bottom-right" uib-popover="On thesadfafsadfsadfsdafsfafs b-r" type="button" class="btn btn-default">Popover test b t</button>
 	</div>
+
+    <script type="text/ng-template" id="bmSettingTemplate.html">
+        <div>{{dynamicPopover.content}}</div>
+        <div class="form-group">
+          <label>Popup Title:</label>
+          <input type="text" ng-model="dynamicPopover.title" class="form-control">
+        </div>
+    </script>
+
 	<bm-blocks class="bookMarkerContains" is-load="isBmLoad"></bm-blocks>
 	
 	<bm-items is-load="isBmLoad"></bm-items>
 
 	<script type="text/ng-template" id="addBMModalContent.html">
+        
         <div class="modal-header">
             <h3 class="modal-title">添加书签</h3>
         </div>
-        <div class="modal-body">
-	        <input type="text" ng-model="urlName" focus-change="error" focus-me="showAddBMDiv" placeholder="请输入链接名称">
-			<br/>
+
+        <div class="modal-body bmModal0body">
+
+            <p>链接名称：</p>
+	        <input type="text" ng-model="urlName" focus-change="error" focus-me="showAddBMDiv" class="form-control" placeholder="请输入链接名称">
 			<span class="dataError">{{error.urlName}}&nbsp;</span>
 			<p>链接地址：</p>
-			<input type="text" ng-model="url" focus-change="error" placeholder="请输入链接地址" >
+			<input type="text" ng-model="url" focus-change="error" class="form-control" placeholder="请输入链接地址" >
 			<br/>
 			<span class="dataError">{{error.url}}&nbsp;</span>
             
-            <ul>
-                <li ng-repeat="item in items">
-                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ selected.item }}</b>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="addBookMarker();ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 
-		<p ng-model="InsertInfo"></p>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="addBookMarker()">确定</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+
+		    <p ng-model="InsertInfo"></p>
         </div>
+
     </script>
 
-    <button type="button" class="btn btn-default" ng-click="open('sm')" title="添加书签">+</button>
-
-    <p>上传结果：{{insertResult}}</p>
-
+    <!-- <p>上传结果：{{insertResult}}</p> -->
 
 </div>
