@@ -39,10 +39,10 @@
 	float:left;
 	margin-left:40px;
 	text-align:center;
-	filter: 
+	/*filter: 
 	progid:DXImageTransform.Microsoft.Gradient(startColorStr='#337AB7',endColorStr='#FA9303',gradientType='0'); 
 	background: -moz-linear-gradient(left top, #337AB7, #FA9303);
-	background: -webkit-linear-gradient(left top, #337AB7, #FA9303);
+	background: -webkit-linear-gradient(left top, #337AB7, #FA9303);*/
 }
 #login_right{
 	width:400px;

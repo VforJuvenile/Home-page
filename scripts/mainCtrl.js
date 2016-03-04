@@ -84,15 +84,14 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 app.run(function($rootScope,$state){
     $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams){   
-        // console.log("change");
-        // console.log(fromState);
-        // console.log(toParams);
+
         // console.log(sessionStorage.getItem("userName"));
         // if(sessionStorage.getItem("userName") == null){
         //     // event.preventDefault();
         //     console.log("go login");
         //     $state.go("login",{},{reload : false});
         // }
+        
     });
 });
 
@@ -263,6 +262,29 @@ app.controller('loginCtrl', function($scope, $http, $state){
             $scope.Login.Lerror = "网络连接错误！";
         })
     }
+
+    $scope.noWrapSlides = false;
+
+    $scope.slides = [
+        {
+            image: "img/bigbigbang.jpg",
+            text: 'I love that 1',
+            id: 1
+        },{
+            image: "img/night.jpg",
+            text: 'I love that 2',
+            id: 2
+        },{
+            image: "img/lakeandRoad.jpg",
+            text: 'I love that 3 ',
+            id: 3
+        },{
+            image: "img/maintai.jpg",
+            text: 'I love that 4',
+            id: 4
+        }
+      ];
+
 
 });
 
