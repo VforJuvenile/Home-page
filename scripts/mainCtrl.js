@@ -263,7 +263,33 @@ app.controller('loginCtrl', function($scope, $http, $state){
         })
     }
 
-    $scope.noWrapSlides = false;
+    // $scope.noWrapSlides = false;
+
+    // $scope.slides = [
+    //     {
+    //         image: "img/bigbigbang.jpg",
+    //         text: 'I love that 1',
+    //         id: 1
+    //     },{
+    //         image: "img/night.jpg",
+    //         text: 'I love that 2',
+    //         id: 2
+    //     },{
+    //         image: "img/lakeandRoad.jpg",
+    //         text: 'I love that 3 ',
+    //         id: 3
+    //     },{
+    //         image: "img/maintai.jpg",
+    //         text: 'I love that 4',
+    //         id: 4
+    //     }
+    //   ];
+
+      $scope.myInterval = 5000;
+  $scope.noWrapSlides = false;
+  $scope.active = 0;
+  var slides = $scope.slides = [];
+  var currIndex = 0;
 
     $scope.slides = [
         {
