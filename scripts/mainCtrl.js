@@ -263,53 +263,24 @@ app.controller('loginCtrl', function($scope, $http, $state){
         })
     }
 
-    // $scope.noWrapSlides = false;
 
-    // $scope.slides = [
-    //     {
-    //         image: "img/bigbigbang.jpg",
-    //         text: 'I love that 1',
-    //         id: 1
-    //     },{
-    //         image: "img/night.jpg",
-    //         text: 'I love that 2',
-    //         id: 2
-    //     },{
-    //         image: "img/lakeandRoad.jpg",
-    //         text: 'I love that 3 ',
-    //         id: 3
-    //     },{
-    //         image: "img/maintai.jpg",
-    //         text: 'I love that 4',
-    //         id: 4
-    //     }
-    //   ];
+    $scope.noWrapSlides = false;
+    $scope.active = 0;
+    var slides = $scope.slides = [];
+    var currIndex = 0;
 
-      $scope.myInterval = 5000;
-  $scope.noWrapSlides = false;
-  $scope.active = 0;
-  var slides = $scope.slides = [];
-  var currIndex = 0;
+    $scope.addSlide = function() {
+        var newWidth = 600 + slides.length + 1;
+        slides.push({
+          image: 'img/' + newWidth + ".jpg",
+          text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+          id: currIndex++
+        });
+    };
 
-    $scope.slides = [
-        {
-            image: "img/bigbigbang.jpg",
-            text: 'I love that 1',
-            id: 1
-        },{
-            image: "img/night.jpg",
-            text: 'I love that 2',
-            id: 2
-        },{
-            image: "img/lakeandRoad.jpg",
-            text: 'I love that 3 ',
-            id: 3
-        },{
-            image: "img/maintai.jpg",
-            text: 'I love that 4',
-            id: 4
-        }
-      ];
+    for (var i = 0; i < 4; i++) {
+        $scope.addSlide();
+    }
 
 
 });
