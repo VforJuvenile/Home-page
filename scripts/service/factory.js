@@ -1,11 +1,28 @@
 // 获取所有书签信息
 app.factory('getBookMarker', function($http){
+	var allArr = [];
 	return {
 		get: function(url){
 			return $http.get(url);
 		},
 		post: function(url){
 			return $http.post(url);
+		},
+		getAllBm: function(url){
+			this.get(url).success(function(data){
+				allArr = data;
+				console.log("new");
+				console.log(data);
+				return data;
+			}).error(function(data){
+				return data;
+			});
+		},
+		deleteSomeBm: function(){
+			return "";
+		},
+		addSomeBm: function(){
+			return "";
 		}
 	}
 })

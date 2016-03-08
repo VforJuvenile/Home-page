@@ -129,8 +129,10 @@ app.controller('HistoryCtrl', function($scope,$http){
 // 用户信息如何传入
 // $http error也是要有处理的；
 function BookMarkerCtrl($scope, $uibModal, $log, getBookMarker, arrayOperation, strOperation) {
+    
     $scope.isContainsShow = false;
     $scope.isBmLoad = false;
+    
     getBookMarker.get("scripts/bookMarker.php").success(function (data) {
 
         // 对汉字长度超过6、英文长度超过10的书签进行过滤
@@ -142,9 +144,9 @@ function BookMarkerCtrl($scope, $uibModal, $log, getBookMarker, arrayOperation, 
         });
         $scope.bmNum = $scope.bmBlocks.length;
         $scope.isBmLoad = true;
-        console.log(data);
-    })
 
+    });
+    
     // 一行显示多少个书签
     // last 最后一行个数
     $scope.blockObj = function (i, pw) {

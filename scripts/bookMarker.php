@@ -29,5 +29,4 @@
 	}
 
 	echo json_encode($markArr);
-	// echo json_encode($arr);
 ?>

@@ -160,8 +160,8 @@ html,body{
 }
 .bookMarkerContains a{
 	display: inline-block;
-	width: 100%;
-	height:100%;
+	/*width: 100%;
+	height:100%;*/
 }
 #bmShowSetting{
 	text-align: right;
