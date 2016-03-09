@@ -1,9 +1,3 @@
 <ul ng-show="isBmLoad" class="bookMarkerContains" drag-free id="contains">
-	<li ng-repeat='block in bmBlocks'  title='{{block.markerUrl}}' class="bookMarkerBlock" >
-		<!-- sortN="{{block.i}}" -->
-		<a target='_blank' ng-href="{{block.markerUrl}}">{{block.markerName}}</a>
-		<span class="removeIcon" style="display:none">x</span>
-	</li>
-	<li class='bmDrageBlock' id="moveBlock">test</li>
-	<li id='extendHeight'></li>
+	<li ng-repeat='block in bmBlocks'  title='{{block.markerUrl}}' class="bookMarkerBlock" ><a target='_blank' ng-href="{{block.markerUrl}}">{{block.markerName}}</a><span class="removeIcon" style="display:none">x</span></li><li class='bmDrageBlock' id="moveBlock"></li><li id='extendHeight'></li>
 </ul>

@@ -127,8 +127,10 @@ app.directive('focusMe', function($timeout, $parse){
 				
 				var e = event || window.event,
 					target = e.target || e.srcElement;
-				
-				console.log(target.className);
+
+				console.log(e.offsetX);
+				console.log(e.offsetY);
+
 				// target可能是：
 				// 1、普通块；
 				// 2、删除按钮；
@@ -142,7 +144,7 @@ app.directive('focusMe', function($timeout, $parse){
 			        oy = e.pageY - elePos.top;
 					pos = getPosFromEleArr(target);
 
-					console.log(pos);
+					console.log(pos);console.log(ox);
 					// 点击所有普通的块，隐藏删除按钮
 					var clas = doc.getElementsByClassName("removeIcon");
 			        for (var i = 0, len = clas.length; i < len; i++){
@@ -219,6 +221,7 @@ app.directive('focusMe', function($timeout, $parse){
 
 		        	// 判断是否是原来位置（区域）
 		        	if(ssIndex == sIndex){
+		        		console.log(element[0].childNodes[sIndex]);
 		          		element[0].childNodes[sIndex].lastChild.style.display = "";
 		        	}
 		      	}
