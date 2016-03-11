@@ -140,10 +140,11 @@ app.directive('focusMe', function($timeout, $parse){
 					console.log("hit");
 					// 获取事件在元素中的位置和元素固有的位置对象
 					var elePos = getOffset(target);
-			        ox = e.pageX - elePos.left;      // PC:offsetX
-			        oy = e.pageY - elePos.top;
+			        ox = e.offsetX;                  //e.pageX - elePos.left;      // PC:offsetX
+			        oy = e.offsetY;
 					pos = getPosFromEleArr(target);
 
+					console.log("ox\oy" + ox+"--"+oy);
 					console.log(pos);console.log(ox);
 					// 点击所有普通的块，隐藏删除按钮
 					var clas = doc.getElementsByClassName("removeIcon");
@@ -163,6 +164,7 @@ app.directive('focusMe', function($timeout, $parse){
 
 			          	// 显示拖动块
 			          	// 注意：拷贝重排后需要重新getId
+			          	// todo: float left 代替absolute
 			          	moveBlock = doc.getElementById("moveBlock");
 			          	moveBlock.style.display = "";
 			          	moveBlock.style.left   = pos.x  + "px";    //-pos.w*0.05
