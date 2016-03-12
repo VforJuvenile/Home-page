@@ -163,6 +163,12 @@ html,body{
 	/*width: 100%;
 	height:100%;*/
 }
+.bookMarkerBlock{
+	width: 150px;
+	height: 20px;
+	float: left;
+	border: 1px solid blue;
+}
 #bmShowSetting{
 	text-align: right;
 	padding:5px;
@@ -216,4 +222,8 @@ a:hover{
 }
 .bmModal0body input{
 	width: 100%;
+}
+#moveBlock{
+	position: absolute;
+	border: 2px solid red;
 }

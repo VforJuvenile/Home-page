@@ -52,14 +52,14 @@ app.directive('focusMe', function($timeout, $parse){
 							
 						// 以最后一个手动添加的元素来撑开父元素	
 						angular.element("#extendHeight")[0].style.height = extendHeight.top + extendHeight.height + extendHeight.margin + "px";
-						for (var i = 0; i < len; i++){
-							var obj = new scope.blockObj(i, bmsW);
-							drawBlock.draw(eleArr[i], obj)
-						}
+						// for (var i = 0; i < len; i++){
+						// 	var obj = new scope.blockObj(i, bmsW);
+						// 	drawBlock.draw(eleArr[i], obj)
+						// }
 						scope.isContainsShow = true;
 					}, 0);
 				}
-			})		
+			})
 
 		}
 	}
