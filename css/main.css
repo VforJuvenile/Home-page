@@ -149,7 +149,7 @@ html,body{
 .bookMarkerContains{
 	position: relative;
 	width: 100%;
-	/*overflow: auto;*/
+	overflow: hidden;
 	display: block;
 	border:1px solid gray;
 	padding: 0px;
@@ -160,8 +160,8 @@ html,body{
 }
 .bookMarkerContains a{
 	display: inline-block;
-	/*width: 100%;
-	height:100%;*/
+	width: 100%;
+	height:100%;
 }
 .bookMarkerBlock{
 	width: 150px;
