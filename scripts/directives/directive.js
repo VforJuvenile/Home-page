@@ -97,14 +97,6 @@ app.directive('focusMe', function($timeout, $parse){
 
 			element[0].style.height = siderHeight + "px";
 
-			// 浏览器窗口改变监听事件--高度不需要
-			// window.addEventListener("resize", function(){
-			// 	$timeout(function(){
-			// 		pageHeight = Math.max(doc.documentElement.scrollHeight, doc.body.clientHeight);
-			// 		console.log(pageHeight);
-			// 	},0);
-			// })
-
 		}
 	}
 })
@@ -119,17 +111,16 @@ app.directive('focusMe', function($timeout, $parse){
 				moveBlock,							// 被拖动的块
 				isLongHit = false,
 				ox = 0, 
-				oy = 0,  							// 点击点在元素中的相对位置
+				oy = 0,									// 点击点在元素中的相对位置
 				ssIndex = 0,							// 被拖动元素起始位置(父元素childs[i])
-				sIndex = 0;								// 
+				sIndex = 0;								//
 
 			element[0].addEventListener("mousedown", function(event){
 				
 				var e = event || window.event,
 					target = e.target || e.srcElement;
 
-				console.log(e.offsetX);
-				console.log(e.offsetY);
+				element[0].addEventListener("mousemove", moveListen);
 
 				// target可能是：
 				// 1、普通块；
@@ -137,15 +128,12 @@ app.directive('focusMe', function($timeout, $parse){
 				// 3、其他空白的地方。
 				if(target.className.indexOf("bookMarkerBlock") > -1){
 					
-					console.log("hit");
 					// 获取事件在元素中的位置和元素固有的位置对象
 					var elePos = getOffset(target);
 			        ox = e.offsetX;                  //e.pageX - elePos.left;      // PC:offsetX
 			        oy = e.offsetY;
 					pos = getPosFromEleArr(target);
 
-					console.log("ox\oy" + ox+"--"+oy);
-					console.log(pos);console.log(ox);
 					// 点击所有普通的块，隐藏删除按钮
 					var clas = doc.getElementsByClassName("removeIcon");
 			        for (var i = 0, len = clas.length; i < len; i++){
@@ -182,6 +170,7 @@ app.directive('focusMe', function($timeout, $parse){
 			          	moveBlock.lastChild.lastChild.style.display = "";
 
 					},2000);
+
 				}else if(target.className.indexOf("removeIcon") > -1){
 
 			        var block = target.parentNode,
@@ -223,7 +212,6 @@ app.directive('focusMe', function($timeout, $parse){
 
 		        	// 判断是否是原来位置（区域）
 		        	if(ssIndex == sIndex){
-		        		console.log(element[0].childNodes[sIndex]);
 		          		element[0].childNodes[sIndex].lastChild.style.display = "";
 		        	}
 		      	}
@@ -238,10 +226,9 @@ app.directive('focusMe', function($timeout, $parse){
 		    // 4、对初始位置更新
 		    function moveListen(event){
 		      var e = event || window.event;
-		      var contains = doc.getElementById("contains");
+		      var contains = this;
 		      e.preventDefault();
-		      // var touch = e.touches[0]; //获取第一个触点  
-		      // console.log(arr);
+
 		      if(isLongHit){
 		        e.preventDefault();
 		        console.log("------------------------------------------");

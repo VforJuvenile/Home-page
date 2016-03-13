@@ -166,6 +166,7 @@ html,body{
 .bookMarkerBlock{
 	width: 150px;
 	height: 20px;
+	margin: 1px;
 	float: left;
 	border: 1px solid blue;
 }
@@ -225,5 +226,5 @@ a:hover{
 }
 #moveBlock{
 	position: absolute;
-	border: 2px solid red;
+	border: 1px solid red;
 }
