@@ -127,8 +127,9 @@ app.directive('focusMe', function($timeout, $parse){
 				// 1、普通块；
 				// 2、删除按钮；
 				// 3、其他空白的地方。
-				if(target.className.indexOf("bookMarkerBlock") > -1){
+				if(target.parentNode.className.indexOf("bookMarkerBlock") > -1){
 					
+					target = target.parentNode;
 					// 获取事件在元素中的位置和元素固有的位置对象
 					var elePos = getOffset(target);
 			        ox = e.offsetX;                  //e.pageX - elePos.left;      // PC:offsetX
@@ -138,7 +139,7 @@ app.directive('focusMe', function($timeout, $parse){
 					// 点击所有普通的块，隐藏删除按钮
 					var clas = doc.getElementsByClassName("removeIcon");
 			        for (var i = 0, len = clas.length; i < len; i++){
-			          clas[i].style.display = "none";
+			          clas[i].style.visibility = "hidden";
 			        }
 
 			        // 长按后触发
@@ -168,7 +169,7 @@ app.directive('focusMe', function($timeout, $parse){
 			          	target.style.opacity = 0;
 
 			          	// 显示拖动块中删除按钮
-			          	moveBlock.lastChild.lastChild.style.display = "";
+			          	moveBlock.lastChild.lastChild.style.visibility = "visible";
 
 					},2000);
 
@@ -190,7 +191,7 @@ app.directive('focusMe', function($timeout, $parse){
 			    }else{
 			        var clas = doc.getElementsByClassName("removeIcon");
 			        for (var i = 0, len = clas.length; i < len; i++){
-			          clas[i].style.display = "none";
+			          clas[i].style.visibility = "hidden";
 			        }
       			}
 					
@@ -209,11 +210,12 @@ app.directive('focusMe', function($timeout, $parse){
 		        	element[0].addEventListener("mousemove", null);
 		        	moveBlock.style.display = "none";
 		        	element[0].childNodes[sIndex].style.opacity = 1;
-		        	updateBlockSort();
+		        	// updateBlockSort();
 
 		        	// 判断是否是原来位置（区域）
 		        	if(ssIndex == sIndex){
-		          		element[0].childNodes[sIndex].lastChild.style.display = "";
+		        		console.log("-=========");
+		          		element[0].childNodes[sIndex].lastChild.style.visibility = "visible";
 		        	}
 		      	}
 

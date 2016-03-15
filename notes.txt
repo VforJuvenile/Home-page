@@ -22,7 +22,7 @@ c.如何给float元素设置高度为100%;
 已解决：
 1. 做到加载不同的页面才加载他的js文件或者directive;
 2. directive中的link能否在其子节点(后台加载而来)加载完成在执行;
-3. 子元素absolute如何撑开父元素;
+3. 子元素absolute如何撑开父元素;已改为float;
 4. ui-router代替ngRoute以及对应的复杂视图更改为单个视图;
 5. 非法路径全部跳转到login;
 
