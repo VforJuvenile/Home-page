@@ -169,6 +169,7 @@ html,body{
 	float: left;
 	position: relative;
 	border: 1px solid blue;
+	text-align: center;
 }
 #bmShowSetting{
 	text-align: right;
@@ -227,6 +228,7 @@ a:hover{
 #moveBlock{
 	position: absolute;
 	border: 1px solid red;
+	text-align: center;
 }
 .removeIcon{
 	position: absolute;

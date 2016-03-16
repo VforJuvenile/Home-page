@@ -150,6 +150,9 @@ app.directive('focusMe', function($timeout, $parse){
 			          	sIndex = pos.index;
 			          	ssIndex = sIndex;
 
+			          	//拖动块比普通块一边宽高多少，留作接口
+			          	var extend = 10;   
+
 			          	element[0].style.cursor = "pointer";
 
 			          	// 显示拖动块
@@ -157,12 +160,17 @@ app.directive('focusMe', function($timeout, $parse){
 			          	// todo: float left 代替absolute
 			          	moveBlock = doc.getElementById("moveBlock");
 			          	moveBlock.style.display = "";
-			          	moveBlock.style.left   = pos.x  + "px";    //-pos.w*0.05
-			          	moveBlock.style.top    = pos.y + "px";   //-pos.h*0.05 
+			          	moveBlock.style.width = pos.w + extend*2 + "px";
+			          	moveBlock.style.height = pos.h + extend*2 + "px";
+			          	moveBlock.style.left   = pos.x - extend + "px";    //-pos.w*0.05
+			          	moveBlock.style.top    = pos.y - extend + "px";   //-pos.h*0.05 
 
 			          	// 将块内容复制到拖动块中去
 			          	var clone = target.cloneNode(true);
 			          	moveBlock.innerHTML = "";
+			          	// 如果能用css实现左右上下居中最好，marign auto text-align 失效
+			          	moveBlock.style.padding = extend + "px " + extend + "px " + extend + "px " + extend + "px ";
+			          	clone.style.border = "none";
 			          	moveBlock.appendChild(clone);
 
 			          	// 隐藏点击的block,内容由拖动块代替显示
@@ -214,7 +222,6 @@ app.directive('focusMe', function($timeout, $parse){
 
 		        	// 判断是否是原来位置（区域）
 		        	if(ssIndex == sIndex){
-		        		console.log("-=========");
 		          		element[0].childNodes[sIndex].lastChild.style.visibility = "visible";
 		        	}
 		      	}
@@ -241,6 +248,8 @@ app.directive('focusMe', function($timeout, $parse){
 		      
 		        moveBlock.style.left = e.pageX - ox - containsPos.left + "px";
 		        moveBlock.style.top = e.pageY- oy - containsPos.top + "px";
+
+		        // 观察拖动块中心的位置
 		        var cx = e.pageX- ox - containsPos.left + moveBlock.offsetWidth/2,
 		            cy = e.pageY - oy - containsPos.top + moveBlock.offsetHeight/2,
 		            s;
