@@ -26,7 +26,7 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 })
 
-.directive('bmBlocks', ["$timeout","drawBlock", function($timeout, drawBlock){
+.directive('bmBlocks', ["$timeout", function($timeout){
 
 	return {
 		restrict: 'E',
@@ -35,28 +35,13 @@ app.directive('focusMe', function($timeout, $parse){
 		templateUrl: 'views/bookMarkerBlocks.html',
 		link: function(scope, element, attrs){
 
-			// 计算得其父元素的宽度，普通获取为auto
-			// var sideBarW = angular.element("#sidebar").outerWidth(true),
-			// 	bodyW = angular.element("body")[0].clientWidth,
-			// 	padding = parseFloat(angular.element("#mainContain").css("padding")),
-			// 	bmsW = bodyW - sideBarW - 2*padding - 17;  // not IE scroll
-
 			// 监测$http数据是否从后台获取完毕,显示
 			// 之所以在directive检测isLoad，是因为不能在尚未加载完成的时候绘制
 			// TODO:应该改为路由中使用resolve拿到数据
 			scope.$watch(attrs.isLoad, function(value){
 				if(value == true){
 					$timeout(function(){
-						// var eleArr = element.children(),
-						// 	len = eleArr.length - 1,
-						// 	extendHeight = new scope.blockObj(len);
-							
-						// 以最后一个手动添加的元素来撑开父元素	
-						// angular.element("#extendHeight")[0].style.height = extendHeight.top + extendHeight.height + extendHeight.margin + "px";
-						// for (var i = 0; i < len; i++){
-						// 	var obj = new scope.blockObj(i, bmsW);
-						// 	drawBlock.draw(eleArr[i], obj)
-						// }
+						
 						scope.isContainsShow = true;
 					}, 0);
 				}
@@ -254,24 +239,16 @@ app.directive('focusMe', function($timeout, $parse){
 		            cy = e.pageY - oy - containsPos.top + moveBlock.offsetHeight/2,
 		            s;
 
-		        console.log("s="+sIndex);
-
 		        // 如果是最后一个,放在原来最后一个（拖动框）前
 		        s = contains.removeChild(childs[sIndex]);
 
 		        arr  = getBlocksPosArr(contains);
 		        var lentest = arr.length;
-		        // console.log(arr);
-		        // console.log("cx="+cx+"; cy="+cy);
-		        console.log("此时有"+lentest+" 个div");
 		        var dIndex = getIndexByPos(arr, {x:cx,y:cy});
-		        console.log("目标是d="+dIndex);
 
 		        if(dIndex == lentest - 1){
-		          console.log("enter !");
 		          contains.insertBefore(s, childs[sIndex]);
 		        }else{
-		          console.log("!插入"+dIndex+"之前");
 		          contains.insertBefore(s, childs[dIndex]);
 		          sIndex = dIndex;
 		        }

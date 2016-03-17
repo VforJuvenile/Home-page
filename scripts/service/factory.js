@@ -26,16 +26,7 @@ app.factory('getBookMarker', function($http){
 		}
 	}
 })
-.factory("drawBlock", function(){
-	return {
-		draw: function(element, perObj){
-			var styleStr = "position: absolute;width:"+perObj.width+"px;height:"+
-							perObj.height+"px;left:"+perObj.left+"px;top:"+perObj.top+
-							"px;border:"+perObj.border;
-			element.style.cssText = styleStr; 
-		}
-	}
-})
+
 .factory("siderbar", function(){
 
 	var siderbarList = [
