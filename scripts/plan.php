@@ -6,6 +6,10 @@
 // echo $res;
 @$name = $_GET['a'];
 
-echo $name;
+
+function aa(){
+	$name = $_GET['a'];
+	echo $name." Test";
+}
 
 ?>

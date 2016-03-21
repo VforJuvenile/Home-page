@@ -1,4 +1,4 @@
-var app = angular.module("app", ['ui.router','ngAnimate','ui.bootstrap']);
+var app = angular.module("app", ['ui.router','ngAnimate','ngResource','ui.bootstrap']);
 
 app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
     
@@ -42,7 +42,12 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
             url: "/bookMarker",
             templateUrl: 'views/bookMarker.html',
             controller: BookMarkerCtrl,
-            resolve: BookMarkerCtrl.resolve
+            resolve: {
+                BookMarkers: function(MultiBMLoader){
+                    return MultiBMLoader();
+                }
+            }
+            // resolve: BookMarkerCtrl.resolve
         })
         .state("index.setting",{
             url: "/setting",
@@ -115,7 +120,7 @@ app.controller('siderClick', function($scope, $rootScope, siderbar){
 
 app.controller('MyPlanCtrl', function($scope,$http){
     console.log("enter pplan"); 
-	 $http.get("scripts/plan.php?a=b").success(function(data){
+	 $http.get("scripts/plan.php/aa?a=b").success(function(data){
 	 	$scope.user = data;
 	 })
 })
@@ -128,8 +133,10 @@ app.controller('HistoryCtrl', function($scope,$http){
 
 // 用户信息如何传入
 // $http error也是要有处理的；
-function BookMarkerCtrl($scope, $uibModal, $log, getBookMarker, arrayOperation, strOperation) {
+function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, getBookMarker, arrayOperation, strOperation) {
     
+    $scope.bookMarkers = BookMarkers;
+
     $scope.isContainsShow = false;
     $scope.isBmLoad = false;
     
