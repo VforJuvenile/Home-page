@@ -2,10 +2,17 @@
 	// 判断注册名是否存在
 	@$name = $_GET['name'];
 	@ $db  = new mysqli('localhost', 'root', '123456', 'wufu');
-	if(mysqli_connect_errno()){
-		echo "Error: 无法连接到数据库！";
-		exit;
-	};
+	// if(mysqli_connect_errno()){
+	// 	try
+	// 	echo "Error: 无法连接到数据库！";
+	// 	exit;
+	// };
+	try{
+		mysqli_connect_errno();
+	}catch(exception $e){
+		echo $e->getMessage();
+		exit; 
+	}
 	if(isset($name)){
 		$query = "select count(*) from userinfo where userName = '".$name."'";
 		$result = $db->query($query);

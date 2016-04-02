@@ -321,6 +321,7 @@ app.controller("registerCtrl", function($scope, $http, $state){
         })
         .success(function(data){
             if(data !== "success"){
+                console.log("errr");
                 $scope.Login.Rerror = data;
             }else{
                 $scope.Login.Rerror = "";
@@ -346,8 +347,10 @@ app.controller("indexCtrl", function($scope, $state){
     $state.go("index.history", {}, {reload: false});
 })
 
-app.controller("notesCtrl", function($scope){
-   
+app.controller("notesCtrl", function($scope, note){
+   $scope.titles = ['aa','bb','vv','mm'];
+   // note.titles;
+   $scope.phones = ['Fast just got faster with Nexus S.','The Next, Next Generation tablet.','The Next, Next Generation tablet.'];
 })
 
 app.controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $http, $state, items) {
@@ -394,3 +397,15 @@ app.controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $h
     $uibModalInstance.dismiss('cancel');
   };
 });
+
+app.filter("filter2", function(){
+    return function(items, index){
+        angular.forEach(items, function(item, i){
+            item = item + index;
+            console.log(item);
+            items[i] = item;
+        });
+
+        return items;
+    }
+})

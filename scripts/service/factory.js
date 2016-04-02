@@ -86,3 +86,13 @@ app.factory('getBookMarker', function($http){
 		}
 	}
 })
+.factory("note", function(){
+	return {
+		titles: [
+			"wfffffffff",
+			"sdfasdfasdfsdf",
+			"wfwwffwef",
+			"fdsdfsdfsgsdldsg"
+		]
+	}
+})
