@@ -86,6 +86,7 @@ app.factory('getBookMarker', function($http){
 		}
 	}
 })
+<<<<<<< HEAD
 .factory("note", function(){
 	return {
 		titles: [
@@ -94,5 +95,19 @@ app.factory('getBookMarker', function($http){
 			"wfwwffwef",
 			"fdsdfsdfsgsdldsg"
 		]
+=======
+.factory("BookMarker", function($resource){
+	return $resource('/bookmarkers/:id',{ id: '@id'});
+})
+.factory("MultiBMLoader", function(BookMarker,$q){
+	return function(){
+		var delay = $q.defer();
+		BookMarker.query(function(BookMarkers){
+			delay.resolve(BookMarkers);
+		}, function(){
+			delay.reject("获取书签失败！");
+		});
+		return delay.promise;
+>>>>>>> origin/master
 	}
 })
