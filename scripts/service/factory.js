@@ -86,7 +86,6 @@ app.factory('getBookMarker', function($http){
 		}
 	}
 })
-<<<<<<< HEAD
 .factory("note", function(){
 	return {
 		titles: [
@@ -95,7 +94,8 @@ app.factory('getBookMarker', function($http){
 			"wfwwffwef",
 			"fdsdfsdfsgsdldsg"
 		]
-=======
+	}
+})
 .factory("BookMarker", function($resource){
 	return $resource('/bookmarkers/:id',{ id: '@id'});
 })
@@ -108,6 +108,16 @@ app.factory('getBookMarker', function($http){
 			delay.reject("获取书签失败！");
 		});
 		return delay.promise;
->>>>>>> origin/master
 	}
+})
+.filter("filter2", function(){
+    return function(items, index){
+        angular.forEach(items, function(item, i){
+            item = item + index;
+            console.log(item);
+            items[i] = item;
+        });
+
+        return items;
+    }
 })
