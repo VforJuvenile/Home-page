@@ -96,10 +96,12 @@ app.factory('getBookMarker', function($http){
 		]
 	}
 })
+
 .factory("BookMarker", function($resource){
-	return $resource('/bookmarkers/:id',{ id: '@id'});
+	return $resource('/Home-page/scripts/bookMarker.php/:id',{ id: '@id'});
 })
-.factory("MultiBMLoader", function(BookMarker,$q){
+
+.factory("MultiBMLoader", function(BookMarker, $q){
 	return function(){
 		var delay = $q.defer();
 		BookMarker.query(function(BookMarkers){

@@ -32,7 +32,7 @@ app.directive('focusMe', function($timeout, $parse){
 		restrict: 'E',
 		transclude: true,
 		replace: true,
-		templateUrl: 'views/bookMarkerBlocks.html',
+		templateUrl: 'templates/bookMarkerBlocks.html',
 		link: function(scope, element, attrs){
 
 			// 监测$http数据是否从后台获取完毕,显示
@@ -55,7 +55,7 @@ app.directive('focusMe', function($timeout, $parse){
 	return {
 		restrict: "E",
 		replace: true,
-		templateUrl: "views/bookMarkerItems.html",
+		templateUrl: "templates/bookMarkerItems.html",
 		link: function(scope, element, attrs){
 
 			scope.count = 1;

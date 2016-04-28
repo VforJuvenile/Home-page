@@ -2,7 +2,7 @@
 	header('Content-type: text/json');
 	session_start();
 	$userId = $_SESSION['user_IdNum'];
-
+	
 	$markArr = array();
 	$markPerArr = array();
 	if(!isset($userId)){

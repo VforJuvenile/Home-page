@@ -1,5 +1,5 @@
 function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, getBookMarker, arrayOperation, strOperation) {
-    
+    console.log("saf");
     $scope.bookMarkers = BookMarkers;
 
     $scope.isContainsShow = false;
