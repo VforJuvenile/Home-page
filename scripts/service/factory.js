@@ -1,33 +1,5 @@
 // 获取所有书签信息
-app.factory('getBookMarker', function($http){
-	var allArr = [];
-	return {
-		get: function(url){
-			return $http.get(url);
-		},
-		post: function(url){
-			return $http.post(url);
-		},
-		getAllBm: function(url){
-			this.get(url).success(function(data){
-				allArr = data;
-				console.log("new");
-				console.log(data);
-				return data;
-			}).error(function(data){
-				return data;
-			});
-		},
-		deleteSomeBm: function(){
-			return "";
-		},
-		addSomeBm: function(){
-			return "";
-		}
-	}
-})
-
-.factory("siderbar", function(){
+app.factory("siderbar", function(){
 
 	var siderbarList = [
 		{
@@ -98,7 +70,7 @@ app.factory('getBookMarker', function($http){
 })
 
 .factory("BookMarker", function($resource){
-	return $resource('/Home-page/scripts/bookMarker.php/:id',{ id: '@id'});
+	return $resource('/Home-page/scripts/bookMarker.php/id/:id',{ id: '@id'});
 })
 
 .factory("MultiBMLoader", function(BookMarker, $q){

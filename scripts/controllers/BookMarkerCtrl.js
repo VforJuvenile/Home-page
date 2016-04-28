@@ -1,24 +1,21 @@
-function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, getBookMarker, arrayOperation, strOperation) {
-    console.log("saf");
+function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, arrayOperation, strOperation) {
+
     $scope.bookMarkers = BookMarkers;
 
     $scope.isContainsShow = false;
     $scope.isBmLoad = false;
-    
-    getBookMarker.get("scripts/bookMarker.php").success(function (data) {
+    var data  = BookMarkers;
 
-        // 对汉字长度超过6、英文长度超过10的书签进行过滤
-        $scope.bmBlocks = arrayOperation.executeFilterFunc(data, "markerName", function(value){
-            return strOperation.isChinese(value[0]) ? value.length < 6 : value.length < 10;
-        });
-        $scope.bmItems = arrayOperation.executeFilterFunc(data, "markerName", function(value){
-            return strOperation.isChinese(value[0]) ? value.length > 5 : value.length > 9;
-        });
-        $scope.bmNum = $scope.bmBlocks.length;
-        $scope.isBmLoad = true;
-
+    // 对汉字长度超过6、英文长度超过10的书签进行过滤
+    $scope.bmBlocks = arrayOperation.executeFilterFunc(data, "markerName", function(value){
+        return strOperation.isChinese(value[0]) ? value.length < 6 : value.length < 10;
     });
-    
+    $scope.bmItems = arrayOperation.executeFilterFunc(data, "markerName", function(value){
+        return strOperation.isChinese(value[0]) ? value.length > 5 : value.length > 9;
+    });
+    $scope.bmNum = $scope.bmBlocks.length;
+    $scope.isBmLoad = true;
+
     // 一行显示多少个书签
     // last 最后一行个数
     $scope.blockObj = function (i, pw) {
