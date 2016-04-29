@@ -1,33 +1,5 @@
 // 获取所有书签信息
-app.factory('getBookMarker', function($http){
-	var allArr = [];
-	return {
-		get: function(url){
-			return $http.get(url);
-		},
-		post: function(url){
-			return $http.post(url);
-		},
-		getAllBm: function(url){
-			this.get(url).success(function(data){
-				allArr = data;
-				console.log("new");
-				console.log(data);
-				return data;
-			}).error(function(data){
-				return data;
-			});
-		},
-		deleteSomeBm: function(){
-			return "";
-		},
-		addSomeBm: function(){
-			return "";
-		}
-	}
-})
-
-.factory("siderbar", function(){
+app.factory("siderbar", function(){
 
 	var siderbarList = [
 		{
@@ -86,7 +58,6 @@ app.factory('getBookMarker', function($http){
 		}
 	}
 })
-<<<<<<< HEAD
 .factory("note", function(){
 	return {
 		titles: [
@@ -95,11 +66,14 @@ app.factory('getBookMarker', function($http){
 			"wfwwffwef",
 			"fdsdfsdfsgsdldsg"
 		]
-=======
-.factory("BookMarker", function($resource){
-	return $resource('/bookmarkers/:id',{ id: '@id'});
+	}
 })
-.factory("MultiBMLoader", function(BookMarker,$q){
+
+.factory("BookMarker", function($resource){
+	return $resource('/Home-page/scripts/bookMarker.php/id/:id',{ id: '@id'});
+})
+
+.factory("MultiBMLoader", function(BookMarker, $q){
 	return function(){
 		var delay = $q.defer();
 		BookMarker.query(function(BookMarkers){
@@ -108,6 +82,16 @@ app.factory('getBookMarker', function($http){
 			delay.reject("获取书签失败！");
 		});
 		return delay.promise;
->>>>>>> origin/master
 	}
+})
+.filter("filter2", function(){
+    return function(items, index){
+        angular.forEach(items, function(item, i){
+            item = item + index;
+            console.log(item);
+            items[i] = item;
+        });
+
+        return items;
+    }
 })
