@@ -1,4 +1,4 @@
-function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, arrayOperation, strOperation, BookMarker) {
+function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOperation, strOperation, BookMarker) {
 
     $scope.bmBlocks = BookMarkers;
     // 下方长名字
@@ -69,17 +69,13 @@ function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, arrayOperation, st
                 }
             }
         });
-
         
-
-        var bm = BookMarker.query();
-        bm.$promise.then(function success(){
-            console.log("get");
-        }, function error(){
-            console.log("error");
-        })
-        // bm.makerName = "wf";
-        // bm.save();
+        // var bm = BookMarker.get({"id":"要删除的标签名2", "isGet": "yes"});
+        // bm.$delete({"id":"aaaa", "isGet": "yes"});
+        // bm.$promise.then(function success(){
+        //     $state.go($state.current.name, {}, {reload: true});
+        // }, function error(){
+        // })
 
         // open方法返回一个modal实例，
         // 具有close,dismiss,result,opened,closed,rendered等属性
