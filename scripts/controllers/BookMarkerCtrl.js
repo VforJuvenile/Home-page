@@ -1,4 +1,4 @@
-function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, arrayOperation, strOperation) {
+function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, arrayOperation, strOperation, BookMarker) {
 
     $scope.bmBlocks = BookMarkers;
     // 下方长名字
@@ -70,6 +70,17 @@ function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, arrayOperation, st
             }
         });
 
+        
+
+        var bm = BookMarker.query();
+        bm.$promise.then(function success(){
+            console.log("get");
+        }, function error(){
+            console.log("error");
+        })
+        // bm.makerName = "wf";
+        // bm.save();
+
         // open方法返回一个modal实例，
         // 具有close,dismiss,result,opened,closed,rendered等属性
         // 从模态框拿回数据
@@ -107,7 +118,7 @@ BookMarkerCtrl.resolve = {
 }
 
 angular.module("BookMarkers", [])
-.controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $http, $state, items) {
+.controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $http, $state, items, $q, BookMarker) {
 
     $scope.urlName = ""; 
     $scope.url = "";
@@ -123,14 +134,18 @@ angular.module("BookMarkers", [])
             $scope.error.url = ($scope.url == "") ? "请输入书签地址!" : "";
             return;
         }
-        $http.get("scripts/addBookMarker.php?urlName="+ $scope.urlName+"&url="+$scope.url).success(function(data){
+        
+        var saveBm = BookMarker.save({"urlName": $scope.urlName, "url": $scope.url});
+        saveBm.$promise.then(function success(data){
             $scope.InsertInfo = data;
+            console.log("success");
             $scope.showAddBMDiv = false;
-            $state.go($state.current, null, {reload: true});
-        }).error(function(data){
+            $state.go($state.current.name, null, {reload: true});
+        }, function error(data){
+            console.log("error");
+            console.log(data);
             $scope.InsertInfo = data;
         });
-
         // $uibModalInstance.close($scope.selected.item);
         $uibModalInstance.close($scope.InsertInfo);
     }

@@ -118,7 +118,7 @@ app.run(function($rootScope,$state){
 })
 
 .controller("indexCtrl", function($scope, $state){
-    $state.go("index.history", {}, {reload: false});
+    // $state.go("index.history", {}, {reload: false});
 })
 
 
