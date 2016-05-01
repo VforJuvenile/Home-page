@@ -154,7 +154,7 @@ html,body{
 	padding: 0px;
 	text-align: left;
 }
-.bookMarkerContains ul{
+.bookMarkerContains div{
 	overflow: hidden;
 }
 .bookMarkerContains a{
@@ -163,9 +163,6 @@ html,body{
 	height:100%;
 }
 .bookMarkerBlock{
-	width: 150px;
-	height: 20px;
-	margin: 1px;
 	float: left;
 	position: relative;
 	border: 1px solid blue;
@@ -224,11 +221,6 @@ a:hover{
 }
 .bmModal0body input{
 	width: 100%;
-}
-#moveBlock{
-	position: absolute;
-	border: 1px solid red;
-	text-align: center;
 }
 .removeIcon{
 	position: absolute;

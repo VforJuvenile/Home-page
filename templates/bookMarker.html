@@ -5,7 +5,7 @@
 <!-- 更改设置需要更新，添加、删除书签都要更新 -->
 <!-- 不同的是更改设置总个数是不变的，添加删除不一样，还需要去后台拿一次数据 -->
 
-<div ng-show="isContainsShow">
+<div main-drag-container="dragSettings">
 
 	<div id="bmShowSetting">
 		<button type="button" class="btn btn-default" ng-click="open('sm')" title="添加书签">+</button>
@@ -22,9 +22,9 @@
         </div>
     </script>
 
-	<bm-blocks class="bookMarkerContains" is-load="isBmLoad"></bm-blocks>
+	<bm-blocks class="bookMarkerContains"></bm-blocks>
 	
-	<bm-items is-load="isBmLoad"></bm-items>
+	<bm-items ></bm-items>
 
 	<script type="text/ng-template" id="addBMModalContent.html">
         

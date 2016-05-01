@@ -1,0 +1,11 @@
+.dragHide{
+	display: none;
+}
+.drag{
+	position: absolute;
+	pointer-events: none;
+	z-index: 5;
+}
+.dragPlace{
+	background-color: gray;
+}

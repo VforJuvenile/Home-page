@@ -1,20 +1,19 @@
 function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, arrayOperation, strOperation) {
 
-    $scope.bookMarkers = BookMarkers;
-
-    $scope.isContainsShow = false;
-    $scope.isBmLoad = false;
-    var data  = BookMarkers;
+    $scope.bmBlocks = BookMarkers;
+    // 下方长名字
+    $scope.longBms = [];
 
     // 对汉字长度超过6、英文长度超过10的书签进行过滤
-    $scope.bmBlocks = arrayOperation.executeFilterFunc(data, "markerName", function(value){
-        return strOperation.isChinese(value[0]) ? value.length < 6 : value.length < 10;
-    });
-    $scope.bmItems = arrayOperation.executeFilterFunc(data, "markerName", function(value){
-        return strOperation.isChinese(value[0]) ? value.length > 5 : value.length > 9;
-    });
+    // 如何向controller中的filter中传入参数达到多个repeat复用的效果，以及如何如何在factory中的filter里通过返回bool值使其能过滤数据
+    $scope.getShortBM = function(bms){
+        return strOperation.isChinese(bms["markerName"][0]) ? bms["markerName"].length < 6 : bms["markerName"].length < 10;
+    }
+    $scope.getLongBM = function(bms){
+        return !(strOperation.isChinese(bms["markerName"][0]) ? bms["markerName"].length < 6 : bms["markerName"].length < 10);
+    }
+
     $scope.bmNum = $scope.bmBlocks.length;
-    $scope.isBmLoad = true;
 
     // 一行显示多少个书签
     // last 最后一行个数
@@ -33,6 +32,22 @@ function BookMarkerCtrl($scope, $uibModal, $log, BookMarkers, arrayOperation, st
         this.width = pw ? ((pw - (this.perCowNum + 1) * this.margin) / this.perCowNum) : 0;
         this.top = this.height * this.x + this.margin * (this.x + 1);
         this.left = this.width * this.y + this.margin * (this.y + 1);
+    }
+
+
+
+    $scope.dragSettings = {
+        waiting: 2000,
+        allowFluid: false,
+        moveStart: function(){
+
+        },
+        moving: function(){
+
+        },
+        ended: function(){
+
+        }
     }
 
 

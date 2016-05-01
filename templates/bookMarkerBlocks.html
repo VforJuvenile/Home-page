@@ -1,3 +1,4 @@
-<ul ng-show="isBmLoad" class="bookMarkerContains" drag-free id="contains">
-	<li ng-repeat='block in bmBlocks' title='{{block.markerUrl}}' class="bookMarkerBlock" ><a target='_blank' ng-href="{{block.markerUrl}}">{{block.markerName}}</a><span class="removeIcon" style="visibility:hidden">x</span></li><li class='bmDrageBlock' id="moveBlock"></li><li id='extendHeight'></li>
+<ul class="bookMarkerContains" dragContainer id="contains">
+	<li ng-repeat='block in bmBlocks | filter: getShortBM' title='{{block.markerUrl}}' class="bookMarkerBlock col-md-2 col-xs-4" dragItem="true"><a target='_blank' ng-href="{{block.markerUrl}}">{{block.markerName}}</a><span class="removeIcon" style="visibility:hidden">x</span></li>
 </ul>
+ 

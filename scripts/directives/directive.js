@@ -35,18 +35,6 @@ app.directive('focusMe', function($timeout, $parse){
 		templateUrl: 'templates/bookMarkerBlocks.html',
 		link: function(scope, element, attrs){
 
-			// 监测$http数据是否从后台获取完毕,显示
-			// 之所以在directive检测isLoad，是因为不能在尚未加载完成的时候绘制
-			// TODO:应该改为路由中使用resolve拿到数据
-			scope.$watch(attrs.isLoad, function(value){
-				if(value == true){
-					$timeout(function(){
-						
-						scope.isContainsShow = true;
-					}, 0);
-				}
-			})
-
 		}
 	}
 }])
@@ -57,16 +45,6 @@ app.directive('focusMe', function($timeout, $parse){
 		replace: true,
 		templateUrl: "templates/bookMarkerItems.html",
 		link: function(scope, element, attrs){
-
-			scope.count = 1;
-			scope.$watch(attrs.isLoad, function(value){
-				if(value == true){
-					$timeout(function(){
-							
-						
-					}, 0);
-				}
-			})
 
 		}
 	}

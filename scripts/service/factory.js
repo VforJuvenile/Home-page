@@ -95,3 +95,12 @@ app.factory("siderbar", function(){
         return items;
     }
 })
+
+// .filter("getShortBM", ["strOperation", function(strOperation){
+// 	return function(bms){
+// 		angular.forEach(bms, function(bms, index){
+// 			console.log(strOperation.isChinese(bms["markerName"][0]) ? bms["markerName"].length < 6 : bms["markerName"].length < 10);
+// 			return strOperation.isChinese(bms["markerName"][0]) ? bms["markerName"].length < 6 : bms["markerName"].length < 10;
+// 		});
+// 	}
+// }])

@@ -1,5 +1,5 @@
 var app = angular.module("app", ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap',
-    'login', 'BookMarkers', 'notes', 'register', 'plan', 'history']);
+    'login', 'BookMarkers', 'notes', 'register', 'plan', 'history', 'wf.dragSort']);
 
 app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
     
