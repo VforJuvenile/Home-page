@@ -15,27 +15,6 @@ function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOpera
 
     $scope.bmNum = $scope.bmBlocks.length;
 
-    // 一行显示多少个书签
-    // last 最后一行个数
-    $scope.blockObj = function (i, pw) {
-        this.perCowNum = 7;
-        this.Cows = Math.floor($scope.bmNum / this.perCowNum);
-        this.lastNum = Math.floor($scope.bmNum % this.perCowNum);
-        this.height = 20;
-        this.margin = 10;
-        this.parentW = 0;
-        this.border = "1px solid red";
-        this.left = 0;
-        this.left = 0;
-        this.x = i ? Math.floor(i / this.perCowNum) : 0;
-        this.y = i ? i % this.perCowNum : 0;
-        this.width = pw ? ((pw - (this.perCowNum + 1) * this.margin) / this.perCowNum) : 0;
-        this.top = this.height * this.x + this.margin * (this.x + 1);
-        this.left = this.width * this.y + this.margin * (this.y + 1);
-    }
-
-
-
     $scope.dragSettings = {
         waiting: 2000,
         allowFluid: false,

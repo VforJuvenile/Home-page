@@ -37,14 +37,15 @@
 				$markArr[$i] = $markPerArr;
 
 			}
-		echo json_encode($markArr);
+			echo json_encode($markArr);
+			
 		} else {
 
-		echo json_encode(array("markerName"=>$arr[2], "markerUrl"=>$name.$isGet));
+			echo json_encode(array("markerName"=>$arr[2], "markerUrl"=>$name.$isGet));
 
 		}
 
-	// 保存
+	// 保存 添加
 	} else if ($_SERVER['REQUEST_METHOD'] == "POST"){
 		
 		$postData = file_get_contents('php://input', true);

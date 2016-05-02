@@ -1,5 +1,5 @@
-<ul class="bookMarkerContains" >
-	<li ng-repeat="item in bmBlocks | filter: getLongBM" title="{{item.markerUrl}}" >
+<ul class="bookMarkerContains" dragContainer>
+	<li ng-repeat="item in bmBlocks | filter: getLongBM" title="{{item.markerUrl}}" dragItem="true">
 		<p class="bg-success"><a target='_blank' ng-href="{{item.markerUrl}}">{{$index+1}}.{{item.markerName}}</a></p>
 	</li>
 </ul>
