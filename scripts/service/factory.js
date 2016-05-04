@@ -1,33 +1,5 @@
 // 获取所有书签信息
-app.factory('getBookMarker', function($http){
-	var allArr = [];
-	return {
-		get: function(url){
-			return $http.get(url);
-		},
-		post: function(url){
-			return $http.post(url);
-		},
-		getAllBm: function(url){
-			this.get(url).success(function(data){
-				allArr = data;
-				console.log("new");
-				console.log(data);
-				return data;
-			}).error(function(data){
-				return data;
-			});
-		},
-		deleteSomeBm: function(){
-			return "";
-		},
-		addSomeBm: function(){
-			return "";
-		}
-	}
-})
-
-.factory("siderbar", function(){
+app.factory("siderbar", function(){
 
 	var siderbarList = [
 		{
@@ -86,7 +58,6 @@ app.factory('getBookMarker', function($http){
 		}
 	}
 })
-<<<<<<< HEAD
 .factory("note", function(){
 	return {
 		titles: [
@@ -95,11 +66,14 @@ app.factory('getBookMarker', function($http){
 			"wfwwffwef",
 			"fdsdfsdfsgsdldsg"
 		]
-=======
-.factory("BookMarker", function($resource){
-	return $resource('/bookmarkers/:id',{ id: '@id'});
+	}
 })
-.factory("MultiBMLoader", function(BookMarker,$q){
+
+.factory("BookMarker", function($resource){
+	return $resource('/Home-page/scripts/bookMarker.php/id/:id',{ id: '@id'});
+})
+
+.factory("MultiBMLoader", function(BookMarker, $q){
 	return function(){
 		var delay = $q.defer();
 		BookMarker.query(function(BookMarkers){
@@ -108,6 +82,73 @@ app.factory('getBookMarker', function($http){
 			delay.reject("获取书签失败！");
 		});
 		return delay.promise;
->>>>>>> origin/master
 	}
 })
+
+.factory("bmBlocks", ["lStorage", function(lStorage){
+	var allBms = [],
+		secondaryArr = [];
+	return {
+		getMain: function(all, key){
+			var lArr = lStorage.get("mainBm"),
+				mainBm = [],
+				i = 0;
+
+			console.log(all.length);
+			if (!all.length){
+				return [];
+			}
+
+			for (var j = 0, len = lArr.length; j < len; j++) {
+				i = 0;
+				while (all[i]) {
+					if (all[i][key] == lArr[j]) {
+						mainBm.push(all.splice(i, 1));
+						break;
+					} else {
+						i++;
+					}
+				}
+			}
+
+			secondaryArr = all;
+
+			return mainBm;
+		},
+		getSecondary: function(){
+			return secondaryArr;
+		}
+	}
+}])
+
+.factory("lStorage", function(){
+	return {
+		get: function(name){
+			return JSON.parse(window.localStorage.getItem(name) || "[]");
+		},
+		set: function(name, value){
+			window.localStorage.setItem(name, value);
+		}
+	}
+})
+
+.filter("filter2", function(){
+    return function(items, index){
+        angular.forEach(items, function(item, i){
+            item = item + index;
+            console.log(item);
+            items[i] = item;
+        });
+
+        return items;
+    }
+})
+
+// .filter("getShortBM", ["strOperation", function(strOperation){
+// 	return function(bms){
+// 		angular.forEach(bms, function(bms, index){
+// 			console.log(strOperation.isChinese(bms["markerName"][0]) ? bms["markerName"].length < 6 : bms["markerName"].length < 10);
+// 			return strOperation.isChinese(bms["markerName"][0]) ? bms["markerName"].length < 6 : bms["markerName"].length < 10;
+// 		});
+// 	}
+// }])
