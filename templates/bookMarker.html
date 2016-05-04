@@ -22,10 +22,15 @@
           <input type="text" ng-model="dynamicPopover.title" class="form-control">
         </div>
     </script>
+    
+    <bm-items ></bm-items>
+	<bm-blocks></bm-blocks>
 
-	<bm-blocks class="bookMarkerContains"></bm-blocks>
-	
-	<bm-items ></bm-items>
+    <script type="text/ng-template" id="bookMarkerBlocks.html">
+    	<ul class="bookMarkerContains" dragContainer>
+            <li ng-repeat='block in mainBmBlocks' title='{{block.markerUrl}}' class="bookMarkerBlock col-md-2 col-xs-4" dragItem="true"><a target='_blank' ng-href="{{block.markerUrl}}">{{block.markerName}}</a></li>
+        </ul>
+    </script>
 
 	<script type="text/ng-template" id="addBMModalContent.html">
         

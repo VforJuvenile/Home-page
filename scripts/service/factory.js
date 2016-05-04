@@ -84,6 +84,52 @@ app.factory("siderbar", function(){
 		return delay.promise;
 	}
 })
+
+.factory("bmBlocks", ["lStorage", function(lStorage){
+	var allBms = [],
+		secondaryArr = [];
+	return {
+		getMain: function(all, key){
+			var lArr = lStorage.get("mainBm"),
+				mainBm = [],
+				i = 0;
+
+			if (all.length){
+				return [];
+			}
+
+			for (var j = 0, len = lArr.length; j < len; j++) {
+				i = 0;
+				while (all[i]) {
+					if (all[i][key] == lArr[j]) {
+						mainBm.push(all.splice(i, 1));
+						break;
+					} else {
+						i++;
+					}
+				}
+			}
+			secondaryArr = all;
+
+			return mainBm;
+		},
+		getSecondary: function(){
+			return secondaryArr;
+		}
+	}
+}])
+
+.factory("lStorage", function(){
+	return {
+		get: function(name){
+			return JSON.parse(window.localStorage.getItem(name) || []);
+		},
+		set: function(name, value){
+			window.localStorage.setItem(name, value);
+		}
+	}
+})
+
 .filter("filter2", function(){
     return function(items, index){
         angular.forEach(items, function(item, i){

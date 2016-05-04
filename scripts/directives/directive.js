@@ -32,7 +32,7 @@ app.directive('focusMe', function($timeout, $parse){
 		restrict: 'E',
 		transclude: true,
 		replace: true,
-		templateUrl: 'templates/bookMarkerBlocks.html',
+		templateUrl: 'bookMarkerBlocks.html',
 		link: function(scope, element, attrs){
 
 		}

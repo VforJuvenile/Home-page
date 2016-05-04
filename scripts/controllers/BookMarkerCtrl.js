@@ -1,8 +1,8 @@
 function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOperation, strOperation, BookMarker) {
 
-    $scope.bmBlocks = BookMarkers;
+    $scope.mainBmBlocks = BookMarkers;
     // 下方长名字
-    $scope.longBms = [];
+    $scope.secondaryBmBlocks = [];
 
     // 对汉字长度超过6、英文长度超过10的书签进行过滤
     // 如何向controller中的filter中传入参数达到多个repeat复用的效果，以及如何如何在factory中的filter里通过返回bool值使其能过滤数据

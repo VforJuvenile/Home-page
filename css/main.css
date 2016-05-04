@@ -148,14 +148,13 @@ html,body{
 .bookMarkerContains{
 	position: relative;
 	width: 100%;
-	overflow: hidden;
 	display: block;
 	border:1px solid gray;
 	padding: 0px;
 	text-align: left;
+	/*height: 100px;*/
 }
 .bookMarkerContains div{
-	overflow: hidden;
 }
 .bookMarkerContains a{
 	display: inline-block;
@@ -164,6 +163,7 @@ html,body{
 }
 .bookMarkerBlock{
 	float: left;
+	/*width:150px;*/
 	margin: 0px;
 	position: relative;
 	border: 1px solid blue;
@@ -198,6 +198,16 @@ a:hover{
 
 .clearFix{
 	clear: both;
+	/*zoom: 1;*/
+}
+.clearfloat:after{
+	display:block;
+	clear:both;
+	content:"";
+	visibility:hidden;
+	height:0
+} 
+.clearfloat{
 	zoom: 1;
 }
 
@@ -222,9 +232,4 @@ a:hover{
 }
 .bmModal0body input{
 	width: 100%;
-}
-.removeIcon{
-	position: absolute;
-	top:0px;
-	right:0px;
 }
