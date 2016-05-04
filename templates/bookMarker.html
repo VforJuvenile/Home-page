@@ -23,14 +23,17 @@
         </div>
     </script>
     
-    <bm-items ></bm-items>
-	<bm-blocks></bm-blocks>
+    <!-- 次模块 -->
+	<ul class="bookMarkerContains" dragContainer>
+        <li ng-repeat='block in mainBmBlocks' title='{{block.markerUrl}}' class="bookMarkerBlock col-md-2 col-xs-4" dragItem="true"><a target='_blank' ng-href="{{block.markerUrl}}">{{block.markerName}}</a></li>
+    </ul>
 
-    <script type="text/ng-template" id="bookMarkerBlocks.html">
-    	<ul class="bookMarkerContains" dragContainer>
-            <li ng-repeat='block in mainBmBlocks' title='{{block.markerUrl}}' class="bookMarkerBlock col-md-2 col-xs-4" dragItem="true"><a target='_blank' ng-href="{{block.markerUrl}}">{{block.markerName}}</a></li>
-        </ul>
-    </script>
+    <!-- 主模块 -->
+    <ul class="bookMarkerContains" dragContainer>
+        <li ng-repeat="item in secondaryBmBlocks" title="{{item.markerUrl}}" dragItem="true">
+            <p class="bg-success"><a target='_blank' ng-href="{{item.markerUrl}}">{{$index+1}}. {{item.markerName}}</a></p>
+        </li>
+    </ul>
 
 	<script type="text/ng-template" id="addBMModalContent.html">
         

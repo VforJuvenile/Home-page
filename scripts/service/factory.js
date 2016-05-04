@@ -94,7 +94,8 @@ app.factory("siderbar", function(){
 				mainBm = [],
 				i = 0;
 
-			if (all.length){
+			console.log(all.length);
+			if (!all.length){
 				return [];
 			}
 
@@ -109,6 +110,7 @@ app.factory("siderbar", function(){
 					}
 				}
 			}
+
 			secondaryArr = all;
 
 			return mainBm;
@@ -122,7 +124,7 @@ app.factory("siderbar", function(){
 .factory("lStorage", function(){
 	return {
 		get: function(name){
-			return JSON.parse(window.localStorage.getItem(name) || []);
+			return JSON.parse(window.localStorage.getItem(name) || "[]");
 		},
 		set: function(name, value){
 			window.localStorage.setItem(name, value);

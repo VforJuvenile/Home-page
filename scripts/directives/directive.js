@@ -26,30 +26,6 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 })
 
-.directive('bmBlocks', ["$timeout", function($timeout){
-
-	return {
-		restrict: 'E',
-		transclude: true,
-		replace: true,
-		templateUrl: 'bookMarkerBlocks.html',
-		link: function(scope, element, attrs){
-
-		}
-	}
-}])
-
-.directive("bmItems", function($timeout){
-	return {
-		restrict: "E",
-		replace: true,
-		templateUrl: "templates/bookMarkerItems.html",
-		link: function(scope, element, attrs){
-
-		}
-	}
-})
-
 // 左侧siderbar高度适应
 .directive("adpatHeight", function($timeout){
 	return {

@@ -1,19 +1,7 @@
-function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOperation, strOperation, BookMarker) {
+function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOperation, strOperation, BookMarker, bmBlocks) {
 
-    $scope.mainBmBlocks = BookMarkers;
-    // 下方长名字
-    $scope.secondaryBmBlocks = [];
-
-    // 对汉字长度超过6、英文长度超过10的书签进行过滤
-    // 如何向controller中的filter中传入参数达到多个repeat复用的效果，以及如何如何在factory中的filter里通过返回bool值使其能过滤数据
-    $scope.getShortBM = function(bms){
-        return strOperation.isChinese(bms["markerName"][0]) ? bms["markerName"].length < 6 : bms["markerName"].length < 10;
-    }
-    $scope.getLongBM = function(bms){
-        return !(strOperation.isChinese(bms["markerName"][0]) ? bms["markerName"].length < 6 : bms["markerName"].length < 10);
-    }
-
-    $scope.bmNum = $scope.bmBlocks.length;
+    $scope.mainBmBlocks = bmBlocks.getMain(BookMarkers, "sortN");
+    $scope.secondaryBmBlocks = bmBlocks.getSecondary();
 
     $scope.dragSettings = {
         waiting: 2000,

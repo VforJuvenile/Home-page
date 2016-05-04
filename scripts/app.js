@@ -87,13 +87,14 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 
 app.run(function($rootScope,$state){
     $rootScope.$on('$stateChangeStart',
-    function(event, toState, toParams, fromState, fromParams){   
+    function(event, toState, toParams, fromState, fromParams){ 
 
         // console.log(sessionStorage.getItem("userName"));
         // if(sessionStorage.getItem("userName") == null){
         //     // event.preventDefault();
         //     console.log("go login");
-        //     $state.go("login",{},{reload : false});
+        //     // aa++;
+        //     $state.go("login.login",{}, {reload : true});
         // }
         
     });
