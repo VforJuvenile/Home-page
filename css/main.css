@@ -154,12 +154,17 @@ html,body{
 	text-align: left;
 	/*height: 100px;*/
 }
-.bookMarkerContains div{
+.bookMarkerContains li{
+	position: relative;
 }
 .bookMarkerContains a{
 	display: inline-block;
-	width: 100%;
+	/*width: 100%;*/
 	height:100%;
+}
+.bookMarkerContains p{
+	/*display: inline-block;*/
+	position: relative;
 }
 .bookMarkerBlock{
 	float: left;
@@ -232,4 +237,20 @@ a:hover{
 }
 .bmModal0body input{
 	width: 100%;
+}
+.blankBm{
+	display: none;
+}
+.floatRight{
+	float: right;
+}
+.floatLeft{
+	float: left;
+}
+.hide{
+	display: none;
+}
+.absouteRight{
+	position: absolute !important;
+	right: 0px;
 }

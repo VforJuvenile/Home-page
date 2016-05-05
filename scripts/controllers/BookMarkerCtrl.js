@@ -1,7 +1,9 @@
 function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOperation, strOperation, BookMarker, bmBlocks) {
 
-    $scope.mainBmBlocks = bmBlocks.getMain(BookMarkers, "sortN");
+    $scope.mainBmBlocks = bmBlocks.getMain(BookMarkers);
     $scope.secondaryBmBlocks = bmBlocks.getSecondary();
+    console.log($scope.secondaryBmBlocks);
+    $scope.orderId = "sortId";
 
     $scope.dragSettings = {
         waiting: 2000,
@@ -25,7 +27,7 @@ function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOpera
 
     $scope.animationsEnabled = true;
     $scope.insertResult  = "";
-    $scope.open = function (size) {
+    $scope.open = function (size, obj) {
 
         // 向模态框传递数据，resolve
         var modalInstance = $uibModal.open({
@@ -36,7 +38,8 @@ function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOpera
             resolve: {
                 items: function () {
                     return $scope.items;
-                }
+                },
+                obj : obj
             }
         });
         
@@ -84,10 +87,12 @@ BookMarkerCtrl.resolve = {
 }
 
 angular.module("BookMarkers", [])
-.controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $http, $state, items, $q, BookMarker) {
+.controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $http, $state, items, obj, $q, BookMarker) {
 
-    $scope.urlName = ""; 
-    $scope.url = "";
+    $scope.obj = obj;
+
+    $scope.urlName = obj.markerName || ""; 
+    $scope.url = obj.markerUrl || "";
     $scope.error = {
         urlName : "",
         url : ""
@@ -109,7 +114,6 @@ angular.module("BookMarkers", [])
             $state.go($state.current.name, null, {reload: true});
         }, function error(data){
             console.log("error");
-            console.log(data);
             $scope.InsertInfo = data;
         });
         // $uibModalInstance.close($scope.selected.item);
@@ -123,18 +127,19 @@ angular.module("BookMarkers", [])
         }
     }
 
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
+    $scope.items = items;
+    $scope.selected = {
+        item: $scope.items[0]
+    };
 
-  $scope.cancel = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 })
-.controller("deBookMarker", ["lStorage", "bmBlocks", function(lStorage, bmBlocks){
+
+.controller("deBookMarkerCtrl", ["$scope", "lStorage", "bmBlocks", function($scope, lStorage, bmBlocks){
     
-    $scope.deBmBlocks = bmBlocks.getDe();
+    $scope.deBmBlocks = bmBlocks.getDelete();
 
     $scope.removeBmBlocks = function(){
         bmBlocks.set("sortN", $scope.deBmBlocks);

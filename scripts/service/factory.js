@@ -87,39 +87,33 @@ app.factory("siderbar", function(){
 
 .factory("bmBlocks", ["lStorage", function(lStorage){
 	var allBms = [],
-		secondaryArr = [];
+		secondaryArr = [],
+		deleteArr = [];
 	return {
-		getMain: function(all, key){
-			var lArr = lStorage.get("mainBm"),
-				mainBm = [],
-				i = 0;
-
-			console.log(all.length);
-			if (!all.length){
-				return [];
-			}
-
-			for (var j = 0, len = lArr.length; j < len; j++) {
-				i = 0;
-				while (all[i]) {
-					if (all[i][key] == lArr[j]) {
-						mainBm.push(all.splice(i, 1));
-						break;
-					} else {
-						i++;
-					}
+		getMain: function(all){
+			var len = all.length, i = 0, mainArr = [], trans;
+			console.log(all[0]);
+			while(all[i]){
+				trans = all[i];
+				trans["sortId"] = parseInt(trans["sortId"]);
+				if (trans["state"] === "delete") {
+					deleteArr.push(all.splice(i, 1)[0]);
+				} else if (trans["sortId"] !== 0) {
+					mainArr.push(all.splice(i, 1)[0]);
+				} else {
+					i++;
 				}
 			}
 
 			secondaryArr = all;
 
-			return mainBm;
+			return mainArr;
 		},
 		getSecondary: function(){
 			return secondaryArr;
 		},
-		getDe: function(){
-			return deArr;
+		getDelete: function(){
+			return deleteArr;
 		}
 	}
 }])

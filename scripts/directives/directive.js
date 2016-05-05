@@ -40,3 +40,43 @@ app.directive('focusMe', function($timeout, $parse){
 		}
 	}
 })
+
+.directive("dbOpen", ["BookMarker", function(BookMarker){
+	return {
+		restrict: "A",
+		scope: true,
+		link: function(scope, element, attrs){
+			var so, tid;
+			scope.$watch(attrs.dbOpen, function(n, o){
+				so = n;
+			});
+
+			element[0].addEventListener("mouseenter", function(e){
+				var target = e.target;
+				angular.element(target).contents("i").removeClass('hide');
+				
+			});
+
+			element[0].addEventListener("mouseleave", function(e){
+				var target = e.target;
+				angular.element(target).contents("i").addClass('hide');
+			});
+			
+			element.contents("i").bind("click", function(e){
+				// 编辑书签	
+				so('sm', {"id": attrs.tid, "markerName": attrs.tname, "markerUrl": attrs.title});
+
+
+				// var de = BookerMarker.$delete({"id": attrs.tid});
+				// de.$promise.then(function success(){
+				// 	console.log("success");
+				// 	$state.go($state.current.name, {}, {reload: true});
+				// }, function error(){
+				// 	console.log("error delete");
+				// })
+
+
+			})
+		}
+	}
+}])

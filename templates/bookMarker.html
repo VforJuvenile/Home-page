@@ -8,9 +8,8 @@
 <div main-drag-container="dragSettings">
 
 	<div id="bmShowSetting"  dragItem="false">
-		<button type="button" class="btn btn-default" ng-click="open('sm')" title="添加书签">+</button>
+		<button type="button" class="btn btn-default" ng-click="open('sm', {})" title="添加书签">+</button>
         <i class="glyphicon glyphicon-trash" ng-click="goDeBm()"></i>
-        <i class="glyphicon glyphicon-pencil"></i>
         <button popover-placement="bottom" uib-popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">设置112123</button>
         <button popover-placement="bottom-right" uib-popover="On thesadfafsadfsadfsdafsfafs b-r" type="button" class="btn btn-default">Popover test b t</button>
 	</div>
@@ -24,15 +23,16 @@
     </script>
     
     <!-- 次模块 -->
-	<ul class="bookMarkerContains" dragContainer>
-        <li ng-repeat='block in mainBmBlocks' title='{{block.markerUrl}}' class="bookMarkerBlock col-md-2 col-xs-4" dragItem="true"><a target='_blank' ng-href="{{block.markerUrl}}">{{block.markerName}}</a></li>
+    <ul class="bookMarkerContains" dragContainer>
+        <li ng-repeat="item in secondaryBmBlocks" db-open="open" title="{{item.markerUrl}}" tid="{{item.id}}" tname="{{item.markerName}}" dragItem="true">
+            <p class="bg-success"><a target='_blank' ng-href="{{item.markerUrl}}">{{$index+1}}. {{item.markerName}}</a></p><i class="glyphicon glyphicon-pencil absouteRight hide"></i>
+        </li>
     </ul>
 
     <!-- 主模块 -->
     <ul class="bookMarkerContains" dragContainer>
-        <li ng-repeat="item in secondaryBmBlocks" title="{{item.markerUrl}}" dragItem="true">
-            <p class="bg-success"><a target='_blank' ng-href="{{item.markerUrl}}">{{$index+1}}. {{item.markerName}}</a></p>
-        </li>
+        <li ng-repeat='block in mainBmBlocks | orderBy: orderId' title='{{block.markerUrl}}' tname="{{block.markerName}}" tid="{{block.id}}" db-open="open" sortId="{{block.sortId}}" class="bookMarkerBlock col-md-2 col-xs-4" dragItem="true"><a target='_blank' ng-href="{{block.markerUrl}}">{{block.markerName}}</a><i class="glyphicon glyphicon-pencil absouteRight hide"></i></li>
+        <li ng-class="{blankBm: !!mainBmBlocks.length}">blank</li>
     </ul>
 
 	<script type="text/ng-template" id="addBMModalContent.html">

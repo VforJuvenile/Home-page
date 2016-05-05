@@ -52,9 +52,9 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
         .state("index.deBookMarker", {
             url: "/deBookMarker",
             templateUrl: 'templates/deBookMarker.html',
-            controller: deBookMarker
-        }),
-        .state("index.setting",{
+            controller: "deBookMarkerCtrl"
+        })
+        .state("index.setting", {
             url: "/setting",
             templateUrl: 'templates/setting.html',
             controller: 'SettingCtrl'

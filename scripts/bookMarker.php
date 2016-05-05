@@ -33,7 +33,7 @@
 			for ($i = 0; $i < $num_results; $i++){
 
 				$row = $result->fetch_assoc();
-				$markPerArr = array("markerName"=>$row["markerName"], "markerUrl"=>$row["markerUrl"]);
+				$markPerArr = array("markerName"=>$row["markerName"], "markerUrl"=>$row["markerUrl"], "id"=>$row["Id"], "sortId"=>$row["sortId"], "hitCount"=>$row["hitCount"], "state"=>$row["state"]);
 				$markArr[$i] = $markPerArr;
 
 			}
@@ -63,7 +63,7 @@
 		if ($count) {
 			$response = "书签名已存在！";
 		} else {
-			$query2 = "insert into userbookermarker (userId, markerName, markerUrl, markerImgUrl) values('".$userId."', '".$urlName."', '".$url."', '1')";
+			$query2 = "insert into userbookermarker (userId, markerName, markerUrl, markerImgUrl, sortId, hitCount) values('".$userId."', '".$urlName."', '".$url."', '1', '0', '1')";
 			
 			$result = $db->query($query2);
 			$response = "1";
