@@ -117,6 +117,9 @@ app.factory("siderbar", function(){
 		},
 		getSecondary: function(){
 			return secondaryArr;
+		},
+		getDe: function(){
+			return deArr;
 		}
 	}
 }])
@@ -127,7 +130,23 @@ app.factory("siderbar", function(){
 			return JSON.parse(window.localStorage.getItem(name) || "[]");
 		},
 		set: function(name, value){
-			window.localStorage.setItem(name, value);
+			window.localStorage.setItem(name, JSON.stringify(value));
+		},
+		add: function(name, values){
+			var newS;
+
+			if (newS = JSON.parse(window.localStorage.getItem(name))) {
+				newS = values;
+			} else if (angular.isArray(values)){
+				for (var i = 0, len = values.length; i < len; i++) {
+					newS.push(values[i]);
+				}
+			} else {
+				newS.push(values);
+			}
+
+			window.localStorage.setItem(name, JSON.stringify(newS));
+			return newS;
 		}
 	}
 })

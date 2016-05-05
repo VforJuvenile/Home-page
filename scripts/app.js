@@ -49,6 +49,11 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
             }
             // resolve: BookMarkerCtrl.resolve
         })
+        .state("index.deBookMarker", {
+            url: "/deBookMarker",
+            templateUrl: 'templates/deBookMarker.html',
+            controller: deBookMarker
+        }),
         .state("index.setting",{
             url: "/setting",
             templateUrl: 'templates/setting.html',

@@ -17,6 +17,9 @@ function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOpera
         }
     }
 
+    $scope.goDeBm = function(){
+        $state.go("index.deBookMarker", {}, {reload: true});
+    }
 
     $scope.items = ['item1', 'item2', 'item3'];
 
@@ -128,4 +131,13 @@ angular.module("BookMarkers", [])
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
-});
+})
+.controller("deBookMarker", ["lStorage", "bmBlocks", function(lStorage, bmBlocks){
+    
+    $scope.deBmBlocks = bmBlocks.getDe();
+
+    $scope.removeBmBlocks = function(){
+        bmBlocks.set("sortN", $scope.deBmBlocks);
+    }
+
+}]);
