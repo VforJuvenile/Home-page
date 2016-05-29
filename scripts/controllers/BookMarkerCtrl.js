@@ -1,5 +1,6 @@
 function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOperation, strOperation, BookMarker, bmBlocks) {
 
+    // 根据规则拿到主、次显示模块的数据
     $scope.mainBmBlocks = bmBlocks.getMain(BookMarkers);
     $scope.secondaryBmBlocks = bmBlocks.getSecondary();
     console.log($scope.secondaryBmBlocks);
@@ -23,8 +24,6 @@ function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOpera
         $state.go("index.deBookMarker", {}, {reload: true});
     }
 
-    $scope.items = ['item1', 'item2', 'item3'];
-
     $scope.animationsEnabled = true;
     $scope.insertResult  = "";
     $scope.open = function (size, obj) {
@@ -36,9 +35,6 @@ function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOpera
             controller: 'addBMModalInstanceCtrl',
             size: size,
             resolve: {
-                items: function () {
-                    return $scope.items;
-                },
                 obj : obj
             }
         });
@@ -87,10 +83,11 @@ BookMarkerCtrl.resolve = {
 }
 
 angular.module("BookMarkers", [])
-.controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $http, $state, items, obj, $q, BookMarker) {
+.controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $http, $state, obj, $q, BookMarker) {
 
+    console.log($scope.orderId);
     $scope.obj = obj;
-
+    $scope.title = obj.id ? "修改书签" : "添加书签"; 
     $scope.urlName = obj.markerName || ""; 
     $scope.url = obj.markerUrl || "";
     $scope.error = {
@@ -106,31 +103,19 @@ angular.module("BookMarkers", [])
             return;
         }
         
-        var saveBm = BookMarker.save({"urlName": $scope.urlName, "url": $scope.url});
+        var saveBm = BookMarker.save({"urlName": $scope.urlName, "url": $scope.url, "id": obj.id});
         saveBm.$promise.then(function success(data){
             $scope.InsertInfo = data;
             console.log("success");
             $scope.showAddBMDiv = false;
             $state.go($state.current.name, null, {reload: true});
         }, function error(data){
-            console.log("error");
+            // console.log("error");
             $scope.InsertInfo = data;
         });
         // $uibModalInstance.close($scope.selected.item);
         $uibModalInstance.close($scope.InsertInfo);
     }
-
-    $scope.adsFoucs = function(){
-        $scope.error = {
-            urlName : "",
-            url : ""
-        }
-    }
-
-    $scope.items = items;
-    $scope.selected = {
-        item: $scope.items[0]
-    };
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');

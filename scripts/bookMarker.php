@@ -53,23 +53,34 @@
 
 		@$urlName = $postDataObj->urlName;
 		@$url = $postDataObj->url;
+		@$id = $postDataObj->id;
 
-		$query = "select count(*) from userBookerMarker where markerName = '$urlName'";
 
-		$result = $db->query($query);
-		$row = $result->fetch_row();
-		$count = $row[0];
-
-		if ($count) {
-			$response = "书签名已存在！";
-		} else {
-			$query2 = "insert into userbookermarker (userId, markerName, markerUrl, markerImgUrl, sortId, hitCount) values('".$userId."', '".$urlName."', '".$url."', '1', '0', '1')";
-			
+		// 更新操作
+		if ($id != "") {
+		
+			$query2 = "update userBookerMarker set markerName= '$urlName', markerUrl = '$url' where id = '$id'"; 
 			$result = $db->query($query2);
 			$response = "1";
-		};
+		} else {
 
-		echo $response.$postDataObj->urlName.$postDataObj->url;
+			$query = "select count(*) from userBookerMarker where markerName = '$urlName'";
+
+			$result = $db->query($query);
+			$row = $result->fetch_row();
+			$count = $row[0];
+
+			if ($count) {
+				$response = "书签名已存在！";
+			} else {
+				$query2 = "insert into userbookermarker (userId, markerName, markerUrl, markerImgUrl, sortId, hitCount) values('".$userId."', '".$urlName."', '".$url."', '1', '0', '1')";
+				
+				$result = $db->query($query2);
+				$response = "1";
+			};
+		}
+
+		echo $response.JSON_encode($urlName);
 
 	// 删除
 	} else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {

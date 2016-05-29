@@ -64,6 +64,11 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
             templateUrl: 'templates/notes.html',
             controller: 'notesCtrl'
         })
+        .state("index.api", {
+            url: "/api",
+            templateUrl: 'templates/api.html',
+            controller: 'apiCtrl'
+        })
         .state("login",{
             url: "/login",
             templateUrl: "templates/login.html"

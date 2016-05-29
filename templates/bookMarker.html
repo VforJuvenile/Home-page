@@ -8,7 +8,7 @@
 <div main-drag-container="dragSettings">
 
 	<div id="bmShowSetting"  dragItem="false">
-		<button type="button" class="btn btn-default" ng-click="open('sm', {})" title="添加书签">+</button>
+		<button type="button" class="btn btn-default" ng-click="open('sm', {id: ''})" title="添加书签">+</button>
         <i class="glyphicon glyphicon-trash" ng-click="goDeBm()"></i>
         <button popover-placement="bottom" uib-popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">设置112123</button>
         <button popover-placement="bottom-right" uib-popover="On thesadfafsadfsadfsdafsfafs b-r" type="button" class="btn btn-default">Popover test b t</button>
@@ -35,10 +35,11 @@
         <li ng-class="{blankBm: !!mainBmBlocks.length}">blank</li>
     </ul>
 
+    <!-- 添加和更改模块 -->
 	<script type="text/ng-template" id="addBMModalContent.html">
         
         <div class="modal-header">
-            <h3 class="modal-title">添加书签</h3>
+            <h3 class="modal-title" ng-bind="title"></h3>
         </div>
 
         <div class="modal-body bmModal0body">

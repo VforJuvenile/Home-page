@@ -18,6 +18,9 @@ app.factory("siderbar", function(){
 		},{
 			xuhao : "笔记",
 			id: "notes"
+		},{
+			xuhao: "API 文档",
+			id: "api"
 		}
     ];
     return {
@@ -85,14 +88,14 @@ app.factory("siderbar", function(){
 	}
 })
 
-.factory("bmBlocks", ["lStorage", function(lStorage){
+.factory("bmBlocks",  function(){
 	var allBms = [],
 		secondaryArr = [],
 		deleteArr = [];
 	return {
 		getMain: function(all){
 			var len = all.length, i = 0, mainArr = [], trans;
-			console.log(all[0]);
+
 			while(all[i]){
 				trans = all[i];
 				trans["sortId"] = parseInt(trans["sortId"]);
@@ -116,7 +119,7 @@ app.factory("siderbar", function(){
 			return deleteArr;
 		}
 	}
-}])
+})
 
 .factory("lStorage", function(){
 	return {
