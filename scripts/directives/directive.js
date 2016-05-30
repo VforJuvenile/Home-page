@@ -44,12 +44,11 @@ app.directive('focusMe', function($timeout, $parse){
 .directive("dbOpen", ["BookMarker", function(BookMarker){
 	return {
 		restrict: "A",
-		scope: true,
+		scope: {
+			dbOpen: "&"
+		},
 		link: function(scope, element, attrs){
-			var so, tid;
-			scope.$watch(attrs.dbOpen, function(n, o){
-				so = n;
-			});
+			var tid, so = scope.dbOpen();
 
 			element[0].addEventListener("mouseenter", function(e){
 				var target = e.target;

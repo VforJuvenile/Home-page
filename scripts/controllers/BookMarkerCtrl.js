@@ -1,9 +1,9 @@
-function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOperation, strOperation, BookMarker, bmBlocks) {
+angular.module("BookMarkers", []).controller("BookMarkerCtrl", function($scope, $uibModal, $state, $log, BookMarkers, arrayOperation, strOperation, BookMarker, bmBlocks) {
 
     // 根据规则拿到主、次显示模块的数据
     $scope.mainBmBlocks = bmBlocks.getMain(BookMarkers);
     $scope.secondaryBmBlocks = bmBlocks.getSecondary();
-    console.log($scope.secondaryBmBlocks);
+
     $scope.orderId = "sortId";
 
     $scope.dragSettings = {
@@ -65,27 +65,24 @@ function BookMarkerCtrl($scope, $uibModal, $state, $log, BookMarkers, arrayOpera
         title: '设置'
     };
 
-}
+})
 
-BookMarkerCtrl.resolve = {
-    delay: function ($q) {
-        var delay = $q.defer();
-        var load = function () {
-            // $.getScript("scripts/directives/userDirective.js", function () {
-            //     delay.resolve();
-            // });
-            delay.resolve();
-        };
-        load();
-        // console.log("resolve onload");
-        return delay.promise;
-    }
-}
-
-angular.module("BookMarkers", [])
+// BookMarkerCtrl.resolve = {
+//     delay: function ($q) {
+//         var delay = $q.defer();
+//         var load = function () {
+//             // $.getScript("scripts/directives/userDirective.js", function () {
+//             //     delay.resolve();
+//             // });
+//             delay.resolve();
+//         };
+//         load();
+//         // console.log("resolve onload");
+//         return delay.promise;
+//     }
+// }
 .controller('addBMModalInstanceCtrl', function ($scope, $uibModalInstance, $http, $state, obj, $q, BookMarker) {
 
-    console.log($scope.orderId);
     $scope.obj = obj;
     $scope.title = obj.id ? "修改书签" : "添加书签"; 
     $scope.urlName = obj.markerName || ""; 

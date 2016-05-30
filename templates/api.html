@@ -1,1 +1,56 @@
-<div>{{name}}</div>
+<div class="apiDocContainer">
+	<div ng-repeat="api in apiData">
+		<h1>{{api.fileName}}</h1>
+		<button class="glyphicon glyphicon-pencil absouteRight" ng-click="open('sm', api)"></button>
+		<hr/>
+		<div ng-repeat="data in api.data">
+			<h3>{{data.name}}</h3>
+			<h4>usage:</h4>
+			<pre>{{data.usage}}</pre>
+			<h4>input:</h4>
+			<span ng-repeat="input in data.input">
+				{{input[0]}}&nbsp;
+			</span>
+			<h4>output:</h4>
+			<span ng-repeat="output in data.output">
+				{{output[0]}}&nbsp;
+			</span>
+			<h4>notes:</h4>
+			<p>{{data.notes}}</p>
+			<p>lastChangeBy {{data.lastChangeBy}} in {{data.lastChangeTime}} </p>
+		</div>
+	</div>
+
+
+	<!-- 添加和更改模块 -->
+	<script type="text/ng-template" id="operateAPIModalContent.html">
+        
+        <div class="modal-header">
+        asdfsdfaas
+            <h3 class="modal-title" ng-bind="title"></h3>
+        </div>
+
+        <div class="modal-body bmModal0body">
+
+            <div ng-repeat="key in keys">
+            	<p>{{key}}</p>
+            	<textarea name="obj[key]" cols="30" rows="1" ng-bind="obj[key]">
+            	</textarea>
+            </div>
+			// <span class="dataError">{{error.urlName}}&nbsp;</span>
+			
+			// <span class="dataError">{{error.url}}&nbsp;</span>
+            
+        </div>
+
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="addAPI()">确定</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+
+		    <p ng-model="info"></p>
+        </div>
+
+    </script>
+
+</div>

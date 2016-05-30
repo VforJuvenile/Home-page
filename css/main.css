@@ -254,3 +254,9 @@ a:hover{
 	position: absolute !important;
 	right: 0px;
 }
+.apiDocContainer {
+	text-align: left;
+}
+.apiDocContainer > div{
+	position: relative;
+}

@@ -1,5 +1,5 @@
 var app = angular.module("app", ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap',
-    'login', 'BookMarkers', 'notes', 'register', 'plan', 'history', 'wf.dragSort']);
+    'login', 'BookMarkers', 'notes', 'register', 'plan', 'history', 'Api', 'wf.dragSort']);
 
 app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
     
@@ -41,7 +41,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
         .state("index.bookMarker",{
             url: "/bookMarker",
             templateUrl: 'templates/bookMarker.html',
-            controller: BookMarkerCtrl,
+            controller: "BookMarkerCtrl",
             resolve: {
                 BookMarkers: function(MultiBMLoader){
                     return MultiBMLoader();
@@ -67,7 +67,12 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
         .state("index.api", {
             url: "/api",
             templateUrl: 'templates/api.html',
-            controller: 'apiCtrl'
+            controller: 'apiCtrl',
+            resolve: {
+                apiData: function(apiLoader) {
+                    return apiLoader();
+                }
+            }
         })
         .state("login",{
             url: "/login",

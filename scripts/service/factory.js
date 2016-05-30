@@ -148,6 +148,73 @@ app.factory("siderbar", function(){
 	}
 })
 
+.factory("ApiResource", ["$resource", function($resource) {
+	return $resource('/Home-page/scripts/api.php/id/:id',{ id: '@id'});
+}])
+
+.factory("apiLoader", function(api, $q){
+	return function(){
+		var delay = $q.defer();
+		// ApiResource.query(function(Apis){
+		// 	delay.resolve(Apis);
+		// }, function(){
+		// 	delay.reject("获取Api失败！");
+		// });
+		setTimeout(function(){
+			if (api.getAll()) {
+				delay.resolve(api.getAll())
+			} else {
+				delay.reject("failed");
+			}
+		}, 1000);
+		return delay.promise;
+	}
+})
+
+.factory("api", function() {
+	var api = [
+		{
+			"fileName": "sqlHelp.cs",
+			"data": [
+				{
+					name: "executeOpertion",
+					discription: "this is a sql help method",
+					usage: "<p>this are place for coding.</p>",
+					input: [["param1", "string", "必填"], ["param2", "number", "选填"]],
+					output: [["value", "string", "必填"], []],
+					notes: "ahahahahahhahah!",
+					lastChangeTime: "2016-05-02 11:09:34",
+					lastChangeBy: "wf"
+				}
+			],
+		},
+		{
+			"fileName": "sqlHelp2.cs",
+			"data": [
+				{
+					name: "executeOpertion2",
+					discription: "this is a sql help method",
+					usage: "<pre><p>this are place for coding.</p></pre>",
+					input: [["param1", "string", "必填"], ["param2", "number", "选填"]],
+					output: [["value", "string", "必填"]],
+					notes: "ahahahahahhahah!",
+					lastChangeTime: "2016-01-02 12:12:12",
+					lastChangeBy: "wf2"
+				}
+			]
+		}
+	];
+
+	return {
+		getApi: function (index){
+			return api[index] || {};
+		},
+		getAll: function (){
+			return api;
+		}
+	}
+})
+
 .filter("filter2", function(){
     return function(items, index){
         angular.forEach(items, function(item, i){
