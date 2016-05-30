@@ -33,7 +33,16 @@
 			for ($i = 0; $i < $num_results; $i++){
 
 				$row = $result->fetch_assoc();
-				$markPerArr = array("markerName"=>$row["markerName"], "markerUrl"=>$row["markerUrl"], "id"=>$row["Id"], "sortId"=>$row["sortId"], "hitCount"=>$row["hitCount"], "state"=>$row["state"]);
+
+				$markPerArr = array(
+					"markerName"=>$row["markerName"], 
+					"markerUrl"=>$row["markerUrl"], 
+					"id"=>$row["Id"], 
+					"sortId"=>$row["sortId"], 
+					"hitCount"=>$row["hitCount"], 
+					"state"=>$row["state"]
+					);
+
 				$markArr[$i] = $markPerArr;
 
 			}
@@ -80,7 +89,7 @@
 			};
 		}
 
-		echo $response.JSON_encode($urlName);
+		echo $response.$query2.JSON_encode($urlName);
 
 	// 删除
 	} else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {

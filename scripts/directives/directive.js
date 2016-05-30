@@ -26,21 +26,6 @@ app.directive('focusMe', function($timeout, $parse){
 	}
 })
 
-// 左侧siderbar高度适应
-.directive("adpatHeight", function($timeout){
-	return {
-		link: function(scope, element, attrs){
-			var doc = document, 
-				header = doc.querySelectorAll("#userHeader")[0],
-				pageHeight = Math.max(doc.documentElement.clientHeight, doc.body.clientHeight),
-				siderHeight = pageHeight - header.offsetHeight;
-
-			element[0].style.height = siderHeight + "px";
-
-		}
-	}
-})
-
 .directive("dbOpen", ["BookMarker", function(BookMarker){
 	return {
 		restrict: "A",

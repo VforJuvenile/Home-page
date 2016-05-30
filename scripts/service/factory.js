@@ -202,6 +202,21 @@ app.factory("siderbar", function(){
 					lastChangeBy: "wf2"
 				}
 			]
+		},
+		{
+			"fileName": "sqlHelp3.cs",
+			"data": [
+				{
+					name: "executeOpertion3",
+					discription: "this is a sql help method",
+					usage: "<pre><p>this are place for coding.</p></pre>",
+					input: [["param1", "string", "必填"], ["param2", "number", "选填"]],
+					output: [["value", "string", "必填"]],
+					notes: "ahahahahahhahah!",
+					lastChangeTime: "2016-01-02 12:12:12",
+					lastChangeBy: "wf3"
+				}
+			]
 		}
 	];
 

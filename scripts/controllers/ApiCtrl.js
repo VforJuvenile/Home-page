@@ -25,7 +25,7 @@ angular.module("Api", []).controller("apiCtrl", ["$scope", "$uibModal", "$state"
 
 	}
 }])
-.controller("operateAPIModalInstanceCtrl", function($scope, $uibModalInstance, $http, $state, $log, obj) {
+.controller("operateAPIModalInstanceCtrl", function($scope, $uibModalInstance, $http, $state, $log, obj, ApiResource) {
 
 	$scope.title = obj.fileName;
 	$scope.keys = Object.keys(obj.data[0] || {}).filter(function(item) {
@@ -36,6 +36,38 @@ angular.module("Api", []).controller("apiCtrl", ["$scope", "$uibModal", "$state"
 
 	$scope.addAPI = function (){
 		
+		var saveApi = ApiResource.save({
+			fileName : obj.fileName,
+			methodName :$scope.obj.name,
+			id :$scope.obj["id"],
+			discription :$scope.obj["discription"],
+			usage :$scope.obj.usage,
+			input : "input",
+			output : "output",
+			notes :$scope.obj.notes,
+			lastChangeTime : new Date()
+		});
+
+		console.log({
+			fileName : obj.fileName,
+			methodName :$scope.obj.name,
+			id :$scope.obj["id"],
+			discription :$scope.obj["discription"],
+			usage :$scope.obj.usage,
+			input :$scope.obj["input"],
+			output :$scope.obj.output,
+			notes :$scope.obj.notes,
+			lastChangeTime : new Date()
+		});
+
+		saveApi.$promise.then(
+			function success(data) {
+				alert("success");
+			}, 
+			function error(data) {
+				alert("error");
+			}
+		)
 	}
 
 	$scope.cancel = function () {

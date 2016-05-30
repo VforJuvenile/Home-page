@@ -94,7 +94,7 @@ angular.module("BookMarkers", []).controller("BookMarkerCtrl", function($scope, 
     $scope.InsertInfo = "";
     // 问题是如何复写bookMarker中取得所有数据的方法
     $scope.addBookMarker = function(){
-        if($scope.urlName == "" || $scope.url == ""){
+        if ($scope.urlName == "" || $scope.url == "") {
             $scope.error.urlName = ($scope.urlName == "") ? "请输入书签名称!" : "";
             $scope.error.url = ($scope.url == "") ? "请输入书签地址!" : "";
             return;

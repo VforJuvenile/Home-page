@@ -1,7 +1,7 @@
 <div class="apiDocContainer">
 	<div ng-repeat="api in apiData">
 		<h1>{{api.fileName}}</h1>
-		<button class="glyphicon glyphicon-pencil absouteRight" ng-click="open('sm', api)"></button>
+		<button class="glyphicon glyphicon-pencil absouteRight" ng-click="open('bg', api)"></button>
 		<hr/>
 		<div ng-repeat="data in api.data">
 			<h3>{{data.name}}</h3>
@@ -33,13 +33,11 @@
         <div class="modal-body bmModal0body">
 
             <div ng-repeat="key in keys">
-            	<p>{{key}}</p>
-            	<textarea name="obj[key]" cols="30" rows="1" ng-bind="obj[key]">
+            	<h4>{{key}}</h4>
+            	<textarea name="obj[key]" cols="78" rows="1" ng-bind="obj[key]">
             	</textarea>
             </div>
-			// <span class="dataError">{{error.urlName}}&nbsp;</span>
 			
-			// <span class="dataError">{{error.url}}&nbsp;</span>
             
         </div>
 
@@ -52,5 +50,7 @@
         </div>
 
     </script>
-
+	<!-- <span class="dataError">{{error.urlName}}&nbsp;</span>
+			
+	<span class="dataError">{{error.url}}&nbsp;</span> -->
 </div>

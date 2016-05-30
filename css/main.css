@@ -32,10 +32,15 @@ html,body{
 }
 
 #userHeader{
-	float: left;
+	/*float: left;*/
+	position: absolute;
+	top: 0px;
+	left: 0px;
 	height:50px;
 	width:100%;
+	background-color: white;
 	border-bottom:1px solid blue;
+	z-index: 10;
 }
 #contain{
 	width:100%;
@@ -47,13 +52,16 @@ html,body{
 #sidebar{
 	float:left;
 	width:90px;
+	height: 100%;
+	padding-top: 50px;
 	border-right: 1px solid black;
 }
 #mainContain{
 	margin-left:91px;
-	padding:50px 10px 0px 10px;
+	padding: 50px 10px 0px 10px;
 	height:100%;
 	min-width: 200px;
+	overflow: auto;
 }
 .clearFloat{
 	clear: both;
